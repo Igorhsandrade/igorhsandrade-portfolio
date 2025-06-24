@@ -1,265 +1,74 @@
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Github, Linkedin, Mail, ExternalLink, ArrowRight, Download, MapPin } from "lucide-react"
-import Image from "next/image"
-import Link from "next/link"
-import { ThemeToggleSimple } from "@/components/theme-toggle-simple"
-import { SkillsSection } from "@/components/skills-section"
-import { CertificatesSection } from "@/components/certificates-section"
-import type { Metadata } from "next"
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import {
+  Github,
+  Linkedin,
+  Mail,
+  ExternalLink,
+  ArrowRight,
+  Download,
+  MapPin
+} from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { ThemeToggleSimple } from '@/components/theme-toggle-simple';
+import { SkillsSection } from '@/components/skills-section';
+import { CertificatesSection } from '@/components/certificates-section';
+import {
+  skillsData,
+  certificatesData,
+  projects,
+  jsonLd,
+  metadata,
+  textContent
+} from '@/constants';
 
-export const metadata: Metadata = {
-  title: "Home",
-  description:
-    "Welcome to Alex Johnson's portfolio. Full-stack developer with expertise in React, Next.js, Node.js, and modern web technologies.",
-  openGraph: {
-    title: "Alex Johnson - Full-Stack Developer Portfolio",
-    description:
-      "Welcome to Alex Johnson's portfolio. Full-stack developer with expertise in React, Next.js, Node.js, and modern web technologies.",
-    url: "https://alexjohnson.dev",
-    images: ["/og-home.jpg"],
-  },
-}
-
-// Structured data for SEO
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  name: "Alex Johnson",
-  jobTitle: "Full-Stack Developer",
-  description: "Experienced full-stack developer specializing in React, Next.js, Node.js, and modern web technologies",
-  url: "https://alexjohnson.dev",
-  sameAs: [
-    "https://github.com/alexjohnson",
-    "https://linkedin.com/in/alexjohnson",
-    "https://twitter.com/alexjohnsondev",
-  ],
-  knowsAbout: [
-    "JavaScript",
-    "TypeScript",
-    "React",
-    "Next.js",
-    "Node.js",
-    "Python",
-    "AWS",
-    "Full-Stack Development",
-    "Web Development",
-  ],
-  alumniOf: {
-    "@type": "Organization",
-    name: "University Name",
-  },
-  worksFor: {
-    "@type": "Organization",
-    name: "Freelance",
-  },
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Remote",
-    addressCountry: "Worldwide",
-  },
-  email: "alex@example.com",
-  image: "https://alexjohnson.dev/profile-image.jpg",
-}
+export { metadata };
 
 export default function HomePage() {
-  const skillsData = [
-    // Languages
-    { name: "JavaScript", category: "Languages", level: "Expert" as const, years: 5, icon: "code" },
-    { name: "TypeScript", category: "Languages", level: "Expert" as const, years: 4, icon: "code" },
-    { name: "Python", category: "Languages", level: "Advanced" as const, years: 3, icon: "code" },
-    { name: "Java", category: "Languages", level: "Advanced" as const, years: 2, icon: "code" },
-    { name: "Go", category: "Languages", level: "Intermediate" as const, years: 1, icon: "code" },
-    { name: "Rust", category: "Languages", level: "Beginner" as const, years: 1, icon: "code" },
-    { name: "PHP", category: "Languages", level: "Advanced" as const, years: 3, icon: "code" },
-    { name: "C++", category: "Languages", level: "Intermediate" as const, years: 2, icon: "code" },
-
-    // Technologies (Frontend & Backend Frameworks)
-    { name: "React", category: "Technologies", level: "Expert" as const, years: 5, icon: "cpu" },
-    { name: "Next.js", category: "Technologies", level: "Expert" as const, years: 4, icon: "cpu" },
-    { name: "Vue.js", category: "Technologies", level: "Advanced" as const, years: 2, icon: "cpu" },
-    { name: "Angular", category: "Technologies", level: "Advanced" as const, years: 2, icon: "cpu" },
-    { name: "Svelte", category: "Technologies", level: "Intermediate" as const, years: 1, icon: "cpu" },
-    { name: "Node.js", category: "Technologies", level: "Expert" as const, years: 5, icon: "cpu" },
-    { name: "Express.js", category: "Technologies", level: "Advanced" as const, years: 4, icon: "cpu" },
-    { name: "Nest.js", category: "Technologies", level: "Advanced" as const, years: 2, icon: "cpu" },
-    { name: "Django", category: "Technologies", level: "Advanced" as const, years: 2, icon: "cpu" },
-    { name: "FastAPI", category: "Technologies", level: "Intermediate" as const, years: 1, icon: "cpu" },
-    { name: "Spring Boot", category: "Technologies", level: "Intermediate" as const, years: 1, icon: "cpu" },
-    { name: "Laravel", category: "Technologies", level: "Intermediate" as const, years: 2, icon: "cpu" },
-    { name: "Tailwind CSS", category: "Technologies", level: "Expert" as const, years: 4, icon: "cpu" },
-    { name: "Sass/SCSS", category: "Technologies", level: "Advanced" as const, years: 4, icon: "cpu" },
-
-    // Data (Databases & Data Technologies)
-    { name: "PostgreSQL", category: "Data", level: "Expert" as const, years: 4, icon: "database" },
-    { name: "MongoDB", category: "Data", level: "Advanced" as const, years: 4, icon: "database" },
-    { name: "MySQL", category: "Data", level: "Advanced" as const, years: 3, icon: "database" },
-    { name: "Redis", category: "Data", level: "Advanced" as const, years: 2, icon: "database" },
-    { name: "Elasticsearch", category: "Data", level: "Intermediate" as const, years: 2, icon: "database" },
-    { name: "SQLite", category: "Data", level: "Advanced" as const, years: 3, icon: "database" },
-    { name: "DynamoDB", category: "Data", level: "Intermediate" as const, years: 1, icon: "database" },
-    { name: "GraphQL", category: "Data", level: "Advanced" as const, years: 2, icon: "database" },
-    { name: "Prisma", category: "Data", level: "Advanced" as const, years: 2, icon: "database" },
-
-    // Tools (Development Tools, Cloud, DevOps)
-    { name: "Git", category: "Tools", level: "Expert" as const, years: 5, icon: "tool" },
-    { name: "VS Code", category: "Tools", level: "Expert" as const, years: 5, icon: "tool" },
-    { name: "Docker", category: "Tools", level: "Expert" as const, years: 4, icon: "tool" },
-    { name: "AWS", category: "Tools", level: "Advanced" as const, years: 3, icon: "tool" },
-    { name: "Vercel", category: "Tools", level: "Expert" as const, years: 4, icon: "tool" },
-    { name: "Netlify", category: "Tools", level: "Advanced" as const, years: 3, icon: "tool" },
-    { name: "GitHub Actions", category: "Tools", level: "Advanced" as const, years: 2, icon: "tool" },
-    { name: "Kubernetes", category: "Tools", level: "Intermediate" as const, years: 2, icon: "tool" },
-    { name: "Terraform", category: "Tools", level: "Intermediate" as const, years: 1, icon: "tool" },
-    { name: "Jenkins", category: "Tools", level: "Beginner" as const, years: 1, icon: "tool" },
-    { name: "Figma", category: "Tools", level: "Advanced" as const, years: 3, icon: "tool" },
-    { name: "Postman", category: "Tools", level: "Expert" as const, years: 4, icon: "tool" },
-    { name: "Jest", category: "Tools", level: "Advanced" as const, years: 3, icon: "tool" },
-    { name: "Cypress", category: "Tools", level: "Advanced" as const, years: 2, icon: "tool" },
-    { name: "Webpack", category: "Tools", level: "Intermediate" as const, years: 2, icon: "tool" },
-    { name: "Vite", category: "Tools", level: "Advanced" as const, years: 2, icon: "tool" },
-  ]
-
-  const certificatesData = [
-    {
-      title: "AWS Certified Solutions Architect - Professional",
-      issuer: "Amazon Web Services",
-      dateIssued: "March 2024",
-      credentialId: "AWS-SAP-2024-001234",
-      verificationUrl: "https://aws.amazon.com/verification",
-      image: "/placeholder.svg?height=200&width=300",
-      skills: ["AWS", "Cloud Architecture", "DevOps", "Infrastructure"],
-      description:
-        "Advanced certification demonstrating expertise in designing distributed applications and systems on AWS.",
-      status: "Active" as const,
-    },
-    {
-      title: "Google Cloud Professional Developer",
-      issuer: "Google Cloud",
-      dateIssued: "January 2024",
-      credentialId: "GCP-PD-2024-567890",
-      verificationUrl: "https://cloud.google.com/certification/verify",
-      image: "/placeholder.svg?height=200&width=300",
-      skills: ["Google Cloud", "Kubernetes", "Docker", "CI/CD"],
-      description:
-        "Professional-level certification for designing, building, and deploying applications on Google Cloud.",
-      status: "Active" as const,
-    },
-    {
-      title: "Microsoft Azure Developer Associate",
-      issuer: "Microsoft",
-      dateIssued: "November 2023",
-      credentialId: "AZ-204-2023-112233",
-      verificationUrl: "https://docs.microsoft.com/en-us/learn/certifications/verify",
-      image: "/placeholder.svg?height=200&width=300",
-      skills: ["Azure", "C#", ".NET", "Cloud Services"],
-      description: "Certification validating skills in developing cloud solutions using Microsoft Azure services.",
-      status: "Active" as const,
-    },
-    {
-      title: "Certified Kubernetes Administrator (CKA)",
-      issuer: "Cloud Native Computing Foundation",
-      dateIssued: "September 2023",
-      credentialId: "CKA-2023-445566",
-      verificationUrl: "https://training.linuxfoundation.org/certification/verify",
-      image: "/placeholder.svg?height=200&width=300",
-      skills: ["Kubernetes", "Container Orchestration", "DevOps", "Linux"],
-      description: "Hands-on certification demonstrating skills in Kubernetes administration and troubleshooting.",
-      status: "Active" as const,
-    },
-    {
-      title: "MongoDB Certified Developer",
-      issuer: "MongoDB Inc.",
-      dateIssued: "July 2023",
-      credentialId: "MDB-DEV-2023-778899",
-      verificationUrl: "https://university.mongodb.com/verify_certificate",
-      image: "/placeholder.svg?height=200&width=300",
-      skills: ["MongoDB", "NoSQL", "Database Design", "Node.js"],
-      description: "Certification proving proficiency in MongoDB development and database administration.",
-      status: "Active" as const,
-    },
-    {
-      title: "React Developer Certification",
-      issuer: "Meta (Facebook)",
-      dateIssued: "May 2023",
-      credentialId: "META-REACT-2023-334455",
-      verificationUrl: "https://developers.facebook.com/certification/verify",
-      image: "/placeholder.svg?height=200&width=300",
-      skills: ["React", "JavaScript", "Frontend Development", "JSX"],
-      description: "Official Meta certification demonstrating advanced React development skills and best practices.",
-      status: "Renewed" as const,
-    },
-  ]
-
-  const projects = [
-    {
-      title: "E-Commerce Platform",
-      description:
-        "Full-stack e-commerce solution with payment integration, inventory management, and admin dashboard.",
-      image: "/placeholder.svg?height=200&width=300",
-      tech: ["Next.js", "TypeScript", "PostgreSQL", "Stripe"],
-      liveUrl: "#",
-      githubUrl: "#",
-      category: "Full-Stack",
-    },
-    {
-      title: "Task Management App",
-      description:
-        "Collaborative project management tool with real-time updates, team collaboration, and progress tracking.",
-      image: "/placeholder.svg?height=200&width=300",
-      tech: ["React", "Node.js", "Socket.io", "MongoDB"],
-      liveUrl: "#",
-      githubUrl: "#",
-      category: "Full-Stack",
-    },
-    {
-      title: "Weather Dashboard",
-      description:
-        "Interactive weather application with location-based forecasts, historical data, and beautiful visualizations.",
-      image: "/placeholder.svg?height=200&width=300",
-      tech: ["React", "Chart.js", "Weather API", "Tailwind"],
-      liveUrl: "#",
-      githubUrl: "#",
-      category: "Front-End",
-    },
-    {
-      title: "API Gateway Service",
-      description: "Microservices API gateway with authentication, rate limiting, and comprehensive logging system.",
-      image: "/placeholder.svg?height=200&width=300",
-      tech: ["Node.js", "Express", "Redis", "Docker"],
-      liveUrl: "#",
-      githubUrl: "#",
-      category: "Back-End",
-    },
-  ]
-
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div className="min-h-screen bg-background">
         {/* Header/Navigation */}
         <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
           <div className="container flex h-16 items-center justify-between">
             <Link href="/" className="text-xl font-bold">
-              Alex Johnson
+              {textContent.header.name}
             </Link>
             <div className="flex items-center gap-2">
-              <nav className="hidden md:flex items-center space-x-6" role="navigation" aria-label="Main navigation">
-                <Link href="#about" className="text-sm font-medium hover:text-primary transition-colors">
-                  About
+              <nav
+                className="hidden md:flex items-center space-x-6"
+                role="navigation"
+                aria-label={textContent.common.ariaLabels.mainNavigation}
+              >
+                <Link
+                  href="#about"
+                  className="text-sm font-medium hover:text-primary transition-colors"
+                >
+                  {textContent.header.navigation.about}
                 </Link>
-                <Link href="#projects" className="text-sm font-medium hover:text-primary transition-colors">
-                  Projects
+                <Link
+                  href="#projects"
+                  className="text-sm font-medium hover:text-primary transition-colors"
+                >
+                  {textContent.header.navigation.projects}
                 </Link>
-                <Link href="#contact" className="text-sm font-medium hover:text-primary transition-colors">
-                  Contact
+                <Link
+                  href="#contact"
+                  className="text-sm font-medium hover:text-primary transition-colors"
+                >
+                  {textContent.header.navigation.contact}
                 </Link>
                 <Button variant="outline" size="sm">
                   <Download className="w-4 h-4 mr-2" />
-                  Resume
+                  {textContent.header.navigation.resume}
                 </Button>
               </nav>
               <ThemeToggleSimple />
@@ -275,18 +84,19 @@ export default function HomePage() {
               <div className="mb-6">
                 <Badge variant="secondary" className="mb-4">
                   <MapPin className="w-3 h-3 mr-1" />
-                  Available for Remote Work
+                  {textContent.hero.availability}
                 </Badge>
               </div>
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6">Full-Stack Developer</h1>
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6">
+                {textContent.hero.title}
+              </h1>
               <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-                Building scalable web solutions with modern technologies. Passionate about creating exceptional user
-                experiences and robust backend systems.
+                {textContent.hero.subtitle}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="text-lg px-8" asChild>
                   <Link href="#projects">
-                    View My Work
+                    {textContent.hero.buttons.viewWork}
                     <ArrowRight className="w-5 h-5 ml-2" />
                   </Link>
                 </Button>
@@ -298,7 +108,7 @@ export default function HomePage() {
                 >
                   <Link href="#contact">
                     <Mail className="w-5 h-5 mr-2" />
-                    Contact Me
+                    {textContent.hero.buttons.contactMe}
                   </Link>
                 </Button>
               </div>
@@ -311,10 +121,11 @@ export default function HomePage() {
           <div className="container">
             <div className="max-w-4xl mx-auto">
               <div className="text-center mb-16">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4">About Me</h2>
+                <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                  {textContent.about.title}
+                </h2>
                 <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                  I'm a passionate full-stack developer with 5+ years of experience building web applications. I love
-                  solving complex problems and turning ideas into reality through clean, efficient code.
+                  {textContent.about.subtitle}
                 </p>
               </div>
 
@@ -324,7 +135,7 @@ export default function HomePage() {
                     <div className="w-full h-full rounded-full overflow-hidden bg-background">
                       <Image
                         src="/placeholder.svg?height=256&width=256"
-                        alt="Alex Johnson - Full-Stack Developer"
+                        alt={textContent.common.imageAlt}
                         width={256}
                         height={256}
                         className="w-full h-full object-cover"
@@ -335,18 +146,19 @@ export default function HomePage() {
                 </div>
                 <div className="space-y-6">
                   <div>
-                    <h3 className="text-xl font-semibold mb-2">Background</h3>
+                    <h3 className="text-xl font-semibold mb-2">
+                      {textContent.about.background.title}
+                    </h3>
                     <p className="text-muted-foreground">
-                      Started my journey in computer science and quickly fell in love with web development. I've worked
-                      with startups and established companies, helping them build scalable solutions that serve
-                      thousands of users.
+                      {textContent.about.background.content}
                     </p>
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold mb-2">Approach</h3>
+                    <h3 className="text-xl font-semibold mb-2">
+                      {textContent.about.approach.title}
+                    </h3>
                     <p className="text-muted-foreground">
-                      I believe in writing clean, maintainable code and following best practices. I'm always learning
-                      new technologies and staying up-to-date with industry trends to deliver the best solutions.
+                      {textContent.about.approach.content}
                     </p>
                   </div>
                 </div>
@@ -354,18 +166,24 @@ export default function HomePage() {
 
               {/* Enhanced Skills Section */}
               <div className="mb-16">
-                <h3 className="text-2xl font-bold text-center mb-8">Skills & Technologies</h3>
+                <h3 className="text-2xl font-bold text-center mb-8">
+                  {textContent.about.skillsTitle}
+                </h3>
                 <SkillsSection skills={skillsData} />
               </div>
 
               {/* Certificates Section in About */}
               <div>
-                <h3 className="text-2xl font-bold text-center mb-8">Professional Certifications</h3>
+                <h3 className="text-2xl font-bold text-center mb-8">
+                  {textContent.about.certificatesTitle}
+                </h3>
                 <p className="text-center text-muted-foreground mb-8 max-w-2xl mx-auto">
-                  Continuously expanding my expertise through industry-recognized certifications from leading technology
-                  companies.
+                  {textContent.about.certificatesSubtitle}
                 </p>
-                <CertificatesSection certificates={certificatesData} showAll={false} />
+                <CertificatesSection
+                  certificates={certificatesData}
+                  showAll={false}
+                />
               </div>
             </div>
           </div>
@@ -375,10 +193,11 @@ export default function HomePage() {
         <section id="projects" className="py-20">
           <div className="container">
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Featured Projects</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                {textContent.projects.title}
+              </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Here are some of my recent projects that showcase my skills and experience in building modern web
-                applications.
+                {textContent.projects.subtitle}
               </p>
             </div>
 
@@ -388,7 +207,7 @@ export default function HomePage() {
                   <Card className="overflow-hidden hover:shadow-lg transition-shadow h-full">
                     <div className="relative h-48 overflow-hidden">
                       <Image
-                        src={project.image || "/placeholder.svg"}
+                        src={project.image || '/placeholder.svg'}
                         alt={`${project.title} - ${project.description}`}
                         fill
                         className="object-cover transition-transform hover:scale-105"
@@ -399,8 +218,12 @@ export default function HomePage() {
                       </div>
                     </div>
                     <CardContent className="p-6">
-                      <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                      <p className="text-muted-foreground mb-4">{project.description}</p>
+                      <h3 className="text-xl font-semibold mb-2">
+                        {project.title}
+                      </h3>
+                      <p className="text-muted-foreground mb-4">
+                        {project.description}
+                      </p>
                       <div className="flex flex-wrap gap-2 mb-4">
                         {project.tech.map((tech) => (
                           <Badge key={tech} variant="outline">
@@ -415,9 +238,13 @@ export default function HomePage() {
                           asChild
                           className="bg-background text-foreground border-border hover:bg-muted"
                         >
-                          <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                          <Link
+                            href={project.liveUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
                             <ExternalLink className="w-4 h-4 mr-2" />
-                            Live Demo
+                            {textContent.projects.buttons.liveDemo}
                           </Link>
                         </Button>
                         <Button
@@ -426,9 +253,13 @@ export default function HomePage() {
                           asChild
                           className="bg-background text-foreground border-border hover:bg-muted"
                         >
-                          <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                          <Link
+                            href={project.githubUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
                             <Github className="w-4 h-4 mr-2" />
-                            Code
+                            {textContent.projects.buttons.code}
                           </Link>
                         </Button>
                       </div>
@@ -444,7 +275,7 @@ export default function HomePage() {
                 size="lg"
                 className="bg-background text-foreground border-border hover:bg-muted"
               >
-                View All Projects
+                {textContent.projects.buttons.viewAll}
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
             </div>
@@ -456,10 +287,11 @@ export default function HomePage() {
           <div className="container">
             <div className="max-w-2xl mx-auto">
               <div className="text-center mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4">Get In Touch</h2>
+                <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                  {textContent.contact.title}
+                </h2>
                 <p className="text-lg text-muted-foreground">
-                  I'm always interested in new opportunities and exciting projects. Let's discuss how we can work
-                  together!
+                  {textContent.contact.subtitle}
                 </p>
               </div>
 
@@ -467,45 +299,75 @@ export default function HomePage() {
                 <form className="space-y-6" action="#" method="POST">
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
-                      <label htmlFor="name" className="block text-sm font-medium mb-2">
-                        Name
+                      <label
+                        htmlFor="name"
+                        className="block text-sm font-medium mb-2"
+                      >
+                        {textContent.contact.form.name}
                       </label>
-                      <Input id="name" name="name" placeholder="Your name" required />
+                      <Input
+                        id="name"
+                        name="name"
+                        placeholder={textContent.contact.form.namePlaceholder}
+                        required
+                      />
                     </div>
                     <div>
-                      <label htmlFor="email" className="block text-sm font-medium mb-2">
-                        Email
+                      <label
+                        htmlFor="email"
+                        className="block text-sm font-medium mb-2"
+                      >
+                        {textContent.contact.form.email}
                       </label>
-                      <Input id="email" name="email" type="email" placeholder="your.email@example.com" required />
+                      <Input
+                        id="email"
+                        name="email"
+                        type="email"
+                        placeholder={textContent.contact.form.emailPlaceholder}
+                        required
+                      />
                     </div>
                   </div>
                   <div>
-                    <label htmlFor="subject" className="block text-sm font-medium mb-2">
-                      Subject
+                    <label
+                      htmlFor="subject"
+                      className="block text-sm font-medium mb-2"
+                    >
+                      {textContent.contact.form.subject}
                     </label>
-                    <Input id="subject" name="subject" placeholder="Project inquiry" required />
+                    <Input
+                      id="subject"
+                      name="subject"
+                      placeholder={textContent.contact.form.subjectPlaceholder}
+                      required
+                    />
                   </div>
                   <div>
-                    <label htmlFor="message" className="block text-sm font-medium mb-2">
-                      Message
+                    <label
+                      htmlFor="message"
+                      className="block text-sm font-medium mb-2"
+                    >
+                      {textContent.contact.form.message}
                     </label>
                     <Textarea
                       id="message"
                       name="message"
-                      placeholder="Tell me about your project or opportunity..."
+                      placeholder={textContent.contact.form.messagePlaceholder}
                       rows={5}
                       required
                     />
                   </div>
                   <Button type="submit" size="lg" className="w-full">
-                    Send Message
+                    {textContent.contact.form.sendButton}
                     <Mail className="w-5 h-5 ml-2" />
                   </Button>
                 </form>
               </Card>
 
               <div className="text-center mt-8">
-                <p className="text-muted-foreground mb-4">Or reach out directly:</p>
+                <p className="text-muted-foreground mb-4">
+                  {textContent.contact.directContact}
+                </p>
                 <div className="flex justify-center gap-4">
                   <Button
                     variant="outline"
@@ -515,7 +377,7 @@ export default function HomePage() {
                   >
                     <Link href="mailto:alex@example.com">
                       <Mail className="w-4 h-4 mr-2" />
-                      Email
+                      {textContent.contact.buttons.email}
                     </Link>
                   </Button>
                   <Button
@@ -524,9 +386,13 @@ export default function HomePage() {
                     asChild
                     className="bg-background text-foreground border-border hover:bg-muted"
                   >
-                    <Link href="https://linkedin.com/in/alexjohnson" target="_blank" rel="noopener noreferrer">
+                    <Link
+                      href="https://linkedin.com/in/alexjohnson"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       <Linkedin className="w-4 h-4 mr-2" />
-                      LinkedIn
+                      {textContent.contact.buttons.linkedin}
                     </Link>
                   </Button>
                 </div>
@@ -543,11 +409,10 @@ export default function HomePage() {
                 {/* Brand Section */}
                 <div className="md:col-span-2">
                   <Link href="/" className="text-2xl font-bold mb-4 block">
-                    Alex Johnson
+                    {textContent.header.name}
                   </Link>
                   <p className="text-muted-foreground mb-4 max-w-md">
-                    Full-stack developer passionate about creating exceptional web experiences with modern technologies.
-                    Always learning, always building.
+                    {textContent.footer.description}
                   </p>
                   <div className="flex gap-4">
                     <Button variant="ghost" size="sm" asChild>
@@ -555,10 +420,12 @@ export default function HomePage() {
                         href="https://github.com/alexjohnson"
                         target="_blank"
                         rel="noopener noreferrer"
-                        aria-label="GitHub Profile"
+                        aria-label={textContent.common.ariaLabels.githubProfile}
                       >
                         <Github className="w-5 h-5" />
-                        <span className="sr-only">GitHub</span>
+                        <span className="sr-only">
+                          {textContent.common.screenReaderOnly.github}
+                        </span>
                       </Link>
                     </Button>
                     <Button variant="ghost" size="sm" asChild>
@@ -566,16 +433,25 @@ export default function HomePage() {
                         href="https://linkedin.com/in/alexjohnson"
                         target="_blank"
                         rel="noopener noreferrer"
-                        aria-label="LinkedIn Profile"
+                        aria-label={
+                          textContent.common.ariaLabels.linkedinProfile
+                        }
                       >
                         <Linkedin className="w-5 h-5" />
-                        <span className="sr-only">LinkedIn</span>
+                        <span className="sr-only">
+                          {textContent.common.screenReaderOnly.linkedin}
+                        </span>
                       </Link>
                     </Button>
                     <Button variant="ghost" size="sm" asChild>
-                      <Link href="mailto:alex@example.com" aria-label="Send Email">
+                      <Link
+                        href="mailto:alex@example.com"
+                        aria-label={textContent.common.ariaLabels.sendEmail}
+                      >
                         <Mail className="w-5 h-5" />
-                        <span className="sr-only">Email</span>
+                        <span className="sr-only">
+                          {textContent.common.screenReaderOnly.email}
+                        </span>
                       </Link>
                     </Button>
                   </div>
@@ -583,26 +459,40 @@ export default function HomePage() {
 
                 {/* Quick Links */}
                 <div>
-                  <h4 className="font-semibold mb-4">Quick Links</h4>
+                  <h4 className="font-semibold mb-4">
+                    {textContent.footer.quickLinks.title}
+                  </h4>
                   <ul className="space-y-2">
                     <li>
-                      <Link href="#about" className="text-muted-foreground hover:text-foreground transition-colors">
-                        About
+                      <Link
+                        href="#about"
+                        className="text-muted-foreground hover:text-foreground transition-colors"
+                      >
+                        {textContent.footer.quickLinks.about}
                       </Link>
                     </li>
                     <li>
-                      <Link href="#projects" className="text-muted-foreground hover:text-foreground transition-colors">
-                        Projects
+                      <Link
+                        href="#projects"
+                        className="text-muted-foreground hover:text-foreground transition-colors"
+                      >
+                        {textContent.footer.quickLinks.projects}
                       </Link>
                     </li>
                     <li>
-                      <Link href="#contact" className="text-muted-foreground hover:text-foreground transition-colors">
-                        Contact
+                      <Link
+                        href="#contact"
+                        className="text-muted-foreground hover:text-foreground transition-colors"
+                      >
+                        {textContent.footer.quickLinks.contact}
                       </Link>
                     </li>
                     <li>
-                      <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-                        Resume
+                      <Link
+                        href="#"
+                        className="text-muted-foreground hover:text-foreground transition-colors"
+                      >
+                        {textContent.footer.quickLinks.resume}
                       </Link>
                     </li>
                   </ul>
@@ -610,7 +500,9 @@ export default function HomePage() {
 
                 {/* Contact Info */}
                 <div>
-                  <h4 className="font-semibold mb-4">Get In Touch</h4>
+                  <h4 className="font-semibold mb-4">
+                    {textContent.footer.contactInfo.title}
+                  </h4>
                   <ul className="space-y-2">
                     <li>
                       <Link
@@ -618,12 +510,12 @@ export default function HomePage() {
                         className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2"
                       >
                         <Mail className="w-4 h-4" />
-                        alex@example.com
+                        {textContent.footer.contactInfo.email}
                       </Link>
                     </li>
                     <li className="text-muted-foreground flex items-center gap-2">
                       <MapPin className="w-4 h-4" />
-                      Remote / Worldwide
+                      {textContent.footer.contactInfo.location}
                     </li>
                   </ul>
                 </div>
@@ -634,19 +526,26 @@ export default function HomePage() {
                 <div className="flex flex-col md:flex-row justify-between items-center gap-4">
                   <div className="text-center md:text-left">
                     <p className="text-sm text-muted-foreground">
-                      © {new Date().getFullYear()} Alex Johnson. All rights reserved.
+                      © {new Date().getFullYear()} {textContent.header.name}.{' '}
+                      {textContent.footer.legal.copyright}
                     </p>
                   </div>
                   <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                    <Link href="/privacy" className="hover:text-foreground transition-colors">
-                      Privacy Policy
+                    <Link
+                      href="/privacy"
+                      className="hover:text-foreground transition-colors"
+                    >
+                      {textContent.footer.legal.privacyPolicy}
                     </Link>
                     <span>•</span>
-                    <Link href="/terms" className="hover:text-foreground transition-colors">
-                      Terms of Service
+                    <Link
+                      href="/terms"
+                      className="hover:text-foreground transition-colors"
+                    >
+                      {textContent.footer.legal.termsOfService}
                     </Link>
                     <span>•</span>
-                    <span>Built with Next.js & Tailwind CSS</span>
+                    <span>{textContent.footer.legal.builtWith}</span>
                   </div>
                 </div>
               </div>
@@ -655,5 +554,5 @@ export default function HomePage() {
         </footer>
       </div>
     </>
-  )
+  );
 }

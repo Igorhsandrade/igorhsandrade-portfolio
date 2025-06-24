@@ -1,0 +1,76 @@
+export const certificatesData = [
+  {
+    title: 'AWS Certified Solutions Architect - Professional',
+    issuer: 'Amazon Web Services',
+    dateIssued: 'March 2024',
+    credentialId: 'AWS-SAP-2024-001234',
+    verificationUrl: 'https://aws.amazon.com/verification',
+    image: '/placeholder.svg?height=200&width=300',
+    skills: ['AWS', 'Cloud Architecture', 'DevOps', 'Infrastructure'],
+    description:
+      'Advanced certification demonstrating expertise in designing distributed applications and systems on AWS.',
+    status: 'Active' as const
+  },
+  {
+    title: 'Google Cloud Professional Developer',
+    issuer: 'Google Cloud',
+    dateIssued: 'January 2024',
+    credentialId: 'GCP-PD-2024-567890',
+    verificationUrl: 'https://cloud.google.com/certification/verify',
+    image: '/placeholder.svg?height=200&width=300',
+    skills: ['Google Cloud', 'Kubernetes', 'Docker', 'CI/CD'],
+    description:
+      'Professional-level certification for designing, building, and deploying applications on Google Cloud.',
+    status: 'Active' as const
+  },
+  {
+    title: 'Microsoft Azure Developer Associate',
+    issuer: 'Microsoft',
+    dateIssued: 'November 2023',
+    credentialId: 'AZ-204-2023-112233',
+    verificationUrl:
+      'https://docs.microsoft.com/en-us/learn/certifications/verify',
+    image: '/placeholder.svg?height=200&width=300',
+    skills: ['Azure', 'C#', '.NET', 'Cloud Services'],
+    description:
+      'Certification validating skills in developing cloud solutions using Microsoft Azure services.',
+    status: 'Active' as const
+  },
+  {
+    title: 'Certified Kubernetes Administrator (CKA)',
+    issuer: 'Cloud Native Computing Foundation',
+    dateIssued: 'September 2023',
+    credentialId: 'CKA-2023-445566',
+    verificationUrl:
+      'https://training.linuxfoundation.org/certification/verify',
+    image: '/placeholder.svg?height=200&width=300',
+    skills: ['Kubernetes', 'Container Orchestration', 'DevOps', 'Linux'],
+    description:
+      'Hands-on certification demonstrating skills in Kubernetes administration and troubleshooting.',
+    status: 'Active' as const
+  },
+  {
+    title: 'MongoDB Certified Developer',
+    issuer: 'MongoDB Inc.',
+    dateIssued: 'July 2023',
+    credentialId: 'MDB-DEV-2023-778899',
+    verificationUrl: 'https://university.mongodb.com/verify_certificate',
+    image: '/placeholder.svg?height=200&width=300',
+    skills: ['MongoDB', 'NoSQL', 'Database Design', 'Node.js'],
+    description:
+      'Certification proving proficiency in MongoDB development and database administration.',
+    status: 'Active' as const
+  },
+  {
+    title: 'React Developer Certification',
+    issuer: 'Meta (Facebook)',
+    dateIssued: 'May 2023',
+    credentialId: 'META-REACT-2023-334455',
+    verificationUrl: 'https://developers.facebook.com/certification/verify',
+    image: '/placeholder.svg?height=200&width=300',
+    skills: ['React', 'JavaScript', 'Frontend Development', 'JSX'],
+    description:
+      'Official Meta certification demonstrating advanced React development skills and best practices.',
+    status: 'Renewed' as const
+  }
+];
