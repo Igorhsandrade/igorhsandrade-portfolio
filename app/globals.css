@@ -1,0 +1,212 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@layer base {
+  :root {
+    /* Light theme based on your color palette */
+    --background: 0 0% 98%;
+    --foreground: 180 3% 15%;
+    --card: 0 0% 100%;
+    --card-foreground: 180 3% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 180 3% 15%;
+    --primary: 174 100% 29%; /* Bright teal from your palette */
+    --primary-foreground: 0 0% 98%;
+    --secondary: 180 3% 96%;
+    --secondary-foreground: 180 3% 15%;
+    --muted: 180 2% 94%;
+    --muted-foreground: 180 3% 45%;
+    --accent: 174 60% 51%; /* Lighter teal accent */
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 180 3% 89%;
+    --input: 180 3% 89%;
+    --ring: 174 100% 29%;
+    --chart-1: 174 100% 29%;
+    --chart-2: 174 60% 51%;
+    --chart-3: 180 3% 35%;
+    --chart-4: 174 80% 40%;
+    --chart-5: 180 5% 55%;
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    /* Dark theme based on your color palette */
+    --background: 180 3% 11%; /* Dark charcoal from your palette */
+    --foreground: 180 3% 95%;
+    --card: 180 3% 13%;
+    --card-foreground: 180 3% 95%;
+    --popover: 180 3% 13%;
+    --popover-foreground: 180 3% 95%;
+    --primary: 174 100% 35%; /* Bright teal from your palette */
+    --primary-foreground: 180 3% 11%;
+    --secondary: 180 3% 18%; /* Medium gray from your palette */
+    --secondary-foreground: 180 3% 95%;
+    --muted: 180 3% 18%;
+    --muted-foreground: 180 3% 70%; /* Light gray from your palette */
+    --accent: 174 60% 45%; /* Darker teal accent */
+    --accent-foreground: 180 3% 95%;
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 180 3% 18%;
+    --input: 180 3% 18%;
+    --ring: 174 100% 35%;
+    --chart-1: 174 100% 35%;
+    --chart-2: 174 60% 45%;
+    --chart-3: 180 3% 70%;
+    --chart-4: 174 80% 40%;
+    --chart-5: 180 5% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Theme transition */
+* {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark mode specific adjustments */
+.dark {
+  color-scheme: dark;
+}
+
+/* Ensure proper contrast for form elements in dark mode */
+.dark input,
+.dark textarea,
+.dark select {
+  background-color: hsl(var(--background));
+  border-color: hsl(var(--border));
+  color: hsl(var(--foreground));
+}
+
+.dark input:focus,
+.dark textarea:focus,
+.dark select:focus {
+  border-color: hsl(var(--ring));
+  box-shadow: 0 0 0 2px hsl(var(--ring) / 0.2);
+}
+
+/* Smooth transitions for theme toggle icons */
+.theme-toggle-icon {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Custom gradient backgrounds using your color palette */
+.gradient-teal {
+  background: linear-gradient(135deg, hsl(174, 100%, 29%) 0%, hsl(174, 60%, 51%) 100%);
+}
+
+.dark .gradient-teal {
+  background: linear-gradient(135deg, hsl(174, 100%, 35%) 0%, hsl(174, 60%, 45%) 100%);
+}
+
+/* Enhanced card hover effects */
+.card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px -5px rgba(20, 184, 166, 0.1), 0 10px 10px -5px rgba(20, 184, 166, 0.04);
+}
+
+.dark .card-hover:hover {
+  box-shadow: 0 20px 25px -5px rgba(20, 184, 166, 0.2), 0 10px 10px -5px rgba(20, 184, 166, 0.1);
+}
+
+/* Teal accent for focus states */
+.focus-teal:focus {
+  outline: 2px solid hsl(174, 100%, 29%);
+  outline-offset: 2px;
+}
+
+.dark .focus-teal:focus {
+  outline: 2px solid hsl(174, 100%, 35%);
+}
+
+/* Custom scrollbar with teal accent */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(174, 60%, 51%);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(174, 100%, 29%);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: hsl(174, 60%, 45%);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: hsl(174, 100%, 35%);
+}
+
+/* Enhanced tab styling */
+[data-radix-tabs-trigger] {
+  transition: all 0.2s ease-in-out;
+}
+
+[data-radix-tabs-trigger]:hover {
+  background-color: hsl(var(--muted));
+}
+
+[data-radix-tabs-trigger][data-state="active"] {
+  background-color: hsl(var(--background));
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+/* Skill card animations */
+.skill-card-enter {
+  animation: slideInUp 0.3s ease-out;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Progress bar animation */
+.progress-bar {
+  animation: progressFill 1s ease-out;
+}
+
+@keyframes progressFill {
+  from {
+    width: 0%;
+  }
+}
