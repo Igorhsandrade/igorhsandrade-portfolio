@@ -16,6 +16,21 @@ export type CertificatesData = Certificate[];
 
 export const certificatesData: CertificatesData = [
   {
+    title: 'Storytelling, Presentation Techniques, and Media Training',
+    issuer: 'Fundacao Getulio Vargas (FGV)',
+    dateIssued: 'April 2022',
+    credentialId: '254067312',
+    verificationUrl:
+      'https://brasilopenbadge.com.br/pages/badge/67649e9fd1d96983e5221e17044e9c25',
+    description: 'A course on effective storytelling and presentation skills.',
+    image: '/storytelling.webp',
+    skills: ['Storytelling', 'Presentation', 'Media Training'],
+    status: 'Active'
+  }
+];
+
+export const certificatesDataMock: CertificatesData = [
+  {
     title: 'AWS Certified Solutions Architect - Professional',
     issuer: 'Amazon Web Services',
     dateIssued: 'March 2024',

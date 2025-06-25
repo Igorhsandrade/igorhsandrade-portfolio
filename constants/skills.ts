@@ -12,6 +12,8 @@ export type SkillIcon =
   | 'rust'
   | 'php'
   | 'cpp'
+  | 'csharp'
+  | 'r'
   // Technologies - Frontend
   | 'react'
   | 'nextjs'
@@ -38,6 +40,7 @@ export type SkillIcon =
   | 'dynamodb'
   | 'graphql'
   | 'prisma'
+  | 'pandas'
   // Tools
   | 'git'
   | 'vscode'
@@ -55,6 +58,7 @@ export type SkillIcon =
   | 'cypress'
   | 'webpack'
   | 'vite'
+  | 'copilot'
   // Generic fallbacks
   | 'code'
   | 'cpu'
@@ -72,6 +76,183 @@ export interface Skill {
 export type SkillsData = Skill[];
 
 export const skillsData: SkillsData = [
+  // Languages
+  {
+    name: 'JavaScript',
+    category: 'Languages',
+    level: 'Expert',
+    years: 3,
+    icon: 'javascript'
+  },
+  {
+    name: 'TypeScript',
+    category: 'Languages',
+    level: 'Advanced',
+    years: 3,
+    icon: 'typescript'
+  },
+  {
+    name: 'Python',
+    category: 'Languages',
+    level: 'Expert',
+    years: 3,
+    icon: 'python'
+  },
+  {
+    name: 'R',
+    category: 'Languages',
+    level: 'Beginner',
+    years: 1,
+    icon: 'r'
+  },
+  {
+    name: 'C#',
+    category: 'Languages',
+    level: 'Beginner',
+    years: 1,
+    icon: 'csharp'
+  },
+
+  // Technologies (Frontend & Backend Frameworks)
+  {
+    name: 'React',
+    category: 'Technologies',
+    level: 'Expert',
+    years: 3,
+    icon: 'react'
+  },
+  {
+    name: 'Tailwind CSS',
+    category: 'Technologies',
+    level: 'Expert' as const,
+    years: 3,
+    icon: 'tailwind'
+  },
+  {
+    name: 'Next.js',
+    category: 'Technologies',
+    level: 'Advanced',
+    years: 3,
+    icon: 'nextjs'
+  },
+  {
+    name: 'Node.js',
+    category: 'Technologies',
+    level: 'Beginner',
+    years: 1,
+    icon: 'nodejs'
+  },
+  {
+    name: 'Nest.js',
+    category: 'Technologies',
+    level: 'Beginner',
+    years: 1,
+    icon: 'nestjs'
+  },
+  {
+    name: 'FastAPI',
+    category: 'Technologies',
+    level: 'Beginner',
+    years: 1,
+    icon: 'fastapi'
+  },
+  {
+    name: 'Sass/SCSS',
+    category: 'Technologies',
+    level: 'Intermediate',
+    years: 1,
+    icon: 'sass'
+  },
+
+  // Data (Databases & Data Technologies)
+  {
+    name: 'MongoDB',
+    category: 'Data',
+    level: 'Intermediate',
+    years: 2,
+    icon: 'mongodb'
+  },
+  {
+    name: 'Pandas',
+    category: 'Data',
+    level: 'Intermediate' as const,
+    years: 2,
+    icon: 'pandas'
+  },
+  {
+    name: 'MySQL',
+    category: 'Data',
+    level: 'Intermediate',
+    years: 1,
+    icon: 'mysql'
+  },
+  {
+    name: 'Redis',
+    category: 'Data',
+    level: 'Intermediate',
+    years: 1,
+    icon: 'redis'
+  },
+  {
+    name: 'GraphQL',
+    category: 'Data',
+    level: 'Intermediate',
+    years: 2,
+    icon: 'graphql'
+  },
+
+  // Tools (Development Tools, Cloud, DevOps)
+  {
+    name: 'Git',
+    category: 'Tools',
+    level: 'Expert' as const,
+    years: 5,
+    icon: 'git'
+  },
+  {
+    name: 'VS Code',
+    category: 'Tools',
+    level: 'Expert' as const,
+    years: 5,
+    icon: 'vscode'
+  },
+  {
+    name: 'Copilot',
+    category: 'Tools',
+    level: 'Expert' as const,
+    years: 2,
+    icon: 'copilot'
+  },
+  {
+    name: 'Docker',
+    category: 'Tools',
+    level: 'Intermediate',
+    years: 1,
+    icon: 'docker'
+  },
+  {
+    name: 'AWS',
+    category: 'Tools',
+    level: 'Beginner',
+    years: 1,
+    icon: 'aws'
+  },
+  {
+    name: 'Postman',
+    category: 'Tools',
+    level: 'Intermediate',
+    years: 2,
+    icon: 'postman'
+  },
+  {
+    name: 'Vite',
+    category: 'Tools',
+    level: 'Beginner',
+    years: 1,
+    icon: 'vite'
+  }
+];
+export const skillsDataMock: SkillsData = [
   // Languages
   {
     name: 'JavaScript',

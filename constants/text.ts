@@ -2,7 +2,7 @@
 export const textContent = {
   // Header/Navigation
   header: {
-    name: 'Alex Johnson',
+    name: 'Igor Andrade',
     navigation: {
       about: 'About',
       projects: 'Projects',
@@ -27,11 +27,11 @@ export const textContent = {
   about: {
     title: 'About Me',
     subtitle:
-      "I'm a passionate full-stack developer with 5+ years of experience building web applications. I love solving complex problems and turning ideas into reality through clean, efficient code.",
+      "I'm a dedicated full-stack developer with over 3 years of experience crafting web applications. I thrive on solving complex challenges and transforming ideas into scalable, efficient solutions through clean and modern code.",
     background: {
       title: 'Background',
       content:
-        "Started my journey in computer science and quickly fell in love with web development. I've worked with startups and established companies, helping them build scalable solutions that serve thousands of users."
+        "My journey began in Electrical Engineering, where I cultivated analytical thinking and problem-solving skills. I transitioned into software development, working with companies across Brazil and internationally. From enhancing UIs and implementing APIs to building data pipelines and deploying web scrapers, I've contributed to projects at scale across startups and enterprise environments."
     },
     approach: {
       title: 'Approach',
@@ -82,7 +82,7 @@ export const textContent = {
   // Footer
   footer: {
     description:
-      'Full-stack developer passionate about creating exceptional web experiences with modern technologies. Always learning, always building.',
+      'Full-stack developer driven by curiosity and impact, building scalable web solutions with modern technologies. Committed to continuous learning and crafting meaningful digital experiences.',
     quickLinks: {
       title: 'Quick Links',
       about: 'About',
@@ -92,7 +92,7 @@ export const textContent = {
     },
     contactInfo: {
       title: 'Get In Touch',
-      email: 'alex@example.com',
+      email: 'igorhsandrade@gmail.com',
       location: 'Remote / Worldwide'
     },
     legal: {
@@ -105,7 +105,7 @@ export const textContent = {
 
   // Common/Shared
   common: {
-    imageAlt: 'Alex Johnson - Full-Stack Developer',
+    imageAlt: 'Igor Andrade - Full-Stack Developer',
     ariaLabels: {
       mainNavigation: 'Main navigation',
       githubProfile: 'GitHub Profile',

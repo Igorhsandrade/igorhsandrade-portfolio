@@ -49,6 +49,19 @@ export type ProjectsData = Project[];
 
 export const projects: ProjectsData = [
   {
+    title: 'Ocarina Studios Landing Page',
+    description:
+      'A modern, responsive landing page for Ocarina Studios showcasing their portfolio and services.',
+    image: '/ocarina.webp',
+    tech: ['Next.js', 'TypeScript', 'JavaScript'],
+    liveUrl: 'https://ocarinastudios.com',
+    githubUrl: '',
+    category: 'Front-End'
+  }
+];
+
+export const projectsMock: ProjectsData = [
+  {
     title: 'E-Commerce Platform',
     description:
       'Full-stack e-commerce solution with payment integration, inventory management, and admin dashboard.',

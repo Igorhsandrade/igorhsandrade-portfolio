@@ -63,7 +63,11 @@ import {
   SiJest,
   SiCypress,
   SiWebpack,
-  SiVite
+  SiVite,
+  SiSharp,
+  SiPandas,
+  SiGithubcopilot,
+  SiR
 } from 'react-icons/si';
 import { cn } from '@/lib/utils';
 import { Input } from '@/components/ui/input';
@@ -86,6 +90,8 @@ const iconMap: Record<
   rust: SiRust,
   php: SiPhp,
   cpp: SiCplusplus,
+  csharp: SiSharp,
+  r: SiR,
   // Technologies - Frontend
   react: SiReact,
   nextjs: SiNextdotjs,
@@ -112,6 +118,7 @@ const iconMap: Record<
   dynamodb: SiAmazondynamodb,
   graphql: SiGraphql,
   prisma: SiPrisma,
+  pandas: SiPandas,
   // Tools
   git: SiGit,
   vscode: HiCodeBracket, // Fallback to generic code icon
@@ -129,6 +136,7 @@ const iconMap: Record<
   cypress: SiCypress,
   webpack: SiWebpack,
   vite: SiVite,
+  copilot: SiGithubcopilot,
   // Generic fallbacks
   code: HiCodeBracket,
   cpu: HiCpuChip,
