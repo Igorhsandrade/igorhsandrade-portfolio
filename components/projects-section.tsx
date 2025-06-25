@@ -2,10 +2,10 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import {
-  FaGithub as Github,
-  FaExternalLinkAlt as ExternalLink,
-  FaArrowRight as ArrowRight
-} from 'react-icons/fa';
+  HiExternalLink as ExternalLink,
+  HiArrowRight as ArrowRight
+} from 'react-icons/hi';
+import { FaGithub as Github } from 'react-icons/fa';
 import Image from 'next/image';
 import Link from 'next/link';
 import { projects, textContent } from '@/constants';

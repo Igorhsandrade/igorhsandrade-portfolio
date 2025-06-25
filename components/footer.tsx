@@ -13,9 +13,9 @@ export function Footer() {
     <footer className="py-16 border-t bg-muted/20">
       <div className="container">
         <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
             {/* Brand Section */}
-            <div className="md:col-span-2">
+            <div className="sm:col-span-2 lg:col-span-2">
               <Link href="/" className="text-2xl font-bold mb-4 block">
                 {textContent.header.name}
               </Link>
@@ -64,7 +64,7 @@ export function Footer() {
             </div>
 
             {/* Quick Links */}
-            <div>
+            <div className="sm:col-span-1">
               <h4 className="font-semibold mb-4">
                 {textContent.footer.quickLinks.title}
               </h4>
@@ -107,7 +107,7 @@ export function Footer() {
             </div>
 
             {/* Contact Info */}
-            <div>
+            <div className="sm:col-span-1">
               <h4 className="font-semibold mb-4">
                 {textContent.footer.contactInfo.title}
               </h4>
@@ -131,28 +131,28 @@ export function Footer() {
 
           {/* Bottom Section */}
           <div className="pt-8 border-t border-border">
-            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-              <div className="text-center md:text-left">
+            <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+              <div className="text-center sm:text-left">
                 <p className="text-sm text-muted-foreground">
                   © {new Date().getFullYear()} {textContent.header.name}.{' '}
                   {textContent.footer.legal.copyright}
                 </p>
               </div>
-              <div className="flex items-center gap-4 text-sm text-muted-foreground">
+              <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-sm text-muted-foreground">
                 <Link
                   href="/privacy"
                   className="hover:text-foreground transition-colors"
                 >
                   {textContent.footer.legal.privacyPolicy}
                 </Link>
-                <span>•</span>
+                <span className="hidden sm:inline">•</span>
                 <Link
                   href="/terms"
                   className="hover:text-foreground transition-colors"
                 >
                   {textContent.footer.legal.termsOfService}
                 </Link>
-                <span>•</span>
+                <span className="hidden sm:inline">•</span>
                 <span>{textContent.footer.legal.builtWith}</span>
               </div>
             </div>
