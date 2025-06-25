@@ -2,6 +2,38 @@
 
 This file tracks all significant changes, updates, and releases for the Igor Andrade Portfolio project.
 
+## [1.2.1] - 2025-06-25
+
+### Added
+
+- Google Calendar appointment booking integration
+- "Schedule a Call" button with direct calendar link
+- Enhanced contact section UI with modern card design
+- Status badge with "Ready to collaborate" indicator
+- Benefit indicators showing quick response time and free consultation
+
+### Enhanced
+
+- Contact section with gradient backgrounds and improved visual hierarchy
+- Button styling with gradient effects and hover animations
+- Typography with gradient text effects on headings
+- Card components with backdrop blur and enhanced shadows
+- Overall UI/UX improvements in the contact section
+
+### Changed
+
+- Contact section layout to focus on appointment booking
+- Button text from "Book Appointment" to "Schedule a Call"
+- Contact section styling with modern glass-morphism effects
+- Improved spacing and visual organization
+
+### Technical
+
+- Added calendar and rocket icons from react-icons
+- Enhanced CSS classes with gradient and animation effects
+- Improved responsive design for contact section
+- Better visual feedback on interactive elements
+
 ## [1.2.0] - 2025-06-25
 
 ### Changed
