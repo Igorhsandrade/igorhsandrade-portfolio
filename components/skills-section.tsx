@@ -12,22 +12,124 @@ import {
   HiMagnifyingGlass,
   HiXMark
 } from 'react-icons/hi2';
+import {
+  // Languages
+  SiJavascript,
+  SiTypescript,
+  SiPython,
+  SiOpenjdk, // For Java
+  SiGo,
+  SiRust,
+  SiPhp,
+  SiCplusplus,
+  // Technologies - Frontend
+  SiReact,
+  SiNextdotjs,
+  SiVuedotjs,
+  SiAngular,
+  SiSvelte,
+  SiTailwindcss,
+  SiSass,
+  // Technologies - Backend
+  SiNodedotjs,
+  SiExpress,
+  SiNestjs,
+  SiDjango,
+  SiFastapi,
+  SiSpring,
+  SiLaravel,
+  // Data
+  SiPostgresql,
+  SiMongodb,
+  SiMysql,
+  SiRedis,
+  SiElasticsearch,
+  SiSqlite,
+  SiAmazondynamodb,
+  SiGraphql,
+  SiPrisma,
+  // Tools
+  SiGit,
+  SiDocker,
+  SiAmazon, // For AWS
+  SiVercel,
+  SiNetlify,
+  SiGithubactions,
+  SiKubernetes,
+  SiTerraform,
+  SiJenkins,
+  SiFigma,
+  SiPostman,
+  SiJest,
+  SiCypress,
+  SiWebpack,
+  SiVite
+} from 'react-icons/si';
 import { cn } from '@/lib/utils';
 import { Input } from '@/components/ui/input';
-
-interface Skill {
-  name: string;
-  category: string;
-  level: 'Beginner' | 'Intermediate' | 'Advanced' | 'Expert';
-  years: number;
-  icon: string;
-}
+import type { Skill, SkillIcon } from '@/constants/skills';
 
 interface SkillsSectionProps {
   skills: Skill[];
 }
 
-const iconMap = {
+const iconMap: Record<
+  SkillIcon,
+  React.ComponentType<{ className?: string }>
+> = {
+  // Languages
+  javascript: SiJavascript,
+  typescript: SiTypescript,
+  python: SiPython,
+  java: SiOpenjdk,
+  go: SiGo,
+  rust: SiRust,
+  php: SiPhp,
+  cpp: SiCplusplus,
+  // Technologies - Frontend
+  react: SiReact,
+  nextjs: SiNextdotjs,
+  vuejs: SiVuedotjs,
+  angular: SiAngular,
+  svelte: SiSvelte,
+  tailwind: SiTailwindcss,
+  sass: SiSass,
+  // Technologies - Backend
+  nodejs: SiNodedotjs,
+  express: SiExpress,
+  nestjs: SiNestjs,
+  django: SiDjango,
+  fastapi: SiFastapi,
+  spring: SiSpring,
+  laravel: SiLaravel,
+  // Data
+  postgresql: SiPostgresql,
+  mongodb: SiMongodb,
+  mysql: SiMysql,
+  redis: SiRedis,
+  elasticsearch: SiElasticsearch,
+  sqlite: SiSqlite,
+  dynamodb: SiAmazondynamodb,
+  graphql: SiGraphql,
+  prisma: SiPrisma,
+  // Tools
+  git: SiGit,
+  vscode: HiCodeBracket, // Fallback to generic code icon
+  docker: SiDocker,
+  aws: SiAmazon,
+  vercel: SiVercel,
+  netlify: SiNetlify,
+  github: SiGithubactions,
+  kubernetes: SiKubernetes,
+  terraform: SiTerraform,
+  jenkins: SiJenkins,
+  figma: SiFigma,
+  postman: SiPostman,
+  jest: SiJest,
+  cypress: SiCypress,
+  webpack: SiWebpack,
+  vite: SiVite,
+  // Generic fallbacks
   code: HiCodeBracket,
   cpu: HiCpuChip,
   database: HiCircleStack,
@@ -170,8 +272,7 @@ export function SkillsSection({ skills }: SkillsSectionProps) {
   }, [searchTerm]);
 
   const SkillListItem = ({ skill }: { skill: Skill }) => {
-    const IconComponent =
-      iconMap[skill.icon as keyof typeof iconMap] || HiCodeBracket;
+    const IconComponent = iconMap[skill.icon] || iconMap.code;
 
     return (
       <div className="flex items-center justify-between p-4 rounded-lg border hover:bg-muted/50 transition-colors group">

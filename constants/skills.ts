@@ -2,7 +2,64 @@ export type SkillLevel = 'Beginner' | 'Intermediate' | 'Advanced' | 'Expert';
 
 export type SkillCategory = 'Languages' | 'Technologies' | 'Data' | 'Tools';
 
-export type SkillIcon = 'code' | 'cpu' | 'database' | 'tool';
+export type SkillIcon =
+  // Languages
+  | 'javascript'
+  | 'typescript'
+  | 'python'
+  | 'java'
+  | 'go'
+  | 'rust'
+  | 'php'
+  | 'cpp'
+  // Technologies - Frontend
+  | 'react'
+  | 'nextjs'
+  | 'vuejs'
+  | 'angular'
+  | 'svelte'
+  | 'tailwind'
+  | 'sass'
+  // Technologies - Backend
+  | 'nodejs'
+  | 'express'
+  | 'nestjs'
+  | 'django'
+  | 'fastapi'
+  | 'spring'
+  | 'laravel'
+  // Data
+  | 'postgresql'
+  | 'mongodb'
+  | 'mysql'
+  | 'redis'
+  | 'elasticsearch'
+  | 'sqlite'
+  | 'dynamodb'
+  | 'graphql'
+  | 'prisma'
+  // Tools
+  | 'git'
+  | 'vscode'
+  | 'docker'
+  | 'aws'
+  | 'vercel'
+  | 'netlify'
+  | 'github'
+  | 'kubernetes'
+  | 'terraform'
+  | 'jenkins'
+  | 'figma'
+  | 'postman'
+  | 'jest'
+  | 'cypress'
+  | 'webpack'
+  | 'vite'
+  // Generic fallbacks
+  | 'code'
+  | 'cpu'
+  | 'database'
+  | 'tool';
 
 export interface Skill {
   name: string;
@@ -21,56 +78,56 @@ export const skillsData: SkillsData = [
     category: 'Languages',
     level: 'Expert' as const,
     years: 5,
-    icon: 'code'
+    icon: 'javascript'
   },
   {
     name: 'TypeScript',
     category: 'Languages',
     level: 'Expert' as const,
     years: 4,
-    icon: 'code'
+    icon: 'typescript'
   },
   {
     name: 'Python',
     category: 'Languages',
     level: 'Advanced' as const,
     years: 3,
-    icon: 'code'
+    icon: 'python'
   },
   {
     name: 'Java',
     category: 'Languages',
     level: 'Advanced' as const,
     years: 2,
-    icon: 'code'
+    icon: 'java'
   },
   {
     name: 'Go',
     category: 'Languages',
     level: 'Intermediate' as const,
     years: 1,
-    icon: 'code'
+    icon: 'go'
   },
   {
     name: 'Rust',
     category: 'Languages',
     level: 'Beginner' as const,
     years: 1,
-    icon: 'code'
+    icon: 'rust'
   },
   {
     name: 'PHP',
     category: 'Languages',
     level: 'Advanced' as const,
     years: 3,
-    icon: 'code'
+    icon: 'php'
   },
   {
     name: 'C++',
     category: 'Languages',
     level: 'Intermediate' as const,
     years: 2,
-    icon: 'code'
+    icon: 'cpp'
   },
 
   // Technologies (Frontend & Backend Frameworks)
@@ -79,98 +136,98 @@ export const skillsData: SkillsData = [
     category: 'Technologies',
     level: 'Expert' as const,
     years: 5,
-    icon: 'cpu'
+    icon: 'react'
   },
   {
     name: 'Next.js',
     category: 'Technologies',
     level: 'Expert' as const,
     years: 4,
-    icon: 'cpu'
+    icon: 'nextjs'
   },
   {
     name: 'Vue.js',
     category: 'Technologies',
     level: 'Advanced' as const,
     years: 2,
-    icon: 'cpu'
+    icon: 'vuejs'
   },
   {
     name: 'Angular',
     category: 'Technologies',
     level: 'Advanced' as const,
     years: 2,
-    icon: 'cpu'
+    icon: 'angular'
   },
   {
     name: 'Svelte',
     category: 'Technologies',
     level: 'Intermediate' as const,
     years: 1,
-    icon: 'cpu'
+    icon: 'svelte'
   },
   {
     name: 'Node.js',
     category: 'Technologies',
     level: 'Expert' as const,
     years: 5,
-    icon: 'cpu'
+    icon: 'nodejs'
   },
   {
     name: 'Express.js',
     category: 'Technologies',
     level: 'Advanced' as const,
     years: 4,
-    icon: 'cpu'
+    icon: 'express'
   },
   {
     name: 'Nest.js',
     category: 'Technologies',
     level: 'Advanced' as const,
     years: 2,
-    icon: 'cpu'
+    icon: 'nestjs'
   },
   {
     name: 'Django',
     category: 'Technologies',
     level: 'Advanced' as const,
     years: 2,
-    icon: 'cpu'
+    icon: 'django'
   },
   {
     name: 'FastAPI',
     category: 'Technologies',
     level: 'Intermediate' as const,
     years: 1,
-    icon: 'cpu'
+    icon: 'fastapi'
   },
   {
     name: 'Spring Boot',
     category: 'Technologies',
     level: 'Intermediate' as const,
     years: 1,
-    icon: 'cpu'
+    icon: 'spring'
   },
   {
     name: 'Laravel',
     category: 'Technologies',
     level: 'Intermediate' as const,
     years: 2,
-    icon: 'cpu'
+    icon: 'laravel'
   },
   {
     name: 'Tailwind CSS',
     category: 'Technologies',
     level: 'Expert' as const,
     years: 4,
-    icon: 'cpu'
+    icon: 'tailwind'
   },
   {
     name: 'Sass/SCSS',
     category: 'Technologies',
     level: 'Advanced' as const,
     years: 4,
-    icon: 'cpu'
+    icon: 'sass'
   },
 
   // Data (Databases & Data Technologies)
@@ -179,63 +236,63 @@ export const skillsData: SkillsData = [
     category: 'Data',
     level: 'Expert' as const,
     years: 4,
-    icon: 'database'
+    icon: 'postgresql'
   },
   {
     name: 'MongoDB',
     category: 'Data',
     level: 'Advanced' as const,
     years: 4,
-    icon: 'database'
+    icon: 'mongodb'
   },
   {
     name: 'MySQL',
     category: 'Data',
     level: 'Advanced' as const,
     years: 3,
-    icon: 'database'
+    icon: 'mysql'
   },
   {
     name: 'Redis',
     category: 'Data',
     level: 'Advanced' as const,
     years: 2,
-    icon: 'database'
+    icon: 'redis'
   },
   {
     name: 'Elasticsearch',
     category: 'Data',
     level: 'Intermediate' as const,
     years: 2,
-    icon: 'database'
+    icon: 'elasticsearch'
   },
   {
     name: 'SQLite',
     category: 'Data',
     level: 'Advanced' as const,
     years: 3,
-    icon: 'database'
+    icon: 'sqlite'
   },
   {
     name: 'DynamoDB',
     category: 'Data',
     level: 'Intermediate' as const,
     years: 1,
-    icon: 'database'
+    icon: 'dynamodb'
   },
   {
     name: 'GraphQL',
     category: 'Data',
     level: 'Advanced' as const,
     years: 2,
-    icon: 'database'
+    icon: 'graphql'
   },
   {
     name: 'Prisma',
     category: 'Data',
     level: 'Advanced' as const,
     years: 2,
-    icon: 'database'
+    icon: 'prisma'
   },
 
   // Tools (Development Tools, Cloud, DevOps)
@@ -244,111 +301,111 @@ export const skillsData: SkillsData = [
     category: 'Tools',
     level: 'Expert' as const,
     years: 5,
-    icon: 'tool'
+    icon: 'git'
   },
   {
     name: 'VS Code',
     category: 'Tools',
     level: 'Expert' as const,
     years: 5,
-    icon: 'tool'
+    icon: 'vscode'
   },
   {
     name: 'Docker',
     category: 'Tools',
     level: 'Expert' as const,
     years: 4,
-    icon: 'tool'
+    icon: 'docker'
   },
   {
     name: 'AWS',
     category: 'Tools',
     level: 'Advanced' as const,
     years: 3,
-    icon: 'tool'
+    icon: 'aws'
   },
   {
     name: 'Vercel',
     category: 'Tools',
     level: 'Expert' as const,
     years: 4,
-    icon: 'tool'
+    icon: 'vercel'
   },
   {
     name: 'Netlify',
     category: 'Tools',
     level: 'Advanced' as const,
     years: 3,
-    icon: 'tool'
+    icon: 'netlify'
   },
   {
     name: 'GitHub Actions',
     category: 'Tools',
     level: 'Advanced' as const,
     years: 2,
-    icon: 'tool'
+    icon: 'github'
   },
   {
     name: 'Kubernetes',
     category: 'Tools',
     level: 'Intermediate' as const,
     years: 2,
-    icon: 'tool'
+    icon: 'kubernetes'
   },
   {
     name: 'Terraform',
     category: 'Tools',
     level: 'Intermediate' as const,
     years: 1,
-    icon: 'tool'
+    icon: 'terraform'
   },
   {
     name: 'Jenkins',
     category: 'Tools',
     level: 'Beginner' as const,
     years: 1,
-    icon: 'tool'
+    icon: 'jenkins'
   },
   {
     name: 'Figma',
     category: 'Tools',
     level: 'Advanced' as const,
     years: 3,
-    icon: 'tool'
+    icon: 'figma'
   },
   {
     name: 'Postman',
     category: 'Tools',
     level: 'Expert' as const,
     years: 4,
-    icon: 'tool'
+    icon: 'postman'
   },
   {
     name: 'Jest',
     category: 'Tools',
     level: 'Advanced' as const,
     years: 3,
-    icon: 'tool'
+    icon: 'jest'
   },
   {
     name: 'Cypress',
     category: 'Tools',
     level: 'Advanced' as const,
     years: 2,
-    icon: 'tool'
+    icon: 'cypress'
   },
   {
     name: 'Webpack',
     category: 'Tools',
     level: 'Intermediate' as const,
     years: 2,
-    icon: 'tool'
+    icon: 'webpack'
   },
   {
     name: 'Vite',
     category: 'Tools',
     level: 'Advanced' as const,
     years: 2,
-    icon: 'tool'
+    icon: 'vite'
   }
 ];
