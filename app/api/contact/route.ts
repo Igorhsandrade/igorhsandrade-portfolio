@@ -19,6 +19,12 @@ async function verifyRecaptcha(token: string): Promise<boolean> {
     return true;
   }
 
+  // Allow fallback when reCAPTCHA fails to load
+  if (token === 'recaptcha-error-fallback') {
+    console.log('reCAPTCHA error fallback: allowing submission');
+    return true;
+  }
+
   const secretKey = process.env.RECAPTCHA_SECRET_KEY;
 
   if (!secretKey) {
