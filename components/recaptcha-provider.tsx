@@ -105,7 +105,7 @@ export function RecaptchaProvider({ children }: RecaptchaProviderProps) {
       clearTimeout(fallbackTimeout);
       // Don't remove script as it might be used by other components
     };
-  }, [isLoaded]);
+  }, []);
 
   return (
     <RecaptchaContext.Provider value={{ isLoaded, error }}>
