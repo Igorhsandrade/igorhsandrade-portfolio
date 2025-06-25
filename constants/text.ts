@@ -94,10 +94,11 @@ export const textContent = {
         }
       }
     },
-    directContact: 'Or reach out directly:',
+    directContact: 'Ready to discuss your project?',
     buttons: {
       email: 'Email',
-      linkedin: 'LinkedIn'
+      linkedin: 'LinkedIn',
+      appointment: 'Schedule a Call'
     }
   },
 
