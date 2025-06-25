@@ -2,6 +2,24 @@
 
 This file tracks all significant changes, updates, and releases for the Igor Andrade Portfolio project.
 
+## [1.1.1] - 2025-06-25
+
+### Fixed
+
+- Fixed reCAPTCHA timeout issues in production environments
+- Improved reCAPTCHA loading reliability with better error handling
+- Added retry functionality for failed reCAPTCHA loads
+- Extended timeout periods for slower network connections
+- Fixed infinite re-render issue in reCAPTCHA provider
+- Improved cleanup of intervals and timeouts to prevent memory leaks
+
+### Changed
+
+- Enhanced error messages with actionable retry options
+- Updated reCAPTCHA provider with retry mechanism
+- Increased reCAPTCHA loading timeout from 8s to 15s for existing scripts
+- Better handling of network issues and script loading failures
+
 ## [1.1.0] - 2025-06-25
 
 ### Added

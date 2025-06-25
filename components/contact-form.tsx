@@ -27,7 +27,7 @@ export function ContactForm({ className }: ContactFormProps) {
     text: string;
   } | null>(null);
   const recaptchaRef = useRef<ReCAPTCHA>(null);
-  const { isLoaded, error } = useRecaptcha();
+  const { isLoaded, error, retry } = useRecaptcha();
   const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY; // Form can be submitted if:
   // 1. reCAPTCHA is verified, OR
   // 2. No site key configured (reCAPTCHA disabled)
@@ -121,7 +121,7 @@ export function ContactForm({ className }: ContactFormProps) {
     console.error('reCAPTCHA error occurred');
     setMessage({
       type: 'error',
-      text: 'reCAPTCHA failed to load. Please refresh the page and try again later.'
+      text: 'reCAPTCHA verification failed. Please try again or use the retry button above.'
     });
   };
 
@@ -263,9 +263,17 @@ export function ContactForm({ className }: ContactFormProps) {
         </div>
       )}{' '}
       {error && (
-        <div className="text-center text-sm text-red-600 bg-red-50 p-2 rounded">
-          ❌ reCAPTCHA failed to load ({error}). Please refresh the page and try
-          again later.
+        <div className="text-center text-sm text-red-600 bg-red-50 p-3 rounded border border-red-200">
+          <div className="mb-2">❌ reCAPTCHA failed to load ({error}).</div>
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            onClick={retry}
+            className="text-xs"
+          >
+            Try Again
+          </Button>
         </div>
       )}{' '}
       {!siteKey && (
