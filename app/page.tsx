@@ -67,7 +67,7 @@ export default function HomePage() {
                   {textContent.header.navigation.contact}
                 </Link>
                 <a
-                  className="text-sm font-medium hover:bg-primary py-1 px-2 outline-1 outline-slate-700 outline rounded-sm transition-colors flex items-center"
+                  className="text-sm font-medium hover:bg-primary py-1 px-2 outline-1 outline rounded-sm transition-colors flex items-center"
                   href="/assets/Igor___Software_Engineer_Resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"

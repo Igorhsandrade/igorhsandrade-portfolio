@@ -9,6 +9,6 @@ export const metadata: Metadata = {
     description:
       "Welcome to Igor Andrade's portfolio. Full-stack developer with expertise in React, Next.js, Node.js, and modern web technologies.",
     url: 'https://igorhsandrade.dev',
-    images: ['/og-home.jpg']
+    images: ['/og-image.png']
   }
 };
