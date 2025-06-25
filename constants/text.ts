@@ -76,7 +76,23 @@ export const textContent = {
         'Something went wront. Please refresh the page and try again later.',
       sending: 'Sending...',
       successMessage: "Message sent successfully! I'll get back to you soon.",
-      errorMessage: 'Error sending message. Please try again.'
+      errorMessage: 'Error sending message. Please try again.',
+      success: {
+        title: 'Message Sent Successfully!',
+        thankYou: 'Thank you,',
+        received:
+          "has been received. I'll review it carefully and get back to you soon.",
+        messageAbout: 'Your message about',
+        responseTime: {
+          title: 'Expected Response Time',
+          duration: 'Within 24-48 hours'
+        },
+        security: {
+          privacy: 'Your information is secure and will not be shared',
+          urgentContact:
+            'Feel free to reach out on social media for urgent matters'
+        }
+      }
     },
     directContact: 'Or reach out directly:',
     buttons: {
