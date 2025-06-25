@@ -17,6 +17,8 @@ import Link from 'next/link';
 import { ThemeToggleSimple } from '@/components/theme-toggle-simple';
 import { SkillsSection } from '@/components/skills-section';
 import { CertificatesSection } from '@/components/certificates-section';
+import { ContactForm } from '@/components/contact-form';
+import { RecaptchaProvider } from '@/components/recaptcha-provider';
 import {
   skillsData,
   certificatesData,
@@ -305,77 +307,12 @@ export default function HomePage() {
                 <p className="text-lg text-muted-foreground">
                   {textContent.contact.subtitle}
                 </p>
-              </div>
-
+              </div>{' '}
               <Card className="p-8">
-                <form className="space-y-6" action="#" method="POST">
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div>
-                      <label
-                        htmlFor="name"
-                        className="block text-sm font-medium mb-2"
-                      >
-                        {textContent.contact.form.name}
-                      </label>
-                      <Input
-                        id="name"
-                        name="name"
-                        placeholder={textContent.contact.form.namePlaceholder}
-                        required
-                      />
-                    </div>
-                    <div>
-                      <label
-                        htmlFor="email"
-                        className="block text-sm font-medium mb-2"
-                      >
-                        {textContent.contact.form.email}
-                      </label>
-                      <Input
-                        id="email"
-                        name="email"
-                        type="email"
-                        placeholder={textContent.contact.form.emailPlaceholder}
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="subject"
-                      className="block text-sm font-medium mb-2"
-                    >
-                      {textContent.contact.form.subject}
-                    </label>
-                    <Input
-                      id="subject"
-                      name="subject"
-                      placeholder={textContent.contact.form.subjectPlaceholder}
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="message"
-                      className="block text-sm font-medium mb-2"
-                    >
-                      {textContent.contact.form.message}
-                    </label>
-                    <Textarea
-                      id="message"
-                      name="message"
-                      placeholder={textContent.contact.form.messagePlaceholder}
-                      rows={5}
-                      required
-                    />
-                  </div>
-                  <Button type="submit" size="lg" className="w-full">
-                    {textContent.contact.form.sendButton}
-                    <Mail className="w-5 h-5 ml-2" />
-                  </Button>
-                </form>
+                <RecaptchaProvider>
+                  <ContactForm />
+                </RecaptchaProvider>
               </Card>
-
               <div className="text-center mt-8">
                 <p className="text-muted-foreground mb-4">
                   {textContent.contact.directContact}

@@ -70,7 +70,11 @@ export const textContent = {
       subjectPlaceholder: 'Project inquiry',
       message: 'Message',
       messagePlaceholder: 'Tell me about your project or opportunity...',
-      sendButton: 'Send Message'
+      sendButton: 'Send Message',
+      recaptchaRequired: 'Please complete the reCAPTCHA verification.',
+      sending: 'Sending...',
+      successMessage: "Message sent successfully! I'll get back to you soon.",
+      errorMessage: 'Error sending message. Please try again.'
     },
     directContact: 'Or reach out directly:',
     buttons: {
