@@ -50,7 +50,7 @@ export const metadata: Metadata = {
       'Experienced full-stack developer specializing in React, Next.js, Node.js, and modern web technologies. Building scalable applications with 5+ years of expertise.',
     images: [
       {
-        url: '/og-image.jpg',
+        url: '/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Igor Andrade - Full-Stack Developer',
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
     title: 'Igor Andrade - Full-Stack Developer & Software Engineer',
     description:
       'Experienced full-stack developer specializing in React, Next.js, Node.js, and modern web technologies.',
-    images: ['/twitter-image.jpg']
+    images: ['/twitter-image.png']
   },
   alternates: {
     canonical: 'https://igorhsandrade.dev'
