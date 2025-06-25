@@ -172,6 +172,8 @@ export function ContactForm({ className }: ContactFormProps) {
         className="w-full"
         disabled={(!isDevelopment && !isVerified) || isSubmitting}
       >
+        {siteKey}
+        {`isDevelpovment ${isDevelopment} isVerified ${isVerified}`}
         {isSubmitting
           ? textContent.contact.form.sending
           : textContent.contact.form.sendButton}
