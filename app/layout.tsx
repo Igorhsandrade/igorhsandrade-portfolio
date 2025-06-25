@@ -60,8 +60,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    site: '@igorandrade',
-    creator: '@igorandrade',
+    site: '@igorhsandrade',
+    creator: '@igorhsandrade',
     title: 'Igor Andrade - Full-Stack Developer & Software Engineer',
     description:
       'Experienced full-stack developer specializing in React, Next.js, Node.js, and modern web technologies.',
