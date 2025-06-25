@@ -49,6 +49,16 @@ export type ProjectsData = Project[];
 
 export const projects: ProjectsData = [
   {
+    title: 'Portfolio Website',
+    description:
+      'My personal portfolio website showcasing my projects, skills, and experience. Built with Next.js and TypeScript for a modern, responsive design.',
+    image: '/portfolio.webp',
+    tech: ['Next.js', 'TypeScript', 'JavaScript'],
+    liveUrl: 'https://igorhsandrade.dev',
+    githubUrl: 'https://github.com/Igorhsandrade/igorhsandrade-portfolio',
+    category: 'Front-End'
+  },
+  {
     title: 'Ocarina Studios Landing Page',
     description:
       'A modern, responsive landing page for Ocarina Studios showcasing their portfolio and services.',

@@ -240,36 +240,40 @@ export default function HomePage() {
                           ))}
                         </div>
                         <div className="flex gap-2">
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            asChild
-                            className="bg-background text-foreground border-border hover:bg-muted"
-                          >
-                            <Link
-                              href={project.liveUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
+                          {project.liveUrl && project.liveUrl !== '' && (
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              asChild
+                              className="bg-background text-foreground border-border hover:bg-muted"
                             >
-                              <ExternalLink className="w-4 h-4 mr-2" />
-                              {textContent.projects.buttons.liveDemo}
-                            </Link>
-                          </Button>
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            asChild
-                            className="bg-background text-foreground border-border hover:bg-muted"
-                          >
-                            <Link
-                              href={project.githubUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
+                              <Link
+                                href={project.liveUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                <ExternalLink className="w-4 h-4 mr-2" />
+                                {textContent.projects.buttons.liveDemo}
+                              </Link>
+                            </Button>
+                          )}
+                          {project.githubUrl && project.githubUrl !== '' && (
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              asChild
+                              className="bg-background text-foreground border-border hover:bg-muted"
                             >
-                              <Github className="w-4 h-4 mr-2" />
-                              {textContent.projects.buttons.code}
-                            </Link>
-                          </Button>
+                              <Link
+                                href={project.githubUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                <Github className="w-4 h-4 mr-2" />
+                                {textContent.projects.buttons.code}
+                              </Link>
+                            </Button>
+                          )}
                         </div>
                       </CardContent>
                     </Card>
