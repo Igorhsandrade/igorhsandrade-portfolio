@@ -1,4 +1,53 @@
-export const projects = [
+export type ProjectCategory =
+  | 'Full-Stack'
+  | 'Front-End'
+  | 'Back-End'
+  | 'Mobile'
+  | 'DevOps';
+
+export type Technology =
+  | 'Next.js'
+  | 'React'
+  | 'TypeScript'
+  | 'JavaScript'
+  | 'Node.js'
+  | 'Express'
+  | 'PostgreSQL'
+  | 'MongoDB'
+  | 'Redis'
+  | 'Stripe'
+  | 'Socket.io'
+  | 'Chart.js'
+  | 'Weather API'
+  | 'Tailwind'
+  | 'Docker'
+  | 'Python'
+  | 'Django'
+  | 'Flask'
+  | 'AWS'
+  | 'Azure'
+  | 'Google Cloud'
+  | 'Kubernetes'
+  | 'GraphQL'
+  | 'REST API'
+  | 'MySQL'
+  | 'Firebase'
+  | 'Vercel'
+  | 'Netlify';
+
+export interface Project {
+  title: string;
+  description: string;
+  image: string;
+  tech: Technology[];
+  liveUrl: string;
+  githubUrl: string;
+  category: ProjectCategory;
+}
+
+export type ProjectsData = Project[];
+
+export const projects: ProjectsData = [
   {
     title: 'E-Commerce Platform',
     description:

@@ -3,7 +3,7 @@
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { ExternalLink, Calendar, Award, CheckCircle } from "lucide-react"
+import { FaExternalLinkAlt as ExternalLink, FaCalendarAlt as Calendar, FaAward as Award, FaCheckCircle as CheckCircle } from "react-icons/fa"
 import Image from "next/image"
 import Link from "next/link"
 

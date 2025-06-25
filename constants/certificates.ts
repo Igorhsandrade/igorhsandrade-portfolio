@@ -1,4 +1,20 @@
-export const certificatesData = [
+export type CertificateStatus = 'Active' | 'Renewed' | 'Expired';
+
+export interface Certificate {
+  title: string;
+  issuer: string;
+  dateIssued: string;
+  credentialId: string;
+  verificationUrl: string;
+  image: string;
+  skills: string[];
+  description: string;
+  status: CertificateStatus;
+}
+
+export type CertificatesData = Certificate[];
+
+export const certificatesData: CertificatesData = [
   {
     title: 'AWS Certified Solutions Architect - Professional',
     issuer: 'Amazon Web Services',
@@ -9,7 +25,7 @@ export const certificatesData = [
     skills: ['AWS', 'Cloud Architecture', 'DevOps', 'Infrastructure'],
     description:
       'Advanced certification demonstrating expertise in designing distributed applications and systems on AWS.',
-    status: 'Active' as const
+    status: 'Active'
   },
   {
     title: 'Google Cloud Professional Developer',
@@ -21,7 +37,7 @@ export const certificatesData = [
     skills: ['Google Cloud', 'Kubernetes', 'Docker', 'CI/CD'],
     description:
       'Professional-level certification for designing, building, and deploying applications on Google Cloud.',
-    status: 'Active' as const
+    status: 'Active'
   },
   {
     title: 'Microsoft Azure Developer Associate',
@@ -34,7 +50,7 @@ export const certificatesData = [
     skills: ['Azure', 'C#', '.NET', 'Cloud Services'],
     description:
       'Certification validating skills in developing cloud solutions using Microsoft Azure services.',
-    status: 'Active' as const
+    status: 'Active'
   },
   {
     title: 'Certified Kubernetes Administrator (CKA)',
@@ -47,7 +63,7 @@ export const certificatesData = [
     skills: ['Kubernetes', 'Container Orchestration', 'DevOps', 'Linux'],
     description:
       'Hands-on certification demonstrating skills in Kubernetes administration and troubleshooting.',
-    status: 'Active' as const
+    status: 'Active'
   },
   {
     title: 'MongoDB Certified Developer',
@@ -59,7 +75,7 @@ export const certificatesData = [
     skills: ['MongoDB', 'NoSQL', 'Database Design', 'Node.js'],
     description:
       'Certification proving proficiency in MongoDB development and database administration.',
-    status: 'Active' as const
+    status: 'Active'
   },
   {
     title: 'React Developer Certification',
@@ -71,6 +87,6 @@ export const certificatesData = [
     skills: ['React', 'JavaScript', 'Frontend Development', 'JSX'],
     description:
       'Official Meta certification demonstrating advanced React development skills and best practices.',
-    status: 'Renewed' as const
+    status: 'Renewed'
   }
 ];

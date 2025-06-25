@@ -1,4 +1,20 @@
-export const skillsData = [
+export type SkillLevel = 'Beginner' | 'Intermediate' | 'Advanced' | 'Expert';
+
+export type SkillCategory = 'Languages' | 'Technologies' | 'Data' | 'Tools';
+
+export type SkillIcon = 'code' | 'cpu' | 'database' | 'tool';
+
+export interface Skill {
+  name: string;
+  category: SkillCategory;
+  level: SkillLevel;
+  years: number;
+  icon: SkillIcon;
+}
+
+export type SkillsData = Skill[];
+
+export const skillsData: SkillsData = [
   // Languages
   {
     name: 'JavaScript',

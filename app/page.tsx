@@ -4,14 +4,14 @@ import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import {
-  Github,
-  Linkedin,
-  Mail,
-  ExternalLink,
-  ArrowRight,
-  Download,
-  MapPin
-} from 'lucide-react';
+  FaGithub as Github,
+  FaLinkedin as Linkedin,
+  FaEnvelope as Mail,
+  FaExternalLinkAlt as ExternalLink,
+  FaArrowRight as ArrowRight,
+  FaDownload as Download,
+  FaMapMarkerAlt as MapPin
+} from 'react-icons/fa';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ThemeToggleSimple } from '@/components/theme-toggle-simple';
