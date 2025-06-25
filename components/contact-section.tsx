@@ -1,6 +1,10 @@
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { FaCalendarAlt as Calendar, FaClock as Clock, FaRocket as Rocket } from 'react-icons/fa';
+import {
+  FaCalendarAlt as Calendar,
+  FaClock as Clock,
+  FaRocket as Rocket
+} from 'react-icons/fa';
 import Link from 'next/link';
 import { ContactForm } from '@/components/contact-form';
 import { RecaptchaProvider } from '@/components/recaptcha-provider';
@@ -8,7 +12,10 @@ import { textContent } from '@/constants';
 
 export function ContactSection() {
   return (
-    <section id="contact" className="py-20 bg-gradient-to-br from-background via-muted/20 to-background">
+    <section
+      id="contact"
+      className="py-20 bg-gradient-to-br from-background via-muted/20 to-background"
+    >
       <div className="container">
         <div className="max-w-2xl mx-auto">
           {/* Header Section */}
@@ -40,7 +47,8 @@ export function ContactSection() {
                   {textContent.contact.directContact}
                 </h3>
                 <p className="text-muted-foreground mb-6">
-                  Skip the form and let's have a direct conversation about your project
+                  Skip the form and let's have a direct conversation about your
+                  project
                 </p>
               </div>
 
@@ -72,17 +80,9 @@ export function ContactSection() {
                   </div>
                   <div className="text-left">
                     <h4 className="font-semibold text-sm">Quick Response</h4>
-                    <p className="text-muted-foreground text-xs">Within 24 hours</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
-                    <Rocket className="w-4 h-4 text-primary" />
-                  </div>
-                  <div className="text-left">
-                    <h4 className="font-semibold text-sm">Free Consultation</h4>
-                    <p className="text-muted-foreground text-xs">Project discussion</p>
+                    <p className="text-muted-foreground text-xs">
+                      Within 24 hours
+                    </p>
                   </div>
                 </div>
               </div>

@@ -2,6 +2,30 @@
 
 This file tracks all significant changes, updates, and releases for the Igor Andrade Portfolio project.
 
+## [1.2.2] - 2025-06-25
+
+### Enhanced
+
+- Improved mobile navigation with smooth slide-down animations for menu opening and closing
+- Added gradient scroll indicator for mobile skills section tabs to show additional categories
+- Enhanced skills section tabs with horizontal scrollable layout for mobile devices
+- Fixed footer responsive layout breaking on 768px tablet devices
+- Improved hero section mail icon with modern HiOutlineMail from Heroicons
+
+### Fixed
+
+- Mobile skills tabs UI reorganized for better touch interaction and readability
+- Footer grid layout responsive breakpoints for seamless tablet experience
+- Header mobile menu animation timing and transitions
+- Skills section category indicator positioning and visual feedback
+
+### Technical
+
+- Implemented CSS-based animations for mobile menu transitions
+- Added mobile-first responsive design patterns for skills navigation
+- Enhanced footer grid system with proper sm/lg breakpoint handling
+- Improved mobile UX with better visual cues and scroll indicators
+
 ## [1.2.1] - 2025-06-25
 
 ### Added

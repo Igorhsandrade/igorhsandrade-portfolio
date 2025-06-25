@@ -446,41 +446,101 @@ export function SkillsSection({ skills }: SkillsSectionProps): JSX.Element {
         onValueChange={(value: string) => setActiveTab(value as SkillCategory)}
         className="w-full"
       >
-        <div className="overflow-x-auto">
-          <TabsList className="grid w-full grid-cols-4 h-auto p-1">
-            {CATEGORIES.map((category) => {
-              const IconComponent = categoryIcons[category] || HiCodeBracket;
-              const categorySkills = filteredSkillsByCategory[category] || [];
-              const hasResults = categorySkills.length > 0;
-              const isSearching = searchTerm.trim() !== '';
+        {/* Mobile: Simple horizontal pills, Desktop: Enhanced grid */}
+        <div className="relative">
+          {/* Scrollable container */}
+          <div
+            className="overflow-x-auto overflow-y-hidden pb-2"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            <style jsx>{`
+              div::-webkit-scrollbar {
+                display: none;
+              }
+            `}</style>
+            <TabsList className="inline-flex md:grid md:grid-cols-4 h-auto p-1 bg-muted/20 rounded-lg gap-1 md:gap-0 md:w-full">
+              {CATEGORIES.map((category) => {
+                const IconComponent = categoryIcons[category] || HiCodeBracket;
+                const categorySkills = filteredSkillsByCategory[category] || [];
+                const hasResults = categorySkills.length > 0;
+                const isSearching = searchTerm.trim() !== '';
 
-              return (
-                <TabsTrigger
-                  key={category}
-                  value={category}
-                  className={cn(
-                    'flex flex-col items-center gap-1 p-3 text-xs data-[state=active]:bg-background transition-all',
-                    !hasResults && isSearching && 'opacity-50'
-                  )}
-                  disabled={!hasResults && isSearching}
-                >
-                  <IconComponent className="w-4 h-4" />
-                  <span>{category}</span>
-                  <Badge
-                    variant="outline"
+                return (
+                  <TabsTrigger
+                    key={category}
+                    value={category}
                     className={cn(
-                      'text-xs px-1 py-0',
-                      hasResults &&
-                        isSearching &&
-                        'bg-teal-100 text-teal-700 border-teal-300 dark:bg-teal-900/30 dark:text-teal-300 dark:border-teal-700'
+                      'transition-all duration-200 relative group shrink-0',
+                      'data-[state=active]:bg-background data-[state=active]:shadow-sm',
+                      // Mobile: Simple horizontal pills
+                      'inline-flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium',
+                      // Desktop: Vertical cards
+                      'md:flex md:flex-col md:items-center md:justify-center md:gap-2 md:p-4 md:min-h-[80px] md:rounded-none',
+                      // States
+                      'hover:bg-muted/50 disabled:opacity-50 disabled:cursor-not-allowed',
+                      !hasResults && isSearching && 'opacity-50'
                     )}
+                    disabled={!hasResults && isSearching}
                   >
-                    {categorySkills.length}
-                  </Badge>
-                </TabsTrigger>
-              );
-            })}
-          </TabsList>
+                    {/* Icon */}
+                    <div className="relative">
+                      <IconComponent
+                        className={cn(
+                          'transition-colors duration-200',
+                          'w-4 h-4 md:w-5 md:h-5',
+                          hasResults && isSearching
+                            ? 'text-teal-600 dark:text-teal-400'
+                            : 'text-muted-foreground group-data-[state=active]:text-foreground'
+                        )}
+                      />
+                      {hasResults && isSearching && (
+                        <div className="absolute -top-1 -right-1 w-2 h-2 bg-teal-500 rounded-full animate-pulse" />
+                      )}
+                    </div>
+
+                    {/* Text */}
+                    <span className="whitespace-nowrap md:text-center">
+                      {category}
+                    </span>
+
+                    {/* Badge - only on desktop or when searching */}
+                    {(isSearching ||
+                      (typeof window !== 'undefined' &&
+                        window.innerWidth >= 768)) && (
+                      <Badge
+                        variant="outline"
+                        className={cn(
+                          'text-xs px-1.5 py-0.5 ml-1 md:ml-0 md:mt-1 font-medium min-w-[20px] justify-center',
+                          hasResults && isSearching
+                            ? 'bg-teal-50 text-teal-700 border-teal-200 dark:bg-teal-950/50 dark:text-teal-300 dark:border-teal-800'
+                            : 'bg-muted/50 text-muted-foreground border-muted-foreground/30'
+                        )}
+                      >
+                        {categorySkills.length}
+                      </Badge>
+                    )}
+
+                    {/* Desktop-only badge when not searching */}
+                    <Badge
+                      variant="outline"
+                      className={cn(
+                        'hidden md:block text-xs px-2 py-0.5 min-w-[24px] justify-center font-medium',
+                        isSearching && 'hidden',
+                        'bg-muted/50 text-muted-foreground border-muted-foreground/30'
+                      )}
+                    >
+                      {categorySkills.length}
+                    </Badge>
+                  </TabsTrigger>
+                );
+              })}
+            </TabsList>
+          </div>
+
+          {/* Scroll indicator - only on mobile */}
+          <div className="absolute top-0 right-0 bottom-0 w-8 bg-gradient-to-l from-background via-background/80 to-transparent pointer-events-none md:hidden flex items-center justify-end pr-1">
+            <div className="w-1 h-1 bg-muted-foreground/40 rounded-full animate-pulse"></div>
+          </div>
         </div>
 
         {CATEGORIES.map((category) => {
