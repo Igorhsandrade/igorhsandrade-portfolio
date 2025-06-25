@@ -2,6 +2,21 @@
 
 This file tracks all significant changes, updates, and releases for the Igor Andrade Portfolio project.
 
+## [1.2.0] - 2025-06-25
+
+### Changed
+
+- Restructured codebase architecture for better maintainability and scalability
+- Enhanced skills/technologies section with improved visual styling and layout
+- Refined component organization and code structure
+- Updated project versioning to follow semantic versioning standards
+
+### Improved
+
+- Technologies section UI/UX with better visual hierarchy
+- Code organization and component structure for easier maintenance
+- Overall styling consistency across the portfolio
+
 ## [1.1.1] - 2025-06-25
 
 ### Fixed

@@ -3,6 +3,8 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
+import { Header } from '@/components/header';
+import { Footer } from '@/components/footer';
 
 const inter = Inter({ subsets: ['latin'], display: 'swap' });
 
@@ -116,7 +118,11 @@ export default function RootLayout({
           disableTransitionOnChange={false}
           storageKey="portfolio-theme"
         >
-          {children}
+          <div className="min-h-screen bg-background">
+            <Header />
+            <main>{children}</main>
+            <Footer />
+          </div>
         </ThemeProvider>
       </body>
     </html>

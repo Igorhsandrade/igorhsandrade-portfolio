@@ -1,6 +1,7 @@
 'use client';
 
 import { useMemo, useState, useEffect } from 'react';
+import type { JSX } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import {
@@ -71,16 +72,59 @@ import {
 } from 'react-icons/si';
 import { cn } from '@/lib/utils';
 import { Input } from '@/components/ui/input';
-import type { Skill, SkillIcon } from '@/constants/skills';
+import type {
+  Skill,
+  SkillIcon,
+  SkillLevel,
+  SkillCategory
+} from '@/constants/skills';
+
+// Type definitions for better type safety
+type IconComponent = React.ComponentType<{ className?: string }>;
+
+type BadgeVariant = 'secondary' | 'default' | 'destructive' | 'outline';
+
+type LevelOrder = Record<SkillLevel, number>;
+
+type SkillsByCategory = Record<SkillCategory, Skill[]>;
+
+type CategoryIcons = Record<SkillCategory, IconComponent>;
+
+// Utility type for level-based styling functions
+type LevelStyleFunction<T = string> = (level: SkillLevel) => T;
 
 interface SkillsSectionProps {
-  skills: Skill[];
+  readonly skills: Skill[];
 }
 
-const iconMap: Record<
-  SkillIcon,
-  React.ComponentType<{ className?: string }>
-> = {
+interface SkillListItemProps {
+  readonly skill: Skill;
+}
+
+// Constants with proper typing
+const LEVEL_ORDER: Readonly<LevelOrder> = {
+  Expert: 4,
+  Advanced: 3,
+  Intermediate: 2,
+  Beginner: 1
+} as const;
+
+const LEVEL_WIDTHS: Readonly<Record<SkillLevel, string>> = {
+  Expert: '100%',
+  Advanced: '75%',
+  Intermediate: '50%',
+  Beginner: '25%'
+} as const;
+
+const CATEGORIES: readonly SkillCategory[] = [
+  'Languages',
+  'Technologies',
+  'Data',
+  'Tools'
+] as const;
+
+// Icon mapping with proper typing
+const iconMap: Record<SkillIcon, IconComponent> = {
   // Languages
   javascript: SiJavascript,
   typescript: SiTypescript,
@@ -144,14 +188,14 @@ const iconMap: Record<
   tool: HiWrench
 };
 
-const categoryIcons = {
+const categoryIcons: CategoryIcons = {
   Languages: HiCodeBracket,
   Technologies: HiCpuChip,
   Data: HiCircleStack,
   Tools: HiWrench
 };
 
-const getLevelColor = (level: string) => {
+const getLevelColor: LevelStyleFunction = (level) => {
   switch (level) {
     case 'Expert':
       return 'text-teal-500';
@@ -166,18 +210,27 @@ const getLevelColor = (level: string) => {
   }
 };
 
-const getLevelBadgeVariant = (level: string) => {
+const getLevelBadgeVariant: LevelStyleFunction<BadgeVariant> = (level) => {
+  // Use 'secondary' as base and override with custom colors via className
+  return 'secondary';
+};
+
+const getBadgeColorClasses: LevelStyleFunction = (level) => {
   switch (level) {
     case 'Expert':
-      return 'default';
+      return 'bg-teal-100 text-teal-800 border-teal-300 dark:bg-teal-900/30 dark:text-teal-300 dark:border-teal-700';
     case 'Advanced':
-      return 'secondary';
+      return 'bg-green-100 text-green-800 border-green-300 dark:bg-green-900/30 dark:text-green-300 dark:border-green-700';
+    case 'Intermediate':
+      return 'bg-yellow-100 text-yellow-800 border-yellow-300 dark:bg-yellow-900/30 dark:text-yellow-300 dark:border-yellow-700';
+    case 'Beginner':
+      return 'bg-orange-100 text-orange-800 border-orange-300 dark:bg-orange-900/30 dark:text-orange-300 dark:border-orange-700';
     default:
-      return 'outline';
+      return 'bg-gray-100 text-gray-800 border-gray-300 dark:bg-gray-900/30 dark:text-gray-300 dark:border-gray-700';
   }
 };
 
-const getProgressBarColor = (level: string) => {
+const getProgressBarColor: LevelStyleFunction = (level) => {
   switch (level) {
     case 'Expert':
       return 'from-teal-500 to-teal-600';
@@ -192,53 +245,41 @@ const getProgressBarColor = (level: string) => {
   }
 };
 
-const getLevelWidth = (level: string) => {
-  switch (level) {
-    case 'Expert':
-      return '100%';
-    case 'Advanced':
-      return '75%';
-    case 'Intermediate':
-      return '50%';
-    case 'Beginner':
-      return '25%';
-    default:
-      return '0%';
-  }
+const getLevelWidth: LevelStyleFunction = (level) => {
+  return LEVEL_WIDTHS[level];
 };
 
-export function SkillsSection({ skills }: SkillsSectionProps) {
-  const skillsByCategory = useMemo(() => {
-    const grouped = skills.reduce((acc, skill) => {
+export function SkillsSection({ skills }: SkillsSectionProps): JSX.Element {
+  const skillsByCategory = useMemo((): SkillsByCategory => {
+    const grouped = skills.reduce<SkillsByCategory>((acc, skill) => {
       if (!acc[skill.category]) {
         acc[skill.category] = [];
       }
       acc[skill.category].push(skill);
       return acc;
-    }, {} as Record<string, Skill[]>);
+    }, {} as SkillsByCategory);
 
     // Sort skills within each category by level (Expert first, then Advanced, etc.)
-    const levelOrder = { Expert: 4, Advanced: 3, Intermediate: 2, Beginner: 1 };
-    Object.keys(grouped).forEach((category) => {
+    (Object.keys(grouped) as SkillCategory[]).forEach((category) => {
       grouped[category].sort(
-        (a, b) => levelOrder[b.level] - levelOrder[a.level]
+        (a, b) => LEVEL_ORDER[b.level] - LEVEL_ORDER[a.level]
       );
     });
 
     return grouped;
   }, [skills]);
 
-  const [searchTerm, setSearchTerm] = useState('');
-  const [activeTab, setActiveTab] = useState('Languages');
+  const [searchTerm, setSearchTerm] = useState<string>('');
+  const [activeTab, setActiveTab] = useState<SkillCategory>('Languages');
 
-  const filteredSkillsByCategory = useMemo(() => {
+  const filteredSkillsByCategory = useMemo((): SkillsByCategory => {
     if (!searchTerm.trim()) {
       return skillsByCategory;
     }
 
-    const filtered: Record<string, Skill[]> = {};
-    Object.keys(skillsByCategory).forEach((category) => {
-      const categorySkills = skillsByCategory[category].filter((skill) =>
+    const filtered: SkillsByCategory = {} as SkillsByCategory;
+    (Object.keys(skillsByCategory) as SkillCategory[]).forEach((category) => {
+      const categorySkills = skillsByCategory[category].filter((skill: Skill) =>
         skill.name.toLowerCase().includes(searchTerm.toLowerCase())
       );
       if (categorySkills.length > 0) {
@@ -251,12 +292,10 @@ export function SkillsSection({ skills }: SkillsSectionProps) {
   const totalFilteredSkills = Object.values(filteredSkillsByCategory).flat()
     .length;
 
-  const categories = ['Languages', 'Technologies', 'Data', 'Tools'];
-
   // Auto-switch to first tab with results when searching
   useEffect(() => {
     if (searchTerm.trim()) {
-      const categoriesWithResults = categories.filter(
+      const categoriesWithResults = CATEGORIES.filter(
         (category) => (filteredSkillsByCategory[category] || []).length > 0
       );
 
@@ -270,7 +309,7 @@ export function SkillsSection({ skills }: SkillsSectionProps) {
         }
       }
     }
-  }, [searchTerm, filteredSkillsByCategory, activeTab, categories]);
+  }, [searchTerm, filteredSkillsByCategory, activeTab]);
 
   // Reset to Languages tab when clearing search
   useEffect(() => {
@@ -279,44 +318,86 @@ export function SkillsSection({ skills }: SkillsSectionProps) {
     }
   }, [searchTerm]);
 
-  const SkillListItem = ({ skill }: { skill: Skill }) => {
+  const SkillListItem = ({ skill }: SkillListItemProps): JSX.Element => {
     const IconComponent = iconMap[skill.icon] || iconMap.code;
 
     return (
-      <div className="flex items-center justify-between p-4 rounded-lg border hover:bg-muted/50 transition-colors group">
-        <div className="flex items-center gap-3">
-          <IconComponent
-            className={cn('w-5 h-5', getLevelColor(skill.level))}
-          />
-          <div>
-            <h4 className="font-medium">{skill.name}</h4>
-            <p className="text-sm text-muted-foreground">{skill.level}</p>
-          </div>
-        </div>
-
-        <div className="flex items-center gap-6">
-          <div className="text-right">
-            <Badge variant={getLevelBadgeVariant(skill.level)} className="mb-1">
+      <div className="p-3 md:p-4 rounded-lg border hover:bg-muted/50 transition-colors group">
+        {/* Mobile Layout: Stack vertically */}
+        <div className="flex flex-col gap-3 sm:hidden">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <IconComponent
+                className={cn('w-4 h-4', getLevelColor(skill.level))}
+              />
+              <h4 className="font-medium text-sm">{skill.name}</h4>
+            </div>
+            <Badge
+              variant={getLevelBadgeVariant(skill.level)}
+              className={cn(
+                'text-xs px-2 py-0',
+                getBadgeColorClasses(skill.level)
+              )}
+            >
               {skill.level}
             </Badge>
+          </div>
+          <div className="flex items-center justify-between gap-3">
             <div className="text-xs text-muted-foreground flex items-center gap-1">
               <HiCalendar className="w-3 h-3" />
               {skill.years} years
             </div>
+            <div className="flex-1 max-w-24">
+              <div className="w-full bg-muted rounded-full h-2">
+                <div
+                  className={cn(
+                    'h-2 rounded-full transition-all duration-700 bg-gradient-to-r',
+                    getProgressBarColor(skill.level)
+                  )}
+                  style={{ width: getLevelWidth(skill.level) }}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Desktop Layout: Side by side */}
+        <div className="hidden sm:flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <IconComponent
+              className={cn('w-5 h-5', getLevelColor(skill.level))}
+            />
+            <div>
+              <h4 className="font-medium">{skill.name}</h4>
+              <div className="text-xs text-muted-foreground flex items-center gap-1">
+                <HiCalendar className="w-3 h-3" />
+                {skill.years} years
+              </div>
+            </div>
           </div>
 
-          <div className="w-32">
-            <div className="w-full bg-muted rounded-full h-2">
-              <div
-                className={cn(
-                  'h-2 rounded-full transition-all duration-700 bg-gradient-to-r',
-                  getProgressBarColor(skill.level)
-                )}
-                style={{ width: getLevelWidth(skill.level) }}
-              />
-            </div>
-            <div className="text-xs text-center mt-1 text-muted-foreground">
-              {skill.level}
+          <div className="flex items-center gap-6">
+            <div className="w-32">
+              <div className="text-xs text-center mb-1">
+                <Badge
+                  variant={getLevelBadgeVariant(skill.level)}
+                  className={cn(
+                    'text-xs px-2 py-0',
+                    getBadgeColorClasses(skill.level)
+                  )}
+                >
+                  {skill.level}
+                </Badge>
+              </div>
+              <div className="w-full bg-muted rounded-full h-2">
+                <div
+                  className={cn(
+                    'h-2 rounded-full transition-all duration-700 bg-gradient-to-r',
+                    getProgressBarColor(skill.level)
+                  )}
+                  style={{ width: getLevelWidth(skill.level) }}
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -360,13 +441,15 @@ export function SkillsSection({ skills }: SkillsSectionProps) {
       )}
 
       {/* Tabs for Categories */}
-      <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+      <Tabs
+        value={activeTab}
+        onValueChange={(value: string) => setActiveTab(value as SkillCategory)}
+        className="w-full"
+      >
         <div className="overflow-x-auto">
           <TabsList className="grid w-full grid-cols-4 h-auto p-1">
-            {categories.map((category) => {
-              const IconComponent =
-                categoryIcons[category as keyof typeof categoryIcons] ||
-                HiCodeBracket;
+            {CATEGORIES.map((category) => {
+              const IconComponent = categoryIcons[category] || HiCodeBracket;
               const categorySkills = filteredSkillsByCategory[category] || [];
               const hasResults = categorySkills.length > 0;
               const isSearching = searchTerm.trim() !== '';
@@ -400,13 +483,13 @@ export function SkillsSection({ skills }: SkillsSectionProps) {
           </TabsList>
         </div>
 
-        {categories.map((category) => {
+        {CATEGORIES.map((category) => {
           const categorySkills = filteredSkillsByCategory[category] || [];
           return (
             <TabsContent key={category} value={category} className="mt-6">
               <div className="space-y-3">
                 {categorySkills.length > 0 ? (
-                  categorySkills.map((skill) => (
+                  categorySkills.map((skill: Skill) => (
                     <SkillListItem key={skill.name} skill={skill} />
                   ))
                 ) : (
