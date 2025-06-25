@@ -70,7 +70,29 @@ export const textContent = {
       subjectPlaceholder: 'Project inquiry',
       message: 'Message',
       messagePlaceholder: 'Tell me about your project or opportunity...',
-      sendButton: 'Send Message'
+      sendButton: 'Send Message',
+      recaptchaRequired: 'Please complete the reCAPTCHA verification.',
+      recaptchaFailed:
+        'Something went wrong. Please refresh the page and try again later.',
+      sending: 'Sending...',
+      successMessage: "Message sent successfully! I'll get back to you soon.",
+      errorMessage: 'Error sending message. Please try again.',
+      success: {
+        title: 'Message Sent Successfully!',
+        thankYou: 'Thank you,',
+        received:
+          "has been received. I'll review it carefully and get back to you soon.",
+        messageAbout: 'Your message about',
+        responseTime: {
+          title: 'Expected Response Time',
+          duration: 'Within 24-48 hours'
+        },
+        security: {
+          privacy: 'Your information is secure and will not be shared',
+          urgentContact:
+            'Feel free to reach out on social media for urgent matters'
+        }
+      }
     },
     directContact: 'Or reach out directly:',
     buttons: {

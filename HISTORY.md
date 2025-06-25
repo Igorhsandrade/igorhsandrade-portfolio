@@ -2,6 +2,36 @@
 
 This file tracks all significant changes, updates, and releases for the Igor Andrade Portfolio project.
 
+## [1.1.0] - 2025-06-25
+
+### Added
+
+- Contact form functionality with email submission
+- reCAPTCHA integration for spam protection
+- Email API endpoint (`/api/contact/route.ts`)
+- Form validation and error handling
+- Success confirmation messages
+- reCAPTCHA provider context for better state management
+
+### Components Created
+
+- `contact-form.tsx` - Interactive contact form with validation
+- `recaptcha-provider.tsx` - Context provider for reCAPTCHA state management
+- `recaptcha-debug.tsx` - Debug component for reCAPTCHA troubleshooting
+
+### Dependencies Added
+
+- `nodemailer` - Email sending functionality
+- `react-google-recaptcha` - reCAPTCHA integration
+- `@types/react-google-recaptcha` - TypeScript definitions
+- `@types/nodemailer` - TypeScript definitions for email
+
+### Configuration
+
+- Environment variables support for email and reCAPTCHA configuration
+- Graceful fallback when reCAPTCHA is not configured
+- Email transporter setup with SMTP support
+
 ## [1.0.0] - 2025-06-25
 
 ### Added
