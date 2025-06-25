@@ -21,15 +21,15 @@ export function ContactForm({ className }: ContactFormProps) {
     text: string;
   } | null>(null);
   const recaptchaRef = useRef<ReCAPTCHA>(null);
-  const { isLoaded } = useRecaptcha();
-  const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
-  const isDevelopment = process.env.NODE_ENV === 'development';
+  const { isLoaded, error } = useRecaptcha();
+  const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY; // Form can be submitted if:
+  // 1. reCAPTCHA is verified, OR
+  // 2. No site key configured (reCAPTCHA disabled)
+  const canSubmit = isVerified || !siteKey;
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    // In development, allow bypassing reCAPTCHA if it's not working
-    if (!isDevelopment && !isVerified) {
+    e.preventDefault(); // Require reCAPTCHA verification when configured
+    if (!isVerified && siteKey) {
       setMessage({
         type: 'error',
         text: textContent.contact.form.recaptchaRequired
@@ -43,10 +43,8 @@ export function ContactForm({ className }: ContactFormProps) {
     try {
       // Get form data
       const formData = new FormData(e.currentTarget);
-      const recaptchaToken = recaptchaRef.current?.getValue();
-
-      // In development, allow submission without reCAPTCHA token
-      if (!isDevelopment && !recaptchaToken) {
+      const recaptchaToken = recaptchaRef.current?.getValue(); // Require reCAPTCHA token when configured
+      if (!recaptchaToken && siteKey) {
         throw new Error('reCAPTCHA token not found');
       }
       const data = {
@@ -54,7 +52,7 @@ export function ContactForm({ className }: ContactFormProps) {
         email: formData.get('email') as string,
         subject: formData.get('subject') as string,
         message: formData.get('message') as string,
-        recaptchaToken: recaptchaToken || 'development-bypass'
+        recaptchaToken: recaptchaToken || ''
       };
 
       // Submit to API
@@ -103,7 +101,7 @@ export function ContactForm({ className }: ContactFormProps) {
     console.error('reCAPTCHA error occurred');
     setMessage({
       type: 'error',
-      text: 'reCAPTCHA failed to load. This might be due to invalid keys or domain mismatch. Please check the console for details.'
+      text: 'reCAPTCHA failed to load. Please refresh the page and try again later.'
     });
   };
 
@@ -170,17 +168,15 @@ export function ContactForm({ className }: ContactFormProps) {
         type="submit"
         size="lg"
         className="w-full"
-        disabled={(!isDevelopment && !isVerified) || isSubmitting}
+        disabled={!canSubmit || isSubmitting}
       >
-        {siteKey}
-        {`isDevelpovment ${isDevelopment} isVerified ${isVerified}`}
         {isSubmitting
           ? textContent.contact.form.sending
           : textContent.contact.form.sendButton}
         <Mail className="w-5 h-5 ml-2" />
       </Button>{' '}
       {/* Google reCAPTCHA */}
-      {siteKey && isLoaded && (
+      {siteKey && isLoaded && !error && (
         <div className="flex flex-col items-center space-y-2">
           <ReCAPTCHA
             ref={recaptchaRef}
@@ -190,29 +186,24 @@ export function ContactForm({ className }: ContactFormProps) {
             onExpired={handleRecaptchaExpired}
             theme="light"
           />
-          {process.env.NODE_ENV === 'development' && (
-            <div className="text-xs text-muted-foreground">
-              Site Key: {siteKey.substring(0, 20)}...
-            </div>
-          )}
         </div>
       )}
-      {siteKey && !isLoaded && (
+      {siteKey && !isLoaded && !error && (
         <div className="flex justify-center">
           <div className="text-center text-sm text-muted-foreground">
             Loading reCAPTCHA...
           </div>
         </div>
       )}{' '}
+      {error && (
+        <div className="text-center text-sm text-red-600 bg-red-50 p-2 rounded">
+          ❌ reCAPTCHA failed to load ({error}). Please refresh the page and try
+          again later.
+        </div>
+      )}{' '}
       {!siteKey && (
         <div className="text-center text-sm text-muted-foreground">
           reCAPTCHA configuration required
-        </div>
-      )}
-      {isDevelopment && !siteKey && (
-        <div className="text-center text-xs text-yellow-600 bg-yellow-50 p-2 rounded">
-          🚧 Development Mode: reCAPTCHA is disabled. Form will work without
-          verification.
         </div>
       )}
       {/* Status Message */}

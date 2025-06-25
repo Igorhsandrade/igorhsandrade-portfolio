@@ -10,25 +10,15 @@ interface ContactFormData {
 
 // Verify reCAPTCHA token with Google
 async function verifyRecaptcha(token: string): Promise<boolean> {
-  // Allow development bypass
-  if (
-    process.env.NODE_ENV === 'development' &&
-    token === 'development-bypass'
-  ) {
-    console.log('Development mode: bypassing reCAPTCHA verification');
-    return true;
-  }
-
-  // Allow fallback when reCAPTCHA fails to load
-  if (token === 'recaptcha-error-fallback') {
-    console.log('reCAPTCHA error fallback: allowing submission');
-    return true;
-  }
-
   const secretKey = process.env.RECAPTCHA_SECRET_KEY;
 
   if (!secretKey) {
     console.error('RECAPTCHA_SECRET_KEY is not configured');
+    return false;
+  }
+
+  if (!token) {
+    console.error('No reCAPTCHA token provided');
     return false;
   }
 
@@ -58,20 +48,34 @@ export async function POST(request: NextRequest) {
     const { name, email, subject, message, recaptchaToken } = body;
 
     // Validate required fields
-    if (!name || !email || !subject || !message || !recaptchaToken) {
+    if (!name || !email || !subject || !message) {
       return NextResponse.json(
         { error: 'All fields are required' },
         { status: 400 }
       );
     }
 
-    // Verify reCAPTCHA
-    const isRecaptchaValid = await verifyRecaptcha(recaptchaToken);
-    if (!isRecaptchaValid) {
-      return NextResponse.json(
-        { error: 'reCAPTCHA verification failed' },
-        { status: 400 }
-      );
+    // Check if reCAPTCHA is configured
+    const secretKey = process.env.RECAPTCHA_SECRET_KEY;
+    const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+    const isRecaptchaEnabled = !!(secretKey && siteKey);
+
+    // If reCAPTCHA is enabled, verify the token
+    if (isRecaptchaEnabled) {
+      if (!recaptchaToken) {
+        return NextResponse.json(
+          { error: 'reCAPTCHA verification is required' },
+          { status: 400 }
+        );
+      }
+
+      const isRecaptchaValid = await verifyRecaptcha(recaptchaToken);
+      if (!isRecaptchaValid) {
+        return NextResponse.json(
+          { error: 'reCAPTCHA verification failed' },
+          { status: 400 }
+        );
+      }
     }
 
     // TODO: Implement your email sending logic here

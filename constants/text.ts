@@ -72,6 +72,8 @@ export const textContent = {
       messagePlaceholder: 'Tell me about your project or opportunity...',
       sendButton: 'Send Message',
       recaptchaRequired: 'Please complete the reCAPTCHA verification.',
+      recaptchaFailed:
+        'Something went wront. Please refresh the page and try again later.',
       sending: 'Sending...',
       successMessage: "Message sent successfully! I'll get back to you soon.",
       errorMessage: 'Error sending message. Please try again.'
