@@ -157,23 +157,6 @@ export function ContactForm({ className }: ContactFormProps) {
               </h3>
               <div className="w-16 h-1 bg-primary mx-auto rounded-full"></div>
             </div>
-
-            <div className="max-w-lg mx-auto space-y-4">
-              <p className="text-xl text-muted-foreground">
-                {textContent.contact.form.success.thankYou}{' '}
-                <span className="font-semibold text-foreground">
-                  {submittedData.name}
-                </span>
-                !
-              </p>
-              <p className="text-muted-foreground leading-relaxed">
-                {textContent.contact.form.success.messageAbout} "
-                <span className="font-medium text-foreground">
-                  {submittedData.subject}
-                </span>
-                "{textContent.contact.form.success.received}
-              </p>
-            </div>
           </div>
 
           {/* Response Time Card */}
