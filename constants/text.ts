@@ -39,6 +39,9 @@ export const textContent = {
         "I believe in writing clean, maintainable code and following best practices. I'm always learning new technologies and staying up-to-date with industry trends to deliver the best solutions."
     },
     skillsTitle: 'Skills & Technologies',
+    coursesTitle: 'Professional Development',
+    coursesSubtitle:
+      'Continuously learning and mastering new technologies through comprehensive courses and specializations.',
     certificatesTitle: 'Professional Certifications',
     certificatesSubtitle:
       'Continuously expanding my expertise through industry-recognized certifications from leading technology companies.'

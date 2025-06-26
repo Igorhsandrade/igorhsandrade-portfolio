@@ -9,6 +9,9 @@ import Link from 'next/link';
 import { textContent } from '@/constants';
 
 export function Footer() {
+  // Use a fixed year or generate it in a way that's consistent between server and client
+  const currentYear = 2025; // Or use: Math.max(2024, new Date().getFullYear())
+
   return (
     <footer className="py-16 border-t bg-muted/20">
       <div className="container">
@@ -134,7 +137,7 @@ export function Footer() {
             <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
               <div className="text-center sm:text-left">
                 <p className="text-sm text-muted-foreground">
-                  © {new Date().getFullYear()} {textContent.header.name}.{' '}
+                  © {currentYear} {textContent.header.name}.{' '}
                   {textContent.footer.legal.copyright}
                 </p>
               </div>

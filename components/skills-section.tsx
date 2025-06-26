@@ -519,18 +519,6 @@ export function SkillsSection({ skills }: SkillsSectionProps): JSX.Element {
                         {categorySkills.length}
                       </Badge>
                     )}
-
-                    {/* Desktop-only badge when not searching */}
-                    <Badge
-                      variant="outline"
-                      className={cn(
-                        'hidden md:block text-xs px-2 py-0.5 min-w-[24px] justify-center font-medium',
-                        isSearching && 'hidden',
-                        'bg-muted/50 text-muted-foreground border-muted-foreground/30'
-                      )}
-                    >
-                      {categorySkills.length}
-                    </Badge>
                   </TabsTrigger>
                 );
               })}

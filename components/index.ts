@@ -8,10 +8,14 @@ export { HeroSection } from './hero-section';
 export { AboutSection } from './about-section';
 export { ProjectsSection } from './projects-section';
 export { ContactSection } from './contact-section';
+export { SkillsOverviewSection } from './skills-overview-section';
+export { CoursesOverviewSection } from './courses-overview-section';
+export { CertificatesOverviewSection } from './certificates-overview-section';
 
 // Feature Components
 export { SkillsSection } from './skills-section';
 export { CertificatesSection } from './certificates-section';
+export { CoursesSection } from './courses-section';
 export { ContactForm } from './contact-form';
 export { RecaptchaProvider } from './recaptcha-provider';
 export { ThemeToggleSimple } from './theme-toggle-simple';

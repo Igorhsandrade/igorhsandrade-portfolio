@@ -30,6 +30,11 @@ export function RecaptchaProvider({ children }: RecaptchaProviderProps) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [retryCount, setRetryCount] = useState(0);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const retry = useCallback(() => {
     setError(null);
@@ -38,6 +43,7 @@ export function RecaptchaProvider({ children }: RecaptchaProviderProps) {
   }, []);
 
   useEffect(() => {
+    if (!mounted) return;
     const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
 
     // If no site key, mark as "loaded" to not block the form
@@ -126,7 +132,7 @@ export function RecaptchaProvider({ children }: RecaptchaProviderProps) {
       if (fallbackTimeout) clearTimeout(fallbackTimeout);
       // Don't remove script as it might be used by other components
     };
-  }, [retryCount]); // Include retryCount to trigger retry
+  }, [retryCount, mounted]); // Include retryCount to trigger retry
 
   return (
     <RecaptchaContext.Provider value={{ isLoaded, error, retry }}>

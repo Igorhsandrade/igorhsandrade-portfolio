@@ -9,11 +9,16 @@ import { ThemeToggleSimple } from '@/components/theme-toggle-simple';
 import { Button } from '@/components/ui/button';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { textContent } from '@/constants';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export function Header() {
   const isMobile = useIsMobile();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const closeMenu = () => setIsMenuOpen(false);
@@ -90,12 +95,13 @@ export function Header() {
       </div>
 
       {/* Mobile Menu */}
-      <div
-        className={`md:hidden border-t bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 transition-all duration-300 ease-in-out overflow-hidden ${
-          isMobile && isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-        }`}
-      >
-        <nav className="container py-4 flex flex-col space-y-4">
+      {mounted && (
+        <div
+          className={`md:hidden border-t bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 transition-all duration-300 ease-in-out overflow-hidden ${
+            isMobile && isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+          }`}
+        >
+          <nav className="container py-4 flex flex-col space-y-4">
           <Link
             href="#about"
             className="text-sm font-medium hover:text-primary py-2 transition-all duration-200 hover:translate-x-1"
@@ -132,9 +138,9 @@ export function Header() {
               <Download className="w-4 h-4" />
               {textContent.header.navigation.resume}
             </a>
-          </Button>
-        </nav>
-      </div>
+          </Button>          </nav>
+        </div>
+      )}
     </header>
   );
 }
