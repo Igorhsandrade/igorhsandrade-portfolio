@@ -2,6 +2,31 @@
 
 This file tracks all significant changes, updates, and releases for the Igor Andrade Portfolio project.
 
+## [1.3.0] - 2025-06-25
+
+### Fixed
+
+- **Hydration Issues**: Resolved React hydration mismatches that occurred during SSR
+  - Fixed theme provider hydration with proper `suppressHydrationWarning` wrapper
+  - Updated mobile detection hook to prevent undefined state during initial render
+  - Enhanced theme toggle component to show consistent loading state
+  - Added mounted state check to mobile menu rendering
+  - Fixed footer date generation to use consistent year value
+  - Updated reCAPTCHA provider with proper mounted state handling
+
+### Removed
+
+- Removed `courseUrl` property from courses data structure
+- Cleaned up course interface to remove unused course URL references
+- Updated all course entries to remove courseUrl fields
+
+### Technical
+
+- Improved SSR/CSR consistency across all client components
+- Enhanced hydration safety with proper mounting checks
+- Better error handling for theme and mobile detection hooks
+- Streamlined courses data model for cleaner structure
+
 ## [1.2.2] - 2025-06-25
 
 ### Enhanced

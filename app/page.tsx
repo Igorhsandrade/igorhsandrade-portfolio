@@ -1,6 +1,7 @@
 import { HeroSection } from '@/components/hero-section';
 import { AboutSection } from '@/components/about-section';
 import { SkillsOverviewSection } from '@/components/skills-overview-section';
+import { CoursesOverviewSection } from '@/components/courses-overview-section';
 import { CertificatesOverviewSection } from '@/components/certificates-overview-section';
 import { ProjectsSection } from '@/components/projects-section';
 import { ContactSection } from '@/components/contact-section';
@@ -27,6 +28,7 @@ export default function HomePage() {
       {/* Muted background sections */}
       <SectionWrapper variant="muted">
         <SkillsOverviewSection />
+        <CoursesOverviewSection />
         <CertificatesOverviewSection />
       </SectionWrapper>
 
