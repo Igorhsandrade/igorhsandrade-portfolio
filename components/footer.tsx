@@ -74,7 +74,7 @@ export function Footer() {
               <ul className="space-y-2">
                 <li>
                   <Link
-                    href="#about"
+                    href="/about"
                     className="text-muted-foreground hover:text-foreground transition-colors"
                   >
                     {textContent.footer.quickLinks.about}
@@ -82,10 +82,26 @@ export function Footer() {
                 </li>
                 <li>
                   <Link
-                    href="#projects"
+                    href="/projects"
                     className="text-muted-foreground hover:text-foreground transition-colors"
                   >
                     {textContent.footer.quickLinks.projects}
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/courses"
+                    className="text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    {textContent.footer.quickLinks.courses}
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/certifications"
+                    className="text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    {textContent.footer.quickLinks.certifications}
                   </Link>
                 </li>
                 <li>

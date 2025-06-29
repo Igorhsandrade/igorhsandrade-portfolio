@@ -104,9 +104,12 @@ export function ProjectsSection() {
             variant="outline"
             size="lg"
             className="bg-background text-foreground border-border hover:bg-muted"
+            asChild
           >
-            {textContent.projects.buttons.viewAll}
-            <ArrowRight className="w-5 h-5 ml-2" />
+            <Link href="/projects">
+              {textContent.projects.buttons.viewAll}
+              <ArrowRight className="w-5 h-5 ml-2" />
+            </Link>
           </Button>
         </div>
       </div>

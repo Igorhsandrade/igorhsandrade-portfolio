@@ -6,6 +6,8 @@ export const textContent = {
     navigation: {
       about: 'About',
       projects: 'Projects',
+      courses: 'Courses',
+      certifications: 'Certifications',
       contact: 'Contact',
       resume: 'Resume'
     }
@@ -44,7 +46,12 @@ export const textContent = {
       'Continuously learning and mastering new technologies through comprehensive courses and specializations.',
     certificatesTitle: 'Professional Certifications',
     certificatesSubtitle:
-      'Continuously expanding my expertise through industry-recognized certifications from leading technology companies.'
+      'Continuously expanding my expertise through industry-recognized certifications from leading technology companies.',
+    buttons: {
+      viewAllSkills: 'View All Skills',
+      viewAllCourses: 'View All Courses',
+      viewAllCertifications: 'View All Certifications'
+    }
   },
 
   // Projects Section
@@ -113,6 +120,8 @@ export const textContent = {
       title: 'Quick Links',
       about: 'About',
       projects: 'Projects',
+      courses: 'Courses',
+      certifications: 'Certifications',
       contact: 'Contact',
       resume: 'Resume'
     },

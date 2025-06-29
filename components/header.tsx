@@ -42,16 +42,28 @@ export function Header() {
             aria-label={textContent.common.ariaLabels.mainNavigation}
           >
             <Link
-              href="#about"
+              href="/about"
               className="text-sm font-medium hover:text-primary transition-colors"
             >
               {textContent.header.navigation.about}
             </Link>
             <Link
-              href="#projects"
+              href="/projects"
               className="text-sm font-medium hover:text-primary transition-colors"
             >
               {textContent.header.navigation.projects}
+            </Link>
+            <Link
+              href="/courses"
+              className="text-sm font-medium hover:text-primary transition-colors"
+            >
+              {textContent.header.navigation.courses}
+            </Link>
+            <Link
+              href="/certifications"
+              className="text-sm font-medium hover:text-primary transition-colors"
+            >
+              {textContent.header.navigation.certifications}
             </Link>
             <Link
               href="#contact"
@@ -103,18 +115,32 @@ export function Header() {
         >
           <nav className="container py-4 flex flex-col space-y-4">
           <Link
-            href="#about"
+            href="/about"
             className="text-sm font-medium hover:text-primary py-2 transition-all duration-200 hover:translate-x-1"
             onClick={closeMenu}
           >
             {textContent.header.navigation.about}
           </Link>
           <Link
-            href="#projects"
+            href="/projects"
             className="text-sm font-medium hover:text-primary py-2 transition-all duration-200 hover:translate-x-1"
             onClick={closeMenu}
           >
             {textContent.header.navigation.projects}
+          </Link>
+          <Link
+            href="/courses"
+            className="text-sm font-medium hover:text-primary py-2 transition-all duration-200 hover:translate-x-1"
+            onClick={closeMenu}
+          >
+            {textContent.header.navigation.courses}
+          </Link>
+          <Link
+            href="/certifications"
+            className="text-sm font-medium hover:text-primary py-2 transition-all duration-200 hover:translate-x-1"
+            onClick={closeMenu}
+          >
+            {textContent.header.navigation.certifications}
           </Link>
           <Link
             href="#contact"
