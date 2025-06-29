@@ -6,7 +6,7 @@ import { CertificatesOverviewSection } from '@/components/certificates-overview-
 import { ProjectsSection } from '@/components/projects-section';
 import { ContactSection } from '@/components/contact-section';
 import { SectionWrapper } from '@/components/section-wrapper';
-import { jsonLd, metadata } from '@/constants';
+import { jsonLd, metadata, projects } from '@/constants';
 
 export { metadata };
 
@@ -22,7 +22,7 @@ export default function HomePage() {
       {/* Default background sections */}
       <SectionWrapper variant="default">
         <AboutSection />
-        <ProjectsSection />
+        <ProjectsSection projects={projects.slice(0, 4)} showViewAllButton={true} />
       </SectionWrapper>
 
       {/* Muted background sections */}
