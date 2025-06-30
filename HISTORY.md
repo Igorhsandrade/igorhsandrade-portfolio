@@ -2,6 +2,49 @@
 
 This file tracks all significant changes, updates, and releases for the Igor Andrade Portfolio project.
 
+## [1.5.0] - 2025-06-29
+
+### Enhanced
+
+- **Timeline Component**: Complete refactoring of the about page timeline experience
+  - Replaced AboutSection and SkillsSection with new unified Timeline component
+  - Implemented separate sections for Professional Experience and Education
+  - Added visual timeline with gradient lines, responsive icons, and hover effects
+  - Enhanced mobile-friendly design with proper timeline visualization on all devices
+  - Added clickable company/institution names with external link indicators
+  - Improved spacing, animations, and responsive layout for better UX
+
+### Technical
+
+- **Data Structure Improvements**: Refactored experience data architecture
+  - Created separate `WorkExperience` and `EducationExperience` interfaces
+  - Implemented `BaseExperience` interface for common properties
+  - Separated work and education data into dedicated arrays (`workExperiences`, `educationExperiences`)
+  - Removed client-side filtering logic from Timeline component for better performance
+  - Maintained backwards compatibility with legacy `experienceData` array
+  - Enhanced type safety throughout the experience data system
+
+- **Component Architecture**: Improved Timeline component structure
+  - Updated Timeline to accept separate work and education arrays as props
+  - Removed type filtering logic and improved rendering performance
+  - Enhanced prop interfaces for better TypeScript integration
+  - Streamlined component logic with dedicated section rendering functions
+
+### Fixed
+
+- **Mobile Timeline**: Ensured proper timeline visualization on mobile devices
+  - Fixed timeline line positioning and icon sizing for small screens
+  - Replaced aggressive animations with subtle pulse effects
+  - Improved mobile touch targets and responsive spacing
+  - Enhanced timeline structure visibility across all device sizes
+
+### Added
+
+- **Brand Consistency**: Integrated CSS variables for consistent color palette
+  - Used primary colors for work experiences and accent colors for education
+  - Added gradient effects and consistent hover states throughout timeline
+  - Enhanced visual hierarchy with proper section headers and descriptions
+
 ## [1.4.0] - 2025-06-29
 
 ### Added

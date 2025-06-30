@@ -1,27 +1,26 @@
 import type { Metadata } from 'next';
-import { AboutSection } from '@/components/about-section';
-import { SkillsSection } from '@/components/skills-section';
+import { Timeline } from '@/components/timeline';
 import { SectionWrapper } from '@/components/section-wrapper';
-import { skillsData, textContent } from '@/constants';
+import { workExperiences, educationExperiences } from '@/constants';
 
 export const metadata: Metadata = {
   title: 'About',
   description:
-    'Learn more about Igor Andrade, a dedicated full-stack developer with over 3 years of experience. Discover my background, skills, and approach to building modern web applications.',
+    "Explore Igor Andrade's professional journey and educational background. Discover my work experience as a full-stack developer and my path in software engineering.",
   keywords: [
-    'about Igor Andrade',
-    'full-stack developer background',
-    'web developer experience',
-    'software engineer skills',
-    'React developer expertise',
-    'Next.js developer',
-    'TypeScript developer',
-    'Node.js developer'
+    'Igor Andrade experience',
+    'full-stack developer career',
+    'software engineer timeline',
+    'work experience',
+    'education background',
+    'professional journey',
+    'React developer career',
+    'Next.js developer experience'
   ],
   openGraph: {
-    title: 'About Igor Andrade - Full-Stack Developer',
+    title: 'About Igor Andrade - Professional Journey',
     description:
-      'Learn more about Igor Andrade, a dedicated full-stack developer with over 3 years of experience building modern web applications.',
+      "Explore Igor Andrade's professional journey and educational background as a full-stack developer with experience in modern web technologies.",
     url: 'https://igorhsandrade.dev/about',
     siteName: 'Igor Andrade - Full-Stack Developer',
     images: [
@@ -29,7 +28,7 @@ export const metadata: Metadata = {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'About Igor Andrade - Full-Stack Developer'
+        alt: 'About Igor Andrade - Professional Journey'
       }
     ],
     locale: 'en_US',
@@ -37,9 +36,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'About Igor Andrade - Full-Stack Developer',
+    title: 'About Igor Andrade - Professional Journey',
     description:
-      'Learn more about Igor Andrade, a dedicated full-stack developer with over 3 years of experience building modern web applications.',
+      "Explore Igor Andrade's professional journey and educational background as a full-stack developer with experience in modern web technologies.",
     images: ['/twitter-image.png']
   },
   alternates: {
@@ -62,7 +61,7 @@ export default function AboutPage() {
               name: 'Igor Andrade',
               jobTitle: 'Full-Stack Developer',
               description:
-                'Dedicated full-stack developer with over 3 years of experience crafting web applications',
+                'Full-stack developer with experience in modern web technologies and software engineering',
               url: 'https://igorhsandrade.dev/about',
               knowsAbout: [
                 'JavaScript',
@@ -81,22 +80,22 @@ export default function AboutPage() {
 
       <div className="pt-16">
         <SectionWrapper variant="default">
-          <AboutSection />
-        </SectionWrapper>
-
-        <SectionWrapper variant="muted">
-          <section id="skills" className="py-20">
-            <div className="container">
+          <section className="py-12 sm:py-16 lg:py-20">
+            <div className="container px-4 sm:px-6">
               <div className="max-w-4xl mx-auto">
-                <div className="text-center mb-16">
-                  <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                    {textContent.about.skillsTitle}
-                  </h2>
-                  <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                    Technologies and tools I work with to bring ideas to life
+                <div className="text-center mb-12 sm:mb-16">
+                  <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 leading-tight">
+                    My Journey
+                  </h1>
+                  <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed px-4 sm:px-0">
+                    Explore my professional experience and educational
+                    background through this timeline
                   </p>
                 </div>
-                <SkillsSection skills={skillsData} />
+                <Timeline
+                  workExperiences={workExperiences}
+                  educationExperiences={educationExperiences}
+                />
               </div>
             </div>
           </section>

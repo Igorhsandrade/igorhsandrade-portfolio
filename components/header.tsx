@@ -145,7 +145,7 @@ export function Header() {
               {textContent.header.navigation.certifications}
             </Link>
             <Link
-              href="#contact"
+              href="/contact"
               className="text-sm font-medium hover:text-primary py-2 transition-all duration-200 hover:translate-x-1"
               onClick={closeMenu}
             >
