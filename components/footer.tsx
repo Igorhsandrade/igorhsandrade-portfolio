@@ -106,7 +106,7 @@ export function Footer() {
                 </li>
                 <li>
                   <Link
-                    href="#contact"
+                    href="/contact"
                     className="text-muted-foreground hover:text-foreground transition-colors"
                   >
                     {textContent.footer.quickLinks.contact}
