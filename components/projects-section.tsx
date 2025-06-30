@@ -10,10 +10,21 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { projects, textContent } from '@/constants';
 
-export function ProjectsSection() {
-  if (projects.length === 0) {
+interface ProjectsSectionProps {
+  projects?: any[];
+  showViewAllButton?: boolean;
+}
+
+export function ProjectsSection({
+  projects: projectsProp,
+  showViewAllButton = true
+}: ProjectsSectionProps = {}) {
+  if (projectsProp?.length === 0) {
     return null;
   }
+
+  const projectsToShow = projectsProp || projects;
+  const sortedProjects = [...projectsToShow].sort((a, b) => a.order - b.order);
 
   return (
     <section id="projects" className="py-20">
@@ -27,8 +38,8 @@ export function ProjectsSection() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 mb-12">
-          {projects.map((project, index) => (
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          {sortedProjects.map((project, index) => (
             <article key={index}>
               <Card className="overflow-hidden hover:shadow-lg transition-shadow h-full">
                 <div className="relative h-48 overflow-hidden">
@@ -99,16 +110,21 @@ export function ProjectsSection() {
           ))}
         </div>
 
-        <div className="text-center">
-          <Button
-            variant="outline"
-            size="lg"
-            className="bg-background text-foreground border-border hover:bg-muted"
-          >
-            {textContent.projects.buttons.viewAll}
-            <ArrowRight className="w-5 h-5 ml-2" />
-          </Button>
-        </div>
+        {showViewAllButton && (
+          <div className="text-center">
+            <Button
+              variant="outline"
+              size="lg"
+              className="bg-background text-foreground border-border hover:bg-muted"
+              asChild
+            >
+              <Link href="/projects">
+                {textContent.projects.buttons.viewAll}
+                <ArrowRight className="w-5 h-5 ml-2" />
+              </Link>
+            </Button>
+          </div>
+        )}
       </div>
     </section>
   );

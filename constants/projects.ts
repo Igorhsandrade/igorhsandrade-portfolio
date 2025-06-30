@@ -43,6 +43,7 @@ export interface Project {
   liveUrl: string;
   githubUrl: string;
   category: ProjectCategory;
+  order: number;
 }
 
 export type ProjectsData = Project[];
@@ -56,7 +57,8 @@ export const projects: ProjectsData = [
     tech: ['Next.js', 'TypeScript', 'JavaScript'],
     liveUrl: 'https://igorhsandrade.dev',
     githubUrl: 'https://github.com/Igorhsandrade/igorhsandrade-portfolio',
-    category: 'Front-End'
+    category: 'Front-End',
+    order: 1
   },
   {
     title: 'Ocarina Studios Landing Page',
@@ -66,7 +68,8 @@ export const projects: ProjectsData = [
     tech: ['Next.js', 'TypeScript', 'JavaScript'],
     liveUrl: 'https://ocarinastudios.com',
     githubUrl: '',
-    category: 'Front-End'
+    category: 'Front-End',
+    order: 2
   }
 ];
 
@@ -79,7 +82,8 @@ export const projectsMock: ProjectsData = [
     tech: ['Next.js', 'TypeScript', 'PostgreSQL', 'Stripe'],
     liveUrl: '#',
     githubUrl: '#',
-    category: 'Full-Stack'
+    category: 'Full-Stack',
+    order: 1
   },
   {
     title: 'Task Management App',
@@ -89,7 +93,8 @@ export const projectsMock: ProjectsData = [
     tech: ['React', 'Node.js', 'Socket.io', 'MongoDB'],
     liveUrl: '#',
     githubUrl: '#',
-    category: 'Full-Stack'
+    category: 'Full-Stack',
+    order: 2
   },
   {
     title: 'Weather Dashboard',
@@ -99,7 +104,8 @@ export const projectsMock: ProjectsData = [
     tech: ['React', 'Chart.js', 'Weather API', 'Tailwind'],
     liveUrl: '#',
     githubUrl: '#',
-    category: 'Front-End'
+    category: 'Front-End',
+    order: 3
   },
   {
     title: 'API Gateway Service',
@@ -109,6 +115,7 @@ export const projectsMock: ProjectsData = [
     tech: ['Node.js', 'Express', 'Redis', 'Docker'],
     liveUrl: '#',
     githubUrl: '#',
-    category: 'Back-End'
+    category: 'Back-End',
+    order: 4
   }
 ];
