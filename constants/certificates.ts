@@ -10,6 +10,7 @@ export interface Certificate {
   skills: string[];
   description: string;
   status: CertificateStatus;
+  order: number;
 }
 
 export type CertificatesData = Certificate[];
@@ -25,7 +26,8 @@ export const certificatesData: CertificatesData = [
     description: 'A course on effective storytelling and presentation skills.',
     image: '/storytelling.webp',
     skills: ['Storytelling', 'Presentation', 'Media Training'],
-    status: 'Active'
+    status: 'Active',
+    order: 1
   }
 ];
 
@@ -40,7 +42,8 @@ export const certificatesDataMock: CertificatesData = [
     skills: ['AWS', 'Cloud Architecture', 'DevOps', 'Infrastructure'],
     description:
       'Advanced certification demonstrating expertise in designing distributed applications and systems on AWS.',
-    status: 'Active'
+    status: 'Active',
+    order: 1
   },
   {
     title: 'Google Cloud Professional Developer',
@@ -52,7 +55,8 @@ export const certificatesDataMock: CertificatesData = [
     skills: ['Google Cloud', 'Kubernetes', 'Docker', 'CI/CD'],
     description:
       'Professional-level certification for designing, building, and deploying applications on Google Cloud.',
-    status: 'Active'
+    status: 'Active',
+    order: 2
   },
   {
     title: 'Microsoft Azure Developer Associate',
@@ -65,7 +69,8 @@ export const certificatesDataMock: CertificatesData = [
     skills: ['Azure', 'C#', '.NET', 'Cloud Services'],
     description:
       'Certification validating skills in developing cloud solutions using Microsoft Azure services.',
-    status: 'Active'
+    status: 'Active',
+    order: 3
   },
   {
     title: 'Certified Kubernetes Administrator (CKA)',
@@ -78,7 +83,8 @@ export const certificatesDataMock: CertificatesData = [
     skills: ['Kubernetes', 'Container Orchestration', 'DevOps', 'Linux'],
     description:
       'Hands-on certification demonstrating skills in Kubernetes administration and troubleshooting.',
-    status: 'Active'
+    status: 'Active',
+    order: 4
   },
   {
     title: 'MongoDB Certified Developer',
@@ -90,7 +96,8 @@ export const certificatesDataMock: CertificatesData = [
     skills: ['MongoDB', 'NoSQL', 'Database Design', 'Node.js'],
     description:
       'Certification proving proficiency in MongoDB development and database administration.',
-    status: 'Active'
+    status: 'Active',
+    order: 5
   },
   {
     title: 'React Developer Certification',
@@ -102,6 +109,7 @@ export const certificatesDataMock: CertificatesData = [
     skills: ['React', 'JavaScript', 'Frontend Development', 'JSX'],
     description:
       'Official Meta certification demonstrating advanced React development skills and best practices.',
-    status: 'Renewed'
+    status: 'Renewed',
+    order: 6
   }
 ];

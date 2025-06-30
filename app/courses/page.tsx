@@ -6,7 +6,7 @@ import { coursesData, textContent } from '@/constants';
 export const metadata: Metadata = {
   title: 'Courses',
   description:
-    'Explore Igor Andrade\'s continuous learning journey through professional development courses. Comprehensive courses and specializations in modern web development, cloud technologies, and software engineering.',
+    "Explore Igor Andrade's continuous learning journey through professional development courses. Comprehensive courses and specializations in modern web development, cloud technologies, and software engineering.",
   keywords: [
     'Igor Andrade courses',
     'professional development',
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Courses - Igor Andrade Professional Development',
     description:
-      'Explore Igor Andrade\'s continuous learning journey through professional development courses and specializations.',
+      "Explore Igor Andrade's continuous learning journey through professional development courses and specializations.",
     url: 'https://igorhsandrade.dev/courses',
     siteName: 'Igor Andrade - Full-Stack Developer',
     images: [
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Courses - Igor Andrade Professional Development',
     description:
-      'Explore Igor Andrade\'s continuous learning journey through professional development courses and specializations.',
+      "Explore Igor Andrade's continuous learning journey through professional development courses and specializations.",
     images: ['/twitter-image.png']
   },
   alternates: {
@@ -58,22 +58,25 @@ export default function CoursesPage() {
             '@context': 'https://schema.org',
             '@type': 'CollectionPage',
             name: 'Igor Andrade Professional Development Courses',
-            description: 'Comprehensive courses and specializations completed by Igor Andrade',
+            description:
+              'Comprehensive courses and specializations completed by Igor Andrade',
             url: 'https://igorhsandrade.dev/courses',
             mainEntity: {
               '@type': 'ItemList',
               numberOfItems: coursesData.length,
-              itemListElement: coursesData.map((course: any, index: number) => ({
-                '@type': 'Course',
-                position: index + 1,
-                name: course.title,
-                description: course.description,
-                provider: {
-                  '@type': 'Organization',
-                  name: course.issuer
-                },
-                teaches: course.skills
-              }))
+              itemListElement: coursesData.map(
+                (course: any, index: number) => ({
+                  '@type': 'Course',
+                  position: index + 1,
+                  name: course.title,
+                  description: course.description,
+                  provider: {
+                    '@type': 'Organization',
+                    name: course.issuer
+                  },
+                  teaches: course.skills
+                })
+              )
             }
           })
         }}
@@ -81,19 +84,7 @@ export default function CoursesPage() {
 
       <div className="pt-16">
         <SectionWrapper variant="default">
-          <section className="py-20">
-            <div className="container">
-              <div className="text-center mb-16">
-                <h1 className="text-4xl md:text-5xl font-bold mb-4">
-                  {textContent.about.coursesTitle}
-                </h1>
-                <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                  {textContent.about.coursesSubtitle}
-                </p>
-              </div>
-            </div>
-          </section>
-          <CoursesSection courses={coursesData} showAll={true} />
+          <CoursesSection courses={coursesData} showViewAllButton={false} />
         </SectionWrapper>
       </div>
     </>

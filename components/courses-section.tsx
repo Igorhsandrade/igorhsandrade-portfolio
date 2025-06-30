@@ -1,5 +1,3 @@
-'use client';
-
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -8,37 +6,30 @@ import {
   HiCalendar as Calendar,
   HiClock as Clock,
   HiCheckCircle as CheckCircle,
-  HiAcademicCap as AcademicCap
+  HiAcademicCap as AcademicCap,
+  HiArrowRight as ArrowRight
 } from 'react-icons/hi';
 import { HiPlay as Play } from 'react-icons/hi2';
 import Image from 'next/image';
 import Link from 'next/link';
-
-interface Course {
-  title: string;
-  provider: string;
-  dateCompleted: string;
-  duration: string;
-  certificateUrl?: string;
-  courseUrl?: string;
-  image: string;
-  skills: string[];
-  description: string;
-  status: 'Completed' | 'In Progress' | 'Certified';
-}
+import { textContent } from '@/constants';
+import { Course } from '@/constants/courses';
 
 interface CoursesSectionProps {
-  courses: Course[];
-  showAll?: boolean;
-  className?: string;
+  courses?: Course[];
+  showViewAllButton?: boolean;
 }
 
 export function CoursesSection({
-  courses,
-  showAll = false,
-  className = ''
-}: CoursesSectionProps) {
-  const displayedCourses = showAll ? courses : courses.slice(0, 6);
+  courses: coursesProp,
+  showViewAllButton = true
+}: CoursesSectionProps = {}) {
+  const coursesToShow = coursesProp || [];
+  if (coursesToShow.length === 0) {
+    return null;
+  }
+
+  const sortedCourses = [...coursesToShow].sort((a, b) => a.order - b.order);
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -67,108 +58,122 @@ export function CoursesSection({
   };
 
   return (
-    <div className={className}>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {displayedCourses.map((course, index) => (
-          <Card
-            key={index}
-            className="overflow-hidden hover:shadow-lg transition-all duration-300 group"
-          >
-            <div className="relative h-48 overflow-hidden bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-purple-950/20 dark:to-indigo-950/20">
-              <Image
-                src={course.image || '/placeholder.svg'}
-                alt={`${course.title} Course`}
-                fill
-                className="object-contain p-4 transition-transform group-hover:scale-105"
-              />
-              <div className="absolute top-4 right-4">
-                <Badge
-                  className={`text-xs ${getStatusColor(
-                    course.status
-                  )} flex items-center gap-1`}
-                >
-                  {getStatusIcon(course.status)}
-                  {course.status}
-                </Badge>
-              </div>
-            </div>
-
-            <CardContent className="p-6">
-              <div className="mb-3">
-                <h3 className="text-lg font-semibold mb-1 line-clamp-2">
-                  {course.title}
-                </h3>
-                <p className="text-sm text-muted-foreground font-medium">
-                  {course.provider}
-                </p>
-              </div>
-
-              <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
-                {course.description}
-              </p>
-
-              <div className="flex items-center gap-4 mb-4 text-sm text-muted-foreground">
-                <div className="flex items-center gap-2">
-                  <Calendar className="w-4 h-4" />
-                  <span>{course.dateCompleted}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Clock className="w-4 h-4" />
-                  <span>{course.duration}</span>
-                </div>
-              </div>
-
-              <div className="flex flex-wrap gap-2 mb-4">
-                {course.skills.slice(0, 3).map((skill) => (
-                  <Badge key={skill} variant="outline" className="text-xs">
-                    {skill}
-                  </Badge>
-                ))}
-                {course.skills.length > 3 && (
-                  <Badge variant="outline" className="text-xs">
-                    +{course.skills.length - 3} more
-                  </Badge>
-                )}
-              </div>
-
-              <div className="flex gap-2">
-                {course.certificateUrl && (
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    asChild
-                    className={`${
-                      course.courseUrl ? 'flex-1' : 'w-full'
-                    } bg-background text-foreground border-border hover:bg-muted`}
-                  >
-                    <Link
-                      href={course.certificateUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <AcademicCap className="w-4 h-4 mr-2" />
-                      Certificate
-                    </Link>
-                  </Button>
-                )}
-              </div>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-
-      {!showAll && courses.length > 6 && (
-        <div className="text-center mt-8">
-          <Button
-            variant="outline"
-            size="lg"
-            className="bg-background text-foreground border-border hover:bg-muted"
-          >
-            View All Courses ({courses.length})
-            <AcademicCap className="w-5 h-5 ml-2" />
-          </Button>
+    <section id="courses" className="py-20">
+      <div className="container">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            {textContent.about.coursesTitle}
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            {textContent.about.coursesSubtitle}
+          </p>
         </div>
-      )}
-    </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+          {sortedCourses.map((course, index) => (
+            <Card
+              key={index}
+              className="overflow-hidden hover:shadow-lg transition-all duration-300 group"
+            >
+              <div className="relative h-48 overflow-hidden bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-purple-950/20 dark:to-indigo-950/20">
+                <Image
+                  src={course.image || '/placeholder.svg'}
+                  alt={`${course.title} Course`}
+                  fill
+                  className="object-contain p-4 transition-transform group-hover:scale-105"
+                />
+                <div className="absolute top-4 right-4">
+                  <Badge
+                    className={`text-xs ${getStatusColor(
+                      course.status
+                    )} flex items-center gap-1`}
+                  >
+                    {getStatusIcon(course.status)}
+                    {course.status}
+                  </Badge>
+                </div>
+              </div>
+
+              <CardContent className="p-6">
+                <div className="mb-3">
+                  <h3 className="text-lg font-semibold mb-1 line-clamp-2">
+                    {course.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground font-medium">
+                    {course.provider}
+                  </p>
+                </div>
+
+                <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
+                  {course.description}
+                </p>
+
+                <div className="flex items-center gap-4 mb-4 text-sm text-muted-foreground">
+                  <div className="flex items-center gap-2">
+                    <Calendar className="w-4 h-4" />
+                    <span>{course.dateCompleted}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Clock className="w-4 h-4" />
+                    <span>{course.duration}</span>
+                  </div>
+                </div>
+
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {course.skills.slice(0, 3).map((skill) => (
+                    <Badge key={skill} variant="outline" className="text-xs">
+                      {skill}
+                    </Badge>
+                  ))}
+                  {course.skills.length > 3 && (
+                    <Badge variant="outline" className="text-xs">
+                      +{course.skills.length - 3} more
+                    </Badge>
+                  )}
+                </div>
+
+                <div className="flex gap-2">
+                  {course.certificateUrl && (
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      asChild
+                      className={`${
+                        course.courseUrl ? 'flex-1' : 'w-full'
+                      } bg-background text-foreground border-border hover:bg-muted`}
+                    >
+                      <Link
+                        href={course.certificateUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <AcademicCap className="w-4 h-4 mr-2" />
+                        Certificate
+                      </Link>
+                    </Button>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+
+        {showViewAllButton && (
+          <div className="text-center">
+            <Button
+              variant="outline"
+              size="lg"
+              className="bg-background text-foreground border-border hover:bg-muted"
+              asChild
+            >
+              <Link href="/courses">
+                {textContent.about.buttons.viewAllCourses}
+                <ArrowRight className="w-5 h-5 ml-2" />
+              </Link>
+            </Button>
+          </div>
+        )}
+      </div>
+    </section>
   );
 }

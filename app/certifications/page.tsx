@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { CertificatesSection } from '@/components/certificates-section';
 import { SectionWrapper } from '@/components/section-wrapper';
-import { certificatesData, textContent } from '@/constants';
+import { certificatesData } from '@/constants';
 
 export const metadata: Metadata = {
   title: 'Certifications',
@@ -84,19 +84,10 @@ export default function CertificationsPage() {
 
       <div className="pt-16">
         <SectionWrapper variant="default">
-          <section className="py-20">
-            <div className="container">
-              <div className="text-center mb-16">
-                <h1 className="text-4xl md:text-5xl font-bold mb-4">
-                  {textContent.about.certificatesTitle}
-                </h1>
-                <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                  {textContent.about.certificatesSubtitle}
-                </p>
-              </div>
-            </div>
-          </section>
-          <CertificatesSection certificates={certificatesData} showAll={true} />
+          <CertificatesSection
+            certificates={certificatesData}
+            showViewAllButton={false}
+          />
         </SectionWrapper>
       </div>
     </>

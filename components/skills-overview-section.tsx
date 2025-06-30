@@ -15,11 +15,6 @@ export function SkillsOverviewSection() {
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
               Technologies and tools I work with to bring ideas to life
             </p>
-            <Button asChild variant="outline">
-              <Link href="/about#skills">
-                {textContent.about.buttons.viewAllSkills}
-              </Link>
-            </Button>
           </div>
           <SkillsSection skills={skillsData} />
         </div>

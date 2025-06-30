@@ -6,10 +6,12 @@ export interface Course {
   dateCompleted: string;
   duration: string;
   certificateUrl?: string;
+  courseUrl?: string;
   image: string;
   skills: string[];
   description: string;
-  status: CourseStatus;
+  status: 'Completed' | 'In Progress' | 'Certified';
+  order: number;
 }
 
 export type CoursesData = Course[];
@@ -31,7 +33,8 @@ export const coursesData: CoursesData = [
     ],
     description:
       'Introductory course covering core math for data science, including algebra, calculus, linear algebra, and numerical analysis, with career-focused foundations',
-    status: 'Completed'
+    status: 'Completed',
+    order: 1
   },
   {
     title: 'Mathematics for Machine Learning',
@@ -44,7 +47,8 @@ export const coursesData: CoursesData = [
     skills: ['NumPy', 'Data Manipulation', 'Applied Mathematics', 'Calculus'],
     description:
       'Course sequence covering essential math for data science: linear algebra, data properties, PCA, optimization, and neural network training',
-    status: 'Completed'
+    status: 'Completed',
+    order: 2
   },
   {
     title: 'Expressway to Data Science: Essential Math',
@@ -62,7 +66,8 @@ export const coursesData: CoursesData = [
     ],
     description:
       'Introductory course covering core math for data science, including algebra, calculus, linear algebra, and numerical analysis, with career-focused foundations',
-    status: 'Completed'
+    status: 'Completed',
+    order: 3
   }
 ];
 
@@ -77,7 +82,8 @@ export const coursesDataMock: CoursesData = [
     skills: ['React', 'JavaScript', 'Redux', 'React Router'],
     description:
       'Comprehensive course covering React fundamentals, hooks, state management, and modern development practices.',
-    status: 'Completed'
+    status: 'Completed',
+    order: 1
   },
   {
     title: 'AWS Solutions Architect Associate',
@@ -89,7 +95,8 @@ export const coursesDataMock: CoursesData = [
     skills: ['AWS', 'Cloud Architecture', 'EC2', 'S3', 'Lambda'],
     description:
       'In-depth training for AWS Solutions Architect certification covering core AWS services and best practices.',
-    status: 'Certified'
+    status: 'Certified',
+    order: 2
   },
   {
     title: 'Node.js: The Complete Guide',
@@ -101,7 +108,8 @@ export const coursesDataMock: CoursesData = [
     skills: ['Node.js', 'Express', 'MongoDB', 'REST APIs'],
     description:
       'Complete Node.js course covering backend development, APIs, databases, and deployment.',
-    status: 'Completed'
+    status: 'Completed',
+    order: 3
   },
   {
     title: 'Machine Learning Specialization',
@@ -113,7 +121,8 @@ export const coursesDataMock: CoursesData = [
     skills: ['Python', 'Machine Learning', 'TensorFlow', 'Scikit-learn'],
     description:
       'Stanford University course covering machine learning algorithms, neural networks, and practical applications.',
-    status: 'Certified'
+    status: 'Certified',
+    order: 4
   },
   {
     title: 'Advanced TypeScript',
@@ -124,7 +133,8 @@ export const coursesDataMock: CoursesData = [
     skills: ['TypeScript', 'Advanced Types', 'Generics', 'Type Guards'],
     description:
       'Advanced TypeScript concepts including utility types, conditional types, and complex type manipulations.',
-    status: 'Completed'
+    status: 'Completed',
+    order: 5
   },
   {
     title: 'Docker and Kubernetes Complete Course',
@@ -136,7 +146,8 @@ export const coursesDataMock: CoursesData = [
     skills: ['Docker', 'Kubernetes', 'DevOps', 'Container Orchestration'],
     description:
       'Comprehensive course on containerization and orchestration with Docker and Kubernetes.',
-    status: 'Completed'
+    status: 'Completed',
+    order: 6
   },
   {
     title: 'Next.js 14 Masterclass',
@@ -147,7 +158,8 @@ export const coursesDataMock: CoursesData = [
     skills: ['Next.js', 'React', 'Server Components', 'App Router'],
     description:
       'Latest Next.js 14 features including app router, server components, and modern deployment strategies.',
-    status: 'Completed'
+    status: 'Completed',
+    order: 7
   },
   {
     title: 'GraphQL with Apollo',
@@ -158,6 +170,7 @@ export const coursesDataMock: CoursesData = [
     skills: ['GraphQL', 'Apollo', 'React', 'API Design'],
     description:
       'Building modern APIs with GraphQL and Apollo, including client-side integration with React.',
-    status: 'In Progress'
+    status: 'In Progress',
+    order: 8
   }
 ];
