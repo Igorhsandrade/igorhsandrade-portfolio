@@ -2,6 +2,53 @@
 
 This file tracks all significant changes, updates, and releases for the Igor Andrade Portfolio project.
 
+## [1.4.0] - 2025-06-29
+
+### Added
+
+- **Individual Pages**: Created dedicated pages for each portfolio section
+  - Added standalone About page (`/about`) with comprehensive personal information
+  - Added dedicated Projects page (`/projects`) with detailed project showcases
+  - Added Certifications page (`/certifications`) with organized certificate displays
+  - Added Courses page (`/courses`) with educational background details
+  - Added Contact page (`/contact`) with improved contact form and information
+
+### Enhanced
+
+- **Navigation & Header**: Improved navigation system with updated header component
+
+  - Enhanced header layout and navigation links to support new individual pages
+  - Updated footer with improved links and layout structure
+  - Better organization of navigation elements across all sections
+
+- **Content Structure**: Reorganized and improved content presentation
+
+  - Updated projects content with enhanced descriptions and details
+  - Refined certificates and courses data structure for better display
+  - Improved section layouts with better responsive design
+  - Enhanced constants and text content for consistency
+
+- **Section Components**: Refactored overview sections for better modularity
+  - Improved certificates section with updated layout and content organization
+  - Enhanced courses section with better data presentation
+  - Updated projects section with improved content structure
+  - Better skills overview section integration
+
+### Fixed
+
+- **Component Organization**: Cleaned up component structure and removed redundant files
+  - Removed unused overview section components
+  - Streamlined component architecture for better maintainability
+  - Fixed layout inconsistencies across different sections
+
+### Technical
+
+- **Page Architecture**: Implemented new page-based navigation structure
+  - Created individual route handlers for each portfolio section
+  - Improved component modularity and reusability
+  - Better separation of concerns between overview and detailed views
+  - Enhanced TypeScript integration across new pages
+
 ## [1.3.0] - 2025-06-25
 
 ### Fixed
