@@ -2,6 +2,35 @@
 
 This file tracks all significant changes, updates, and releases for the Igor Andrade Portfolio project.
 
+## [1.5.1] - 2025-06-30
+
+### Added
+
+- **New Course**: IBM Data Science Professional Certificate
+  - Added IBM Data Science course to courses section with 160 hours duration
+  - Integrated IBM.webp image for course visual representation
+  - Included comprehensive skills list: Python, SQL, Scikit-learn, Pandas, Data Visualization, Machine Learning, Data Analysis, Data Science
+
+### Enhanced
+
+- **Course Data**: Improved course provider information
+
+  - Updated Google Data Analytics provider to "Google on Coursera" for clarity
+  - Updated Mathematics for Machine Learning provider to "Imperial College London on Coursera"
+  - Updated Expressway to Data Science provider to "University of Colorado Boulder on Coursera"
+  - Reordered course display priorities with IBM Data Science as featured course
+
+- **Timeline Component**: Code formatting and readability improvements
+  - Improved code formatting and line breaking for better maintainability
+  - Enhanced readability of component props and JSX structure
+  - Cleaned up inline styling and conditional rendering
+
+### Technical
+
+- **Assets**: Added IBM.webp image for new course certification
+- **Data Structure**: Updated course ordering and priority system
+- **Component Refactoring**: Better code organization in Timeline component
+
 ## [1.5.0] - 2025-06-29
 
 ### Enhanced
@@ -17,6 +46,7 @@ This file tracks all significant changes, updates, and releases for the Igor And
 ### Technical
 
 - **Data Structure Improvements**: Refactored experience data architecture
+
   - Created separate `WorkExperience` and `EducationExperience` interfaces
   - Implemented `BaseExperience` interface for common properties
   - Separated work and education data into dedicated arrays (`workExperiences`, `educationExperiences`)
