@@ -18,8 +18,31 @@ export type CoursesData = Course[];
 
 export const coursesData: CoursesData = [
   {
+    title: 'IBM Data Science',
+    provider: 'IBM on Coursera',
+    dateCompleted: 'Jun 2025',
+    duration: '160 hours',
+    certificateUrl:
+      'https://www.coursera.org/account/accomplishments/professional-cert/AB4MHTZH8SMB',
+    image: '/IBM.webp',
+    skills: [
+      'Python',
+      'SQL',
+      'Scikit-learn',
+      'Pandas',
+      'Data Visualization',
+      'Machine Learning',
+      'Data Analysis',
+      'Data Science'
+    ],
+    description:
+      'Professional certificate building hands-on skills in data science and machine learning, covering Python, SQL, data visualization, analysis, and model development.',
+    status: 'Completed',
+    order: 1
+  },
+  {
     title: 'Google Data Analytics',
-    provider: 'Coursera',
+    provider: 'Google on Coursera',
     dateCompleted: 'Sep 2024',
     duration: '30 hours',
     certificateUrl:
@@ -34,11 +57,11 @@ export const coursesData: CoursesData = [
     description:
       'Introductory course covering core math for data science, including algebra, calculus, linear algebra, and numerical analysis, with career-focused foundations',
     status: 'Completed',
-    order: 1
+    order: 2
   },
   {
     title: 'Mathematics for Machine Learning',
-    provider: 'Coursera',
+    provider: 'Imperial College London on Coursera',
     dateCompleted: 'Sep 2024',
     duration: '20 hours',
     certificateUrl:
@@ -48,11 +71,11 @@ export const coursesData: CoursesData = [
     description:
       'Course sequence covering essential math for data science: linear algebra, data properties, PCA, optimization, and neural network training',
     status: 'Completed',
-    order: 2
+    order: 3
   },
   {
     title: 'Expressway to Data Science: Essential Math',
-    provider: 'Coursera',
+    provider: 'University of Colorado Boulder on Coursera',
     dateCompleted: 'Sep 2024',
     duration: '40 hours',
     certificateUrl:
@@ -67,7 +90,7 @@ export const coursesData: CoursesData = [
     description:
       'Introductory course covering core math for data science, including algebra, calculus, linear algebra, and numerical analysis, with career-focused foundations',
     status: 'Completed',
-    order: 3
+    order: 4
   }
 ];
 
