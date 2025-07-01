@@ -14,7 +14,10 @@ interface TimelineProps {
   educationExperiences: EducationExperience[];
 }
 
-export function Timeline({ workExperiences, educationExperiences }: TimelineProps) {
+export function Timeline({
+  workExperiences,
+  educationExperiences
+}: TimelineProps) {
   const formatDate = (dateString: string) => {
     if (dateString === 'Present') return 'Present';
 
@@ -105,9 +108,7 @@ export function Timeline({ workExperiences, educationExperiences }: TimelineProp
                 flex-shrink-0 relative z-10
               `}
             >
-              <div className="w-5 h-5">
-                {getIcon(sectionType)}
-              </div>
+              <div className="w-5 h-5">{getIcon(sectionType)}</div>
 
               {/* Subtle pulse for current position on desktop */}
               {experience.endDate === 'Present' && (
@@ -122,7 +123,9 @@ export function Timeline({ workExperiences, educationExperiences }: TimelineProp
                 <div className="sm:hidden mb-3">
                   <Badge
                     variant="outline"
-                    className={`w-fit text-xs font-medium px-2 py-1 ${getTypeColor(sectionType)}`}
+                    className={`w-fit text-xs font-medium px-2 py-1 ${getTypeColor(
+                      sectionType
+                    )}`}
                   >
                     {sectionType === 'work' ? '💼 Work' : '🎓 Education'}
                   </Badge>
@@ -142,15 +145,22 @@ export function Timeline({ workExperiences, educationExperiences }: TimelineProp
                               target="_blank"
                               rel="noopener noreferrer"
                               className="text-base sm:text-lg lg:text-xl text-primary hover:text-primary/80 font-semibold flex-1 min-w-0 break-words transition-all duration-200 hover:underline underline-offset-2 decoration-2 decoration-primary/30 hover:decoration-primary/60"
-                              title={`Visit ${(experience as WorkExperience).company || (experience as EducationExperience).institution} website`}
-                              aria-label={`Visit ${(experience as WorkExperience).company || (experience as EducationExperience).institution} website`}
+                              title={`Visit ${
+                                (experience as WorkExperience).company ||
+                                (experience as EducationExperience).institution
+                              } website`}
+                              aria-label={`Visit ${
+                                (experience as WorkExperience).company ||
+                                (experience as EducationExperience).institution
+                              } website`}
                             >
-                              {(experience as WorkExperience).company || (experience as EducationExperience).institution}
-                              <BsBoxArrowUpRight className="inline-block w-3 h-3 sm:w-4 sm:h-4 ml-1 opacity-60" />
+                              {(experience as WorkExperience).company ||
+                                (experience as EducationExperience).institution}
                             </a>
                           ) : (
                             <p className="text-base sm:text-lg lg:text-xl text-muted-foreground font-semibold flex-1 min-w-0 break-words">
-                              {(experience as WorkExperience).company || (experience as EducationExperience).institution}
+                              {(experience as WorkExperience).company ||
+                                (experience as EducationExperience).institution}
                             </p>
                           )}
                         </div>
@@ -177,7 +187,9 @@ export function Timeline({ workExperiences, educationExperiences }: TimelineProp
                   </div>
                   <div className="flex items-center gap-2 bg-muted px-2 sm:px-3 py-1 sm:py-1.5 rounded-full w-fit">
                     <BsGeoAlt className="w-3 h-3 sm:w-4 sm:h-4 text-accent flex-shrink-0" />
-                    <span className="font-medium break-words">{experience.location}</span>
+                    <span className="font-medium break-words">
+                      {experience.location}
+                    </span>
                   </div>
                 </div>
               </CardHeader>
@@ -259,7 +271,11 @@ export function Timeline({ workExperiences, educationExperiences }: TimelineProp
               Academic background and certifications
             </p>
           </div>
-          {renderTimelineSection(educationExperiences, 'education', workExperiences.length)}
+          {renderTimelineSection(
+            educationExperiences,
+            'education',
+            workExperiences.length
+          )}
         </section>
       )}
     </div>
