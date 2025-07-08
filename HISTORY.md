@@ -2,6 +2,36 @@
 
 This file tracks all significant changes, updates, and releases for the Igor Andrade Portfolio project.
 
+## [1.6.0] - 2025-07-07
+
+### Added
+
+- **404 Error Page**: Created comprehensive custom 404 not-found page
+  - Implemented fully-featured 404 page (`app/not-found.tsx`) with modern design
+  - Added proper SEO metadata with OpenGraph and Twitter card support
+  - Included visual error illustration with search icon and exclamation mark
+  - Added navigation buttons: "Go Home" and "Go Back" with proper icons
+  - Integrated quick navigation links to all main portfolio sections
+  - Implemented responsive design with mobile-friendly layout
+  - Added proper accessibility features and semantic HTML structure
+
+### Enhanced
+
+- **SEO & Sitemap**: Improved site indexing and navigation structure
+  - Updated sitemap.xml with complete URL structure for all portfolio pages
+  - Added all main pages: About, Projects, Certifications, Courses, Contact
+  - Updated lastmod timestamps to 2025-07-03 for better search engine indexing
+  - Implemented proper priority and changefreq values for each page type
+  - Enhanced site discoverability and search engine optimization
+
+### Technical
+
+- **Error Handling**: Better user experience for invalid URLs
+  - Implemented Next.js 15 compatible not-found page structure
+  - Used proper TypeScript interfaces and component architecture
+  - Integrated with existing design system and UI components
+  - Added proper robots meta tags to prevent indexing of 404 pages
+
 ## [1.5.1] - 2025-06-30
 
 ### Added
