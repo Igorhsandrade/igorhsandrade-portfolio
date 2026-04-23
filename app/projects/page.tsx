@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { ProjectsSection } from '@/components/projects-section';
 import { SectionWrapper } from '@/components/section-wrapper';
 import { projects } from '@/constants';
+import type { Project } from '@/constants/projects';
 
 export const metadata: Metadata = {
   title: 'Projects',
@@ -64,7 +65,7 @@ export default function ProjectsPage() {
             mainEntity: {
               '@type': 'ItemList',
               numberOfItems: projects.length,
-              itemListElement: projects.map((project: any, index: number) => ({
+              itemListElement: projects.map((project: Project, index: number) => ({
                 '@type': 'CreativeWork',
                 position: index + 1,
                 name: project.title,

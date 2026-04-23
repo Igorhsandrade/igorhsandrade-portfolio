@@ -9,9 +9,10 @@ import { FaGithub as Github } from 'react-icons/fa';
 import Image from 'next/image';
 import Link from 'next/link';
 import { projects, textContent } from '@/constants';
+import type { Project } from '@/constants/projects';
 
 interface ProjectsSectionProps {
-  projects?: any[];
+  projects?: Project[];
   showViewAllButton?: boolean;
 }
 

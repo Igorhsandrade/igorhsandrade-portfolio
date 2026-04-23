@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { CertificatesSection } from '@/components/certificates-section';
 import { SectionWrapper } from '@/components/section-wrapper';
 import { certificatesData } from '@/constants';
+import type { Certificate } from '@/constants/certificates';
 
 export const metadata: Metadata = {
   title: 'Certifications',
@@ -64,7 +65,7 @@ export default function CertificationsPage() {
               '@type': 'ItemList',
               numberOfItems: certificatesData.length,
               itemListElement: certificatesData.map(
-                (cert: any, index: number) => ({
+                (cert: Certificate, index: number) => ({
                   '@type': 'EducationalOccupationalCredential',
                   position: index + 1,
                   name: cert.title,
@@ -74,7 +75,7 @@ export default function CertificationsPage() {
                     '@type': 'Organization',
                     name: cert.issuer
                   },
-                  dateCreated: cert.date
+                  dateCreated: cert.dateIssued
                 })
               )
             }

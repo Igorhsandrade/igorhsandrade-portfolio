@@ -1,6 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
 interface ContactFormData {
   name: string;
   email: string;
@@ -69,21 +78,18 @@ async function sendEmail(contactData: ContactFormData): Promise<boolean> {
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #333;">New Contact Form Submission</h2>
-          
+
           <div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <p><strong>Name:</strong> ${contactData.name}</p>
-            <p><strong>Email:</strong> ${contactData.email}</p>
-            <p><strong>Subject:</strong> ${contactData.subject}</p>
+            <p><strong>Name:</strong> ${escapeHtml(contactData.name)}</p>
+            <p><strong>Email:</strong> ${escapeHtml(contactData.email)}</p>
+            <p><strong>Subject:</strong> ${escapeHtml(contactData.subject)}</p>
           </div>
-          
+
           <div style="background-color: #fff; padding: 20px; border-left: 4px solid #007bff; margin: 20px 0;">
             <h3 style="color: #333; margin-top: 0;">Message:</h3>
-            <p style="line-height: 1.6; color: #555;">${contactData.message.replace(
-              /\n/g,
-              '<br>'
-            )}</p>
+            <p style="line-height: 1.6; color: #555;">${escapeHtml(contactData.message).replace(/\n/g, '<br>')}</p>
           </div>
-          
+
           <p style="color: #888; font-size: 12px; margin-top: 30px;">
             This email was sent from your portfolio contact form.
           </p>
