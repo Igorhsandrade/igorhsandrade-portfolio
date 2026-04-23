@@ -45,13 +45,17 @@ async function verifyRecaptcha(token: string): Promise<boolean> {
 
 // Create email transporter
 function createTransporter() {
+  const { EMAIL_HOST, EMAIL_USER, EMAIL_PASSWORD } = process.env;
+  if (!EMAIL_HOST || !EMAIL_USER || !EMAIL_PASSWORD) {
+    throw new Error('Email service is not configured');
+  }
   return nodemailer.createTransport({
-    host: process.env.EMAIL_HOST,
+    host: EMAIL_HOST,
     port: parseInt(process.env.EMAIL_PORT || '587'),
-    secure: false, // true for 465, false for other ports
+    secure: false,
     auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASSWORD
+      user: EMAIL_USER,
+      pass: EMAIL_PASSWORD
     }
   });
 }
@@ -124,6 +128,15 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return NextResponse.json(
+        { error: 'Invalid email address' },
+        { status: 400 }
+      );
+    }
+
     // Check if reCAPTCHA is configured
     const secretKey = process.env.RECAPTCHA_SECRET_KEY;
     const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
@@ -147,18 +160,6 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // TODO: Implement your email sending logic here
-    // For example, using SendGrid, Nodemailer, or another email service
-
-    console.log('Contact form submission:', {
-      name,
-      email,
-      subject,
-      message,
-      timestamp: new Date().toISOString()
-    });
-
-    // Send email using Nodemailer
     const emailSent = await sendEmail({
       name,
       email,
@@ -173,9 +174,6 @@ export async function POST(request: NextRequest) {
         { status: 500 }
       );
     }
-
-    // Simulate processing time
-    await new Promise((resolve) => setTimeout(resolve, 500));
 
     return NextResponse.json(
       { message: 'Message sent successfully!' },
