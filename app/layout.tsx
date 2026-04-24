@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     siteName: 'Igor Andrade - Full-Stack Developer',
     title: 'Igor Andrade - Full-Stack Developer & Software Engineer',
     description:
-      'Experienced full-stack developer specializing in React, Next.js, Node.js, and modern web technologies. Building scalable applications with 5+ years of expertise.',
+      'Experienced full-stack developer specializing in React, Next.js, Node.js, and modern web technologies. Building scalable applications with 3+ years of expertise.',
     images: [
       {
         url: '/og-image.png',
