@@ -42,6 +42,7 @@ export const en = {
         "I believe in writing clean, maintainable code and following best practices. I'm always learning new technologies and staying up-to-date with industry trends to deliver the best solutions."
     },
     skillsTitle: 'Skills & Technologies',
+    skillsSubtitle: 'Technologies and tools I work with to bring ideas to life',
     coursesTitle: 'Professional Development',
     coursesSubtitle:
       'Continuously learning and mastering new technologies through comprehensive courses and specializations.',
@@ -141,6 +142,36 @@ export const en = {
       termsOfService: 'Terms of Service',
       builtWith: 'Built with Next.js & Tailwind CSS'
     }
+  },
+
+  skills: {
+    searchPlaceholder: 'Search skills...',
+    year: 'year',
+    years: 'years',
+    categories: {
+      Languages: 'Languages',
+      Technologies: 'Technologies',
+      Data: 'Data',
+      Tools: 'Tools'
+    },
+    levels: {
+      Expert: 'Expert',
+      Advanced: 'Advanced',
+      Intermediate: 'Intermediate',
+      Beginner: 'Beginner'
+    },
+    found: 'Found',
+    skill: 'skill',
+    skillsPlural: 'skills',
+    matching: 'matching',
+    showingIn: 'Showing results in',
+    categoryWord: 'category',
+    categoriesWord: 'categories',
+    noResultsFor: 'No skills found matching',
+    inCategory: 'in',
+    tryDifferent: 'Try a different search term or browse other categories',
+    noSkills: 'No skills in this category yet',
+    willBeAdded: 'Skills will be added as I learn new technologies'
   },
 
   common: {
