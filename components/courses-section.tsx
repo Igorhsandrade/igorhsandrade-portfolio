@@ -1,3 +1,4 @@
+'use client';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -12,7 +13,7 @@ import {
 import { HiPlay as Play } from 'react-icons/hi2';
 import Image from 'next/image';
 import Link from 'next/link';
-import { textContent } from '@/constants';
+import { useLocale } from '@/components/locale-provider';
 import { Course } from '@/constants/courses';
 
 interface CoursesSectionProps {
@@ -24,6 +25,7 @@ export function CoursesSection({
   courses: coursesProp,
   showViewAllButton = true
 }: CoursesSectionProps = {}) {
+  const { t } = useLocale();
   const coursesToShow = coursesProp || [];
   if (coursesToShow.length === 0) {
     return null;
@@ -62,10 +64,10 @@ export function CoursesSection({
       <div className="container">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            {textContent.about.coursesTitle}
+            {t.about.coursesTitle}
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            {textContent.about.coursesSubtitle}
+            {t.about.coursesSubtitle}
           </p>
         </div>
 
@@ -167,7 +169,7 @@ export function CoursesSection({
               asChild
             >
               <Link href="/courses">
-                {textContent.about.buttons.viewAllCourses}
+                {t.about.buttons.viewAllCourses}
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Link>
             </Button>

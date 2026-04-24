@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { FaEnvelope as Mail, FaCheckCircle } from 'react-icons/fa';
-import { textContent } from '@/constants';
+import { useLocale } from '@/components/locale-provider';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { useRecaptcha } from './recaptcha-provider';
 
@@ -27,6 +27,7 @@ export function ContactForm({ className }: ContactFormProps) {
     text: string;
   } | null>(null);
   const recaptchaRef = useRef<ReCAPTCHA>(null);
+  const { t } = useLocale();
   const { isLoaded, error, retry } = useRecaptcha();
   const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY; // Form can be submitted if:
   // 1. reCAPTCHA is verified, OR
@@ -43,7 +44,7 @@ export function ContactForm({ className }: ContactFormProps) {
     if (!isVerified && siteKey) {
       setMessage({
         type: 'error',
-        text: textContent.contact.form.recaptchaRequired
+        text: t.contact.form.recaptchaRequired
       });
       return;
     }
@@ -153,7 +154,7 @@ export function ContactForm({ className }: ContactFormProps) {
           <div className="space-y-6">
             <div className="space-y-2">
               <h3 className="text-3xl font-bold text-foreground">
-                {textContent.contact.form.success.title}
+                {t.contact.form.success.title}
               </h3>
               <div className="w-16 h-1 bg-primary mx-auto rounded-full"></div>
             </div>
@@ -166,10 +167,10 @@ export function ContactForm({ className }: ContactFormProps) {
                 <span className="text-2xl">⏱️</span>
                 <div className="text-center">
                   <p className="font-medium text-foreground">
-                    {textContent.contact.form.success.responseTime.title}
+                    {t.contact.form.success.responseTime.title}
                   </p>
                   <p className="text-sm">
-                    {textContent.contact.form.success.responseTime.duration}
+                    {t.contact.form.success.responseTime.duration}
                   </p>
                 </div>
               </div>
@@ -180,11 +181,11 @@ export function ContactForm({ className }: ContactFormProps) {
           <div className="text-sm text-muted-foreground space-y-2 max-w-md mx-auto">
             <div className="flex items-center justify-center space-x-2">
               <span>🔒</span>
-              <p>{textContent.contact.form.success.security.privacy}</p>
+              <p>{t.contact.form.success.security.privacy}</p>
             </div>
             <div className="flex items-center justify-center space-x-2">
               <span>📱</span>
-              <p>{textContent.contact.form.success.security.urgentContact}</p>
+              <p>{t.contact.form.success.security.urgentContact}</p>
             </div>
           </div>
         </div>
@@ -197,47 +198,47 @@ export function ContactForm({ className }: ContactFormProps) {
       <div className="grid md:grid-cols-2 gap-4">
         <div>
           <label htmlFor="name" className="block text-sm font-medium mb-2">
-            {textContent.contact.form.name}
+            {t.contact.form.name}
           </label>
           <Input
             id="name"
             name="name"
-            placeholder={textContent.contact.form.namePlaceholder}
+            placeholder={t.contact.form.namePlaceholder}
             required
           />
         </div>
         <div>
           <label htmlFor="email" className="block text-sm font-medium mb-2">
-            {textContent.contact.form.email}
+            {t.contact.form.email}
           </label>
           <Input
             id="email"
             name="email"
             type="email"
-            placeholder={textContent.contact.form.emailPlaceholder}
+            placeholder={t.contact.form.emailPlaceholder}
             required
           />
         </div>
       </div>
       <div>
         <label htmlFor="subject" className="block text-sm font-medium mb-2">
-          {textContent.contact.form.subject}
+          {t.contact.form.subject}
         </label>
         <Input
           id="subject"
           name="subject"
-          placeholder={textContent.contact.form.subjectPlaceholder}
+          placeholder={t.contact.form.subjectPlaceholder}
           required
         />
       </div>
       <div>
         <label htmlFor="message" className="block text-sm font-medium mb-2">
-          {textContent.contact.form.message}
+          {t.contact.form.message}
         </label>
         <Textarea
           id="message"
           name="message"
-          placeholder={textContent.contact.form.messagePlaceholder}
+          placeholder={t.contact.form.messagePlaceholder}
           rows={5}
           required
         />
@@ -288,8 +289,8 @@ export function ContactForm({ className }: ContactFormProps) {
         disabled={!canSubmit || isSubmitting}
       >
         {isSubmitting
-          ? textContent.contact.form.sending
-          : textContent.contact.form.sendButton}
+          ? t.contact.form.sending
+          : t.contact.form.sendButton}
         <Mail className="w-5 h-5 ml-2" />
       </Button>{' '}
       {/* Status Message */}

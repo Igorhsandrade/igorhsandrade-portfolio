@@ -1,6 +1,8 @@
+'use client';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { WorkExperience, EducationExperience } from '@/constants';
+import { useLocale } from '@/components/locale-provider';
 import {
   BsBriefcase,
   BsMortarboard,
@@ -18,11 +20,13 @@ export function Timeline({
   workExperiences,
   educationExperiences
 }: TimelineProps) {
+  const { t, locale } = useLocale();
+
   const formatDate = (dateString: string) => {
-    if (dateString === 'Present') return 'Present';
+    if (dateString === 'Present') return t.about.timeline.present;
 
     const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', {
+    return date.toLocaleDateString(locale === 'pt' ? 'pt-BR' : 'en-US', {
       month: 'short',
       year: 'numeric'
     });
@@ -247,10 +251,10 @@ export function Timeline({
               <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-primary text-white flex items-center justify-center">
                 <BsBriefcase className="w-4 h-4 sm:w-5 sm:h-5" />
               </div>
-              <span>Professional Experience</span>
+              <span>{t.about.timeline.workTitle}</span>
             </h2>
             <p className="text-muted-foreground text-sm sm:text-base">
-              My journey in the software development industry
+              {t.about.timeline.workSubtitle}
             </p>
           </div>
           {renderTimelineSection(workExperiences, 'work', 0)}
@@ -265,10 +269,10 @@ export function Timeline({
               <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-accent text-white flex items-center justify-center">
                 <BsMortarboard className="w-4 h-4 sm:w-5 sm:h-5" />
               </div>
-              <span>Education</span>
+              <span>{t.about.timeline.educationTitle}</span>
             </h2>
             <p className="text-muted-foreground text-sm sm:text-base">
-              Academic background and certifications
+              {t.about.timeline.educationSubtitle}
             </p>
           </div>
           {renderTimelineSection(

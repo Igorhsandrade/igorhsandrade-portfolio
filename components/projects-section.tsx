@@ -1,3 +1,4 @@
+'use client';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -8,7 +9,8 @@ import {
 import { FaGithub as Github } from 'react-icons/fa';
 import Image from 'next/image';
 import Link from 'next/link';
-import { projects, textContent } from '@/constants';
+import { projects } from '@/constants';
+import { useLocale } from '@/components/locale-provider';
 import type { Project } from '@/constants/projects';
 
 interface ProjectsSectionProps {
@@ -20,6 +22,7 @@ export function ProjectsSection({
   projects: projectsProp,
   showViewAllButton = true
 }: ProjectsSectionProps = {}) {
+  const { t } = useLocale();
   if (projectsProp?.length === 0) {
     return null;
   }
@@ -32,10 +35,10 @@ export function ProjectsSection({
       <div className="container">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            {textContent.projects.title}
+            {t.projects.title}
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            {textContent.projects.subtitle}
+            {t.projects.subtitle}
           </p>
         </div>
 
@@ -83,7 +86,7 @@ export function ProjectsSection({
                           rel="noopener noreferrer"
                         >
                           <ExternalLink className="w-4 h-4 mr-2" />
-                          {textContent.projects.buttons.liveDemo}
+                          {t.projects.buttons.liveDemo}
                         </Link>
                       </Button>
                     )}
@@ -100,7 +103,7 @@ export function ProjectsSection({
                           rel="noopener noreferrer"
                         >
                           <Github className="w-4 h-4 mr-2" />
-                          {textContent.projects.buttons.code}
+                          {t.projects.buttons.code}
                         </Link>
                       </Button>
                     )}
@@ -120,7 +123,7 @@ export function ProjectsSection({
               asChild
             >
               <Link href="/projects">
-                {textContent.projects.buttons.viewAll}
+                {t.projects.buttons.viewAll}
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Link>
             </Button>

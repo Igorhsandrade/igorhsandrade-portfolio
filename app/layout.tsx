@@ -2,6 +2,7 @@ import type React from 'react';
 import type { Metadata } from 'next';
 import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
+import { LocaleProvider } from '@/components/locale-provider';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 
@@ -115,11 +116,13 @@ export default function RootLayout({
           disableTransitionOnChange={false}
           storageKey="portfolio-theme"
         >
-          <div className="min-h-screen bg-background">
-            <Header />
-            <main>{children}</main>
-            <Footer />
-          </div>
+          <LocaleProvider>
+            <div className="min-h-screen bg-background">
+              <Header />
+              <main>{children}</main>
+              <Footer />
+            </div>
+          </LocaleProvider>
         </ThemeProvider>
       </body>
     </html>

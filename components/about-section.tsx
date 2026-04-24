@@ -1,17 +1,19 @@
+'use client';
 import Image from 'next/image';
-import { textContent } from '@/constants';
+import { useLocale } from '@/components/locale-provider';
 
 export function AboutSection() {
+  const { t } = useLocale();
   return (
     <section id="about" className="py-20">
       <div className="container">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              {textContent.about.title}
+              {t.about.title}
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              {textContent.about.subtitle}
+              {t.about.subtitle}
             </p>
           </div>
 
@@ -21,7 +23,7 @@ export function AboutSection() {
                 <div className="w-full h-full rounded-full overflow-hidden bg-background">
                   <Image
                     src="/igor.png"
-                    alt={textContent.common.imageAlt}
+                    alt={t.common.imageAlt}
                     width={256}
                     height={256}
                     className="w-full h-full object-cover"
@@ -33,18 +35,18 @@ export function AboutSection() {
             <div className="space-y-6">
               <div>
                 <h3 className="text-xl font-semibold mb-2">
-                  {textContent.about.background.title}
+                  {t.about.background.title}
                 </h3>
                 <p className="text-muted-foreground">
-                  {textContent.about.background.content}
+                  {t.about.background.content}
                 </p>
               </div>
               <div>
                 <h3 className="text-xl font-semibold mb-2">
-                  {textContent.about.approach.title}
+                  {t.about.approach.title}
                 </h3>
                 <p className="text-muted-foreground">
-                  {textContent.about.approach.content}
+                  {t.about.approach.content}
                 </p>
               </div>
             </div>
