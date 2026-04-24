@@ -1,3 +1,4 @@
+'use client';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import {
@@ -8,9 +9,10 @@ import {
 import Link from 'next/link';
 import { ContactForm } from '@/components/contact-form';
 import { RecaptchaProvider } from '@/components/recaptcha-provider';
-import { textContent } from '@/constants';
+import { useLocale } from '@/components/locale-provider';
 
 export function ContactSection() {
+  const { t } = useLocale();
   return (
     <section
       id="contact"
@@ -25,10 +27,10 @@ export function ContactSection() {
               Ready to collaborate
             </div>
             <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
-              {textContent.contact.title}
+              {t.contact.title}
             </h2>
             <p className="text-xl text-muted-foreground leading-relaxed">
-              {textContent.contact.subtitle}
+              {t.contact.subtitle}
             </p>
           </div>
 
@@ -44,7 +46,7 @@ export function ContactSection() {
             <div className="bg-gradient-to-br from-primary/5 to-primary/10 p-8 rounded-2xl border border-primary/20">
               <div className="mb-6">
                 <h3 className="text-2xl font-bold mb-4 text-foreground">
-                  {textContent.contact.directContact}
+                  {t.contact.directContact}
                 </h3>
                 <p className="text-muted-foreground mb-6">
                   Skip the form and let's have a direct conversation about your
@@ -64,7 +66,7 @@ export function ContactSection() {
                   className="inline-flex items-center justify-center gap-3 text-base font-semibold"
                 >
                   <Calendar className="w-5 h-5" />
-                  {textContent.contact.buttons.appointment}
+                  {t.contact.buttons.appointment}
                 </Link>
               </Button>
 

@@ -6,13 +6,15 @@ import {
   HiX as X
 } from 'react-icons/hi';
 import { ThemeToggleSimple } from '@/components/theme-toggle-simple';
+import { LocaleToggle } from '@/components/locale-toggle';
 import { Button } from '@/components/ui/button';
 import { useIsMobile } from '@/hooks/use-mobile';
-import { textContent } from '@/constants';
+import { useLocale } from '@/components/locale-provider';
 import { useState, useEffect } from 'react';
 
 export function Header() {
   const isMobile = useIsMobile();
+  const { t } = useLocale();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
 
@@ -31,7 +33,7 @@ export function Header() {
           className="text-xl font-bold bg-gradient-to-r from-primary to-foreground bg-clip-text text-transparent hover:from-primary/80 hover:to-foreground/80 transition-all duration-300"
           onClick={closeMenu}
         >
-          {textContent.header.name}
+          {t.header.name}
         </Link>
 
         {/* Desktop Navigation */}
@@ -39,37 +41,37 @@ export function Header() {
           <nav
             className="flex items-center space-x-6"
             role="navigation"
-            aria-label={textContent.common.ariaLabels.mainNavigation}
+            aria-label={t.common.ariaLabels.mainNavigation}
           >
             <Link
               href="/about"
               className="text-sm font-medium hover:text-primary transition-colors"
             >
-              {textContent.header.navigation.about}
+              {t.header.navigation.about}
             </Link>
             <Link
               href="/projects"
               className="text-sm font-medium hover:text-primary transition-colors"
             >
-              {textContent.header.navigation.projects}
+              {t.header.navigation.projects}
             </Link>
             <Link
               href="/courses"
               className="text-sm font-medium hover:text-primary transition-colors"
             >
-              {textContent.header.navigation.courses}
+              {t.header.navigation.courses}
             </Link>
             <Link
               href="/certifications"
               className="text-sm font-medium hover:text-primary transition-colors"
             >
-              {textContent.header.navigation.certifications}
+              {t.header.navigation.certifications}
             </Link>
             <Link
               href="/contact"
               className="text-sm font-medium hover:text-primary transition-colors"
             >
-              {textContent.header.navigation.contact}
+              {t.header.navigation.contact}
             </Link>
           </nav>
 
@@ -80,15 +82,17 @@ export function Header() {
               rel="noopener noreferrer"
             >
               <Download className="w-4 h-4" />
-              {textContent.header.navigation.resume}
+              {t.header.navigation.resume}
             </a>
           </Button>
 
+          <LocaleToggle />
           <ThemeToggleSimple />
         </div>
 
         {/* Mobile Navigation */}
         <div className="flex md:hidden items-center gap-2">
+          <LocaleToggle />
           <ThemeToggleSimple />
           <Button
             variant="outline"
@@ -121,35 +125,35 @@ export function Header() {
               className="text-sm font-medium hover:text-primary py-2 transition-all duration-200 hover:translate-x-1"
               onClick={closeMenu}
             >
-              {textContent.header.navigation.about}
+              {t.header.navigation.about}
             </Link>
             <Link
               href="/projects"
               className="text-sm font-medium hover:text-primary py-2 transition-all duration-200 hover:translate-x-1"
               onClick={closeMenu}
             >
-              {textContent.header.navigation.projects}
+              {t.header.navigation.projects}
             </Link>
             <Link
               href="/courses"
               className="text-sm font-medium hover:text-primary py-2 transition-all duration-200 hover:translate-x-1"
               onClick={closeMenu}
             >
-              {textContent.header.navigation.courses}
+              {t.header.navigation.courses}
             </Link>
             <Link
               href="/certifications"
               className="text-sm font-medium hover:text-primary py-2 transition-all duration-200 hover:translate-x-1"
               onClick={closeMenu}
             >
-              {textContent.header.navigation.certifications}
+              {t.header.navigation.certifications}
             </Link>
             <Link
               href="/contact"
               className="text-sm font-medium hover:text-primary py-2 transition-all duration-200 hover:translate-x-1"
               onClick={closeMenu}
             >
-              {textContent.header.navigation.contact}
+              {t.header.navigation.contact}
             </Link>
             <Button
               asChild
@@ -163,7 +167,7 @@ export function Header() {
                 rel="noopener noreferrer"
               >
                 <Download className="w-4 h-4" />
-                {textContent.header.navigation.resume}
+                {t.header.navigation.resume}
               </a>
             </Button>{' '}
           </nav>

@@ -1,3 +1,4 @@
+'use client';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -11,7 +12,7 @@ import {
 import { FaAward as Award } from 'react-icons/fa';
 import Image from 'next/image';
 import Link from 'next/link';
-import { textContent } from '@/constants';
+import { useLocale } from '@/components/locale-provider';
 import { Certificate } from '@/constants/certificates';
 
 interface CertificatesSectionProps {
@@ -23,6 +24,7 @@ export function CertificatesSection({
   certificates: certificatesProp,
   showViewAllButton = true
 }: CertificatesSectionProps = {}) {
+  const { t } = useLocale();
   const certificatesToShow = certificatesProp || [];
   if (certificatesToShow.length === 0) {
     return null;
@@ -61,10 +63,10 @@ export function CertificatesSection({
       <div className="container">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            {textContent.about.certificatesTitle}
+            {t.about.certificatesTitle}
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            {textContent.about.certificatesSubtitle}
+            {t.about.certificatesSubtitle}
           </p>
         </div>
 
@@ -167,7 +169,7 @@ export function CertificatesSection({
               asChild
             >
               <Link href="/certifications">
-                {textContent.about.buttons.viewAllCertifications}
+                {t.about.buttons.viewAllCertifications}
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Link>
             </Button>
