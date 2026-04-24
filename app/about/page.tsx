@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Timeline } from '@/components/timeline';
 import { SectionWrapper } from '@/components/section-wrapper';
-import { workExperiences, educationExperiences } from '@/constants';
+import { getWorkExperiences, getEducationExperiences } from '@/lib/api';
 
 export const metadata: Metadata = {
   title: 'About',
@@ -46,7 +46,11 @@ export const metadata: Metadata = {
   }
 };
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const [workExperiences, educationExperiences] = await Promise.all([
+    getWorkExperiences(),
+    getEducationExperiences(),
+  ]);
   return (
     <>
       {/* Structured Data */}

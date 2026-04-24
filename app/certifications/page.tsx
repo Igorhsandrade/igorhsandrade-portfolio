@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { CertificatesSection } from '@/components/certificates-section';
 import { SectionWrapper } from '@/components/section-wrapper';
-import { certificatesData } from '@/constants';
+import { getCertificates } from '@/lib/api';
 import type { Certificate } from '@/constants/certificates';
 
 export const metadata: Metadata = {
@@ -47,7 +47,8 @@ export const metadata: Metadata = {
   }
 };
 
-export default function CertificationsPage() {
+export default async function CertificationsPage() {
+  const certificatesData = await getCertificates();
   return (
     <>
       {/* Structured Data */}

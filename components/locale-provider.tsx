@@ -32,6 +32,7 @@ export function LocaleProvider({ children }: { children: React.ReactNode }) {
   const setLocale = (l: Locale) => {
     setLocaleState(l);
     localStorage.setItem('portfolio-locale', l);
+    document.cookie = `portfolio-locale=${l}; path=/; max-age=31536000; SameSite=Lax`;
   };
 
   return (

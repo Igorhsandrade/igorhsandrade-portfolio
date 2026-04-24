@@ -4,19 +4,19 @@ import { SkillsOverviewSection } from '@/components/skills-overview-section';
 import { ProjectsSection } from '@/components/projects-section';
 import { ContactSection } from '@/components/contact-section';
 import { SectionWrapper } from '@/components/section-wrapper';
-import {
-  certificatesData,
-  coursesData,
-  jsonLd,
-  metadata,
-  projects
-} from '@/constants';
+import { jsonLd, metadata } from '@/constants';
+import { getProjects, getCourses, getCertificates } from '@/lib/api';
 import { CoursesSection } from '@/components/courses-section';
 import { CertificatesSection } from '@/components/certificates-section';
 
 export { metadata };
 
-export default function HomePage() {
+export default async function HomePage() {
+  const [projects, coursesData, certificatesData] = await Promise.all([
+    getProjects(),
+    getCourses(),
+    getCertificates(),
+  ]);
   return (
     <>
       <script
