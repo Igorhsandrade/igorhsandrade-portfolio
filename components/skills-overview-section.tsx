@@ -16,7 +16,7 @@ export function SkillsOverviewSection() {
               {t.about.skillsTitle}
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
-              Technologies and tools I work with to bring ideas to life
+              {t.about.skillsSubtitle}
             </p>
           </div>
           <SkillsSection skills={skillsData} />

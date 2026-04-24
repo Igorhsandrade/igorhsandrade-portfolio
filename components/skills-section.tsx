@@ -72,6 +72,7 @@ import {
 } from 'react-icons/si';
 import { cn } from '@/lib/utils';
 import { Input } from '@/components/ui/input';
+import { useLocale } from '@/components/locale-provider';
 import type {
   Skill,
   SkillIcon,
@@ -250,6 +251,7 @@ const getLevelWidth: LevelStyleFunction = (level) => {
 };
 
 export function SkillsSection({ skills }: SkillsSectionProps): JSX.Element {
+  const { t } = useLocale();
   const skillsByCategory = useMemo((): SkillsByCategory => {
     const grouped = skills.reduce<SkillsByCategory>((acc, skill) => {
       if (!acc[skill.category]) {
@@ -339,13 +341,13 @@ export function SkillsSection({ skills }: SkillsSectionProps): JSX.Element {
                 getBadgeColorClasses(skill.level)
               )}
             >
-              {skill.level}
+              {t.skills.levels[skill.level]}
             </Badge>
           </div>
           <div className="flex items-center justify-between gap-3">
             <div className="text-xs text-muted-foreground flex items-center gap-1">
               <HiCalendar className="w-3 h-3" />
-              {skill.years} years
+              {skill.years} {skill.years === 1 ? t.skills.year : t.skills.years}
             </div>
             <div className="flex-1 max-w-24">
               <div className="w-full bg-muted rounded-full h-2">
@@ -371,7 +373,7 @@ export function SkillsSection({ skills }: SkillsSectionProps): JSX.Element {
               <h4 className="font-medium">{skill.name}</h4>
               <div className="text-xs text-muted-foreground flex items-center gap-1">
                 <HiCalendar className="w-3 h-3" />
-                {skill.years} years
+                {skill.years} {skill.years === 1 ? t.skills.year : t.skills.years}
               </div>
             </div>
           </div>
@@ -386,7 +388,7 @@ export function SkillsSection({ skills }: SkillsSectionProps): JSX.Element {
                     getBadgeColorClasses(skill.level)
                   )}
                 >
-                  {skill.level}
+                  {t.skills.levels[skill.level]}
                 </Badge>
               </div>
               <div className="w-full bg-muted rounded-full h-2">
@@ -411,7 +413,7 @@ export function SkillsSection({ skills }: SkillsSectionProps): JSX.Element {
       <div className="relative mb-6">
         <HiMagnifyingGlass className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
         <Input
-          placeholder="Search skills..."
+          placeholder={t.skills.searchPlaceholder}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           className="pl-10 pr-10"
@@ -428,13 +430,16 @@ export function SkillsSection({ skills }: SkillsSectionProps): JSX.Element {
 
       {searchTerm && (
         <div className="mb-4 text-sm text-muted-foreground">
-          Found {totalFilteredSkills} skill
-          {totalFilteredSkills !== 1 ? 's' : ''} matching "{searchTerm}"
+          {t.skills.found} {totalFilteredSkills}{' '}
+          {totalFilteredSkills !== 1 ? t.skills.skillsPlural : t.skills.skill}{' '}
+          {t.skills.matching} &ldquo;{searchTerm}&rdquo;
           {totalFilteredSkills > 0 && (
             <span className="ml-2 text-teal-600">
-              • Showing results in{' '}
-              {Object.keys(filteredSkillsByCategory).length} categor
-              {Object.keys(filteredSkillsByCategory).length !== 1 ? 'ies' : 'y'}
+              &bull; {t.skills.showingIn}{' '}
+              {Object.keys(filteredSkillsByCategory).length}{' '}
+              {Object.keys(filteredSkillsByCategory).length !== 1
+                ? t.skills.categoriesWord
+                : t.skills.categoryWord}
             </span>
           )}
         </div>
@@ -500,7 +505,7 @@ export function SkillsSection({ skills }: SkillsSectionProps): JSX.Element {
 
                     {/* Text */}
                     <span className="whitespace-nowrap md:text-center">
-                      {category}
+                      {t.skills.categories[category]}
                     </span>
 
                     {/* Badge - only on desktop or when searching */}
@@ -545,20 +550,16 @@ export function SkillsSection({ skills }: SkillsSectionProps): JSX.Element {
                     {searchTerm ? (
                       <>
                         <div className="mb-2">
-                          No skills found matching "{searchTerm}" in {category}
+                          {t.skills.noResultsFor} &ldquo;{searchTerm}&rdquo; {t.skills.inCategory} {t.skills.categories[category]}
                         </div>
                         <div className="text-sm">
-                          Try a different search term or browse other categories
+                          {t.skills.tryDifferent}
                         </div>
                       </>
                     ) : (
                       <>
-                        <div className="mb-2">
-                          No skills in this category yet
-                        </div>
-                        <div className="text-sm">
-                          Skills will be added as I learn new technologies
-                        </div>
+                        <div className="mb-2">{t.skills.noSkills}</div>
+                        <div className="text-sm">{t.skills.willBeAdded}</div>
                       </>
                     )}
                   </div>

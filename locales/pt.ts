@@ -39,6 +39,7 @@ export const pt: TextContent = {
         'Acredito em escrever código limpo e manutenível seguindo boas práticas. Estou sempre aprendendo novas tecnologias e me mantendo atualizado com as tendências do setor para entregar as melhores soluções.'
     },
     skillsTitle: 'Habilidades & Tecnologias',
+    skillsSubtitle: 'Tecnologias e ferramentas com as quais trabalho para dar vida às ideias',
     coursesTitle: 'Desenvolvimento Profissional',
     coursesSubtitle:
       'Aprendendo e dominando continuamente novas tecnologias através de cursos e especializações abrangentes.',
@@ -138,6 +139,36 @@ export const pt: TextContent = {
       termsOfService: 'Termos de Serviço',
       builtWith: 'Desenvolvido com Next.js & Tailwind CSS'
     }
+  },
+
+  skills: {
+    searchPlaceholder: 'Buscar habilidades...',
+    year: 'ano',
+    years: 'anos',
+    categories: {
+      Languages: 'Linguagens',
+      Technologies: 'Tecnologias',
+      Data: 'Dados',
+      Tools: 'Ferramentas'
+    },
+    levels: {
+      Expert: 'Especialista',
+      Advanced: 'Avançado',
+      Intermediate: 'Intermediário',
+      Beginner: 'Iniciante'
+    },
+    found: 'Encontrado',
+    skill: 'habilidade',
+    skillsPlural: 'habilidades',
+    matching: 'correspondente a',
+    showingIn: 'Mostrando resultados em',
+    categoryWord: 'categoria',
+    categoriesWord: 'categorias',
+    noResultsFor: 'Nenhuma habilidade encontrada para',
+    inCategory: 'em',
+    tryDifferent: 'Tente um termo diferente ou navegue por outras categorias',
+    noSkills: 'Nenhuma habilidade nesta categoria ainda',
+    willBeAdded: 'Habilidades serão adicionadas conforme aprendo novas tecnologias'
   },
 
   common: {
