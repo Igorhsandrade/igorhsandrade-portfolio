@@ -58,7 +58,7 @@ export function ContactSection() {
                 className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground transition-all duration-300 transform hover:scale-[1.02] shadow-lg hover:shadow-xl border-0 h-14 px-8"
               >
                 <Link
-                  href="https://calendar.app.google/cxLrXJJ4uGyHyL4V7"
+                  href={process.env.NEXT_PUBLIC_CALENDAR_URL ?? '#'}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-3 text-base font-semibold"

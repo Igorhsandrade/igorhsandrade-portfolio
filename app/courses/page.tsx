@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import { CoursesSection } from '@/components/courses-section';
 import { SectionWrapper } from '@/components/section-wrapper';
-import { coursesData, textContent } from '@/constants';
+import { coursesData } from '@/constants';
+import type { Course } from '@/constants/courses';
 
 export const metadata: Metadata = {
   title: 'Courses',
@@ -65,14 +66,14 @@ export default function CoursesPage() {
               '@type': 'ItemList',
               numberOfItems: coursesData.length,
               itemListElement: coursesData.map(
-                (course: any, index: number) => ({
+                (course: Course, index: number) => ({
                   '@type': 'Course',
                   position: index + 1,
                   name: course.title,
                   description: course.description,
                   provider: {
                     '@type': 'Organization',
-                    name: course.issuer
+                    name: course.provider
                   },
                   teaches: course.skills
                 })
