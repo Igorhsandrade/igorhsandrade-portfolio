@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { ProjectsSection } from '@/components/projects-section';
 import { SectionWrapper } from '@/components/section-wrapper';
-import { projects } from '@/constants';
+import { getProjects } from '@/lib/api';
 import type { Project } from '@/constants/projects';
 
 export const metadata: Metadata = {
@@ -48,7 +48,8 @@ export const metadata: Metadata = {
   }
 };
 
-export default function ProjectsPage() {
+export default async function ProjectsPage() {
+  const projects = await getProjects();
   return (
     <>
       {/* Structured Data */}

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { CoursesSection } from '@/components/courses-section';
 import { SectionWrapper } from '@/components/section-wrapper';
-import { coursesData } from '@/constants';
+import { getCourses } from '@/lib/api';
 import type { Course } from '@/constants/courses';
 
 export const metadata: Metadata = {
@@ -48,7 +48,8 @@ export const metadata: Metadata = {
   }
 };
 
-export default function CoursesPage() {
+export default async function CoursesPage() {
+  const coursesData = await getCourses();
   return (
     <>
       {/* Structured Data */}

@@ -34,9 +34,13 @@ EMAIL_PASSWORD=
 EMAIL_FROM=
 EMAIL_TO=
 NEXT_PUBLIC_CALENDAR_URL=   # Google Calendar scheduling link shown in the contact section
+NEXT_PUBLIC_API_URL=        # FastAPI backend URL (e.g. https://portfolio-api.railway.app)
+                             # Omit to use local TypeScript constants as fallback
+REVALIDATE_SECRET=          # Token for POST /api/revalidate (on-demand ISR cache flush, optional)
 ```
 
 reCAPTCHA and email are optional — the contact form degrades gracefully if these are absent.
+`NEXT_PUBLIC_API_URL` is also optional — all pages fall back to local TypeScript constants when it is absent.
 
 ## Architecture
 
@@ -64,6 +68,10 @@ Dark/light mode via `next-themes` with `attribute="class"`. All colors are CSS v
 ### Contact form flow
 
 `ContactForm` (client component) → `POST /api/contact` (route handler) → reCAPTCHA verification → Nodemailer SMTP. The API checks env vars at runtime; if reCAPTCHA keys are missing it skips verification rather than failing.
+
+### API layer (`lib/api.ts`)
+
+Server-only module (imports `server-only`). When `NEXT_PUBLIC_API_URL` is set, all portfolio content is fetched from the FastAPI backend at build/request time with ISR revalidation (1-hour TTL). Falls back to local constants if the env var is missing or the request fails. Never import `lib/api.ts` in a `'use client'` component.
 
 ### Image handling
 
